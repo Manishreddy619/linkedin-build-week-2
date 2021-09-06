@@ -1,9 +1,13 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ProfileDetails from './components/ProfileDetails';
 
 function App() {
 	return (
 		<div className='app'>
-			<h3>Lets build it</h3>
+			<div className='profileBody'>
+				<ProfileDetails />
+			</div>
 		</div>
 	);
 }
