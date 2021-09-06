@@ -18,22 +18,36 @@
 .Avatar {
 	position: absolute;
 	margin-bottom: 10px;
-	right: 15rem;
+	left: -12rem;
 	top: -3rem;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
 	.Avatar {
 		position: absolute;
 		margin-bottom: 10px;
-		left: -8rem;
+		left: -2rem;
 		top: -3rem;
+	}
+	.detailsRight {
+		padding: 10px;
+	}
+}
+@media only screen and (max-width: 1100px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -4rem;
+		top: -3rem;
+	}
+	.detailsRight {
+		padding: 10px;
 	}
 }
 @media only screen and (max-width: 850px) {
 	.Avatar {
 		position: absolute;
 		margin-bottom: 10px;
-		left: -6rem;
+		left: -3rem;
 		top: -3rem;
 	}
 	.details {

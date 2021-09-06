@@ -1,0 +1,122 @@
+.right-bar {
+	flex: 0.2;
+}
+
+.right-bar > div {
+	border-radius: 0.5rem;
+	border: 1px solid #e0dfdc;
+}
+
+.right-top-1 {
+	font-size: 1rem;
+	color: rgba(0, 0, 0, 0.6);
+	margin-bottom: 1rem;
+	padding: 1rem;
+}
+
+.right-top-1 :hover {
+	text-decoration: underline;
+	text-decoration-color: #0a66c2;
+}
+
+.right-people-main-container {
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.right-top-1 > div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.right-top-hr {
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	display: block;
+	height: 1px;
+	width: 100%;
+}
+
+.right-top-edit {
+	width: calc(100% - 44px);
+}
+
+.right-people {
+	padding: 1.5rem 1rem 0.75rem;
+}
+
+.right-people-title {
+	font-size: 1rem;
+	color: rgba(0, 0, 0, 0.9);
+}
+
+.right-people-ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.right-people-ul > li {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1rem;
+}
+
+.right-people-container {
+	display: flex;
+	cursor: pointer;
+}
+
+.right-people-img-container {
+	width: 3rem;
+	height: 3rem;
+	margin-right: 0.75rem;
+}
+
+.right-people-user-image {
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
+}
+
+.right-people-details > p {
+	margin-bottom: 0rem;
+}
+
+.right-people-button-container {
+	padding-left: 3.75rem;
+	margin-top: 4px;
+}
+
+.right-people-button-container > span:first-child {
+	border: 1px solid rgba(0, 0, 0, 0.6);
+	border-radius: 2rem;
+	color: rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+	font-size: 1rem;
+	padding: 5px 15px;
+}
+
+.right-people-show-more {
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.right-people-name {
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.9);
+}
+
+.right-people-area {
+	font-size: 14px;
+}
+
+.right-people-show-more {
+	display: flex;
+	justify-content: center;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	cursor: pointer;
+}
+
+.right-people-show-more div {
+	padding: 0.75rem 0.5rem;
+}
