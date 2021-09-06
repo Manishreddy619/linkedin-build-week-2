@@ -105,15 +105,7 @@ export const getFilteredProfiles = async (filterString) => {
   }
 };
 
-export const updateMyProfile = async () => {
-  let profileData = {
-    name: "Aron",
-    surname: "Hajnal",
-    email: "hajnal.aron.2k11@gmail.com",
-    bio: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
-    title: "Strive Student",
-    area: "Berlin"
-  };
+export const updateMyProfile = async (profileData) => {
   try {
     const apiResp = await fetch(apiUrl, {
       method: "PUT",
