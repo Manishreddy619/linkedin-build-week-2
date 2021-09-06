@@ -86,11 +86,12 @@ export const getFilteredProfiles = async (filterString) => {
               .includes(filterString.toString().toLowerCase())
           ) {
             matchingUsers.push(profile);
-            matchingUsers = matchingUsers.reduce(
-              (acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]),
-              []
-            );
           }
+          matchingUsers = matchingUsers.reduce(
+            (acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]),
+            []
+          );
+          return matchingUsers;
         })
       );
       return matchingUsers;
