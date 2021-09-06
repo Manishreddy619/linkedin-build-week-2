@@ -55,7 +55,11 @@ const ProfileDetails = () => {
 				</div>
 				<div className='aboutSection'>
 					<h3>About</h3>
-					<p>{details && details.bio}</p>
+					<p>
+						{details
+							? details.bio
+							: "My name is manish elaganti I'm a Front End Engineer based in  germany☀️. I describe myself as a passionate developer who loves coding"}
+					</p>
 				</div>
 				<div className='experience'>
 					<h3>Experience</h3>

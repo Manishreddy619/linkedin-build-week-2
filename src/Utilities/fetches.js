@@ -1,8 +1,7 @@
 // Global Variables
 
 const apiUrl = 'https://striveschool-api.herokuapp.com/api/profile/';
-const apiKey =
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZWMwMTJkNTI2MjAwMTViNmRjOGYiLCJpYXQiOjE2MzA5MzkwMDksImV4cCI6MTYzMjE0ODYwOX0.RRowi3PO4Bgykp6gLJZ2pCiB5mHqvx7FxWtSZx7tCac';
+const apiKey = process.env.REACT_APP_API_KEY;
 //Functions
 
 export const getProfiles = async () => {
