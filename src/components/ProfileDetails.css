@@ -3,8 +3,8 @@
 	margin: 0 25px;
 }
 .profileBox1 {
-	position: relative;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: space-evenly;
 	border: 1px solid lightgray;
@@ -16,9 +16,45 @@
 	align-items: center;
 }
 .Avatar {
-	margin-bottom: 10px;
 	position: absolute;
-	left: -20rem;
+	margin-bottom: 10px;
+	right: 15rem;
+	top: -3rem;
+}
+@media only screen and (max-width: 1200px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -8rem;
+		top: -3rem;
+	}
+}
+@media only screen and (max-width: 850px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -6rem;
+		top: -3rem;
+	}
+	.details {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.detailsLeft {
+		display: flex;
+		align-items: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+@media only screen and (max-width: 660px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -2rem;
+		top: -3rem;
+	}
 }
 
 .profileBox1 > img {
@@ -30,8 +66,8 @@
 }
 .details {
 	display: flex;
-
-	justify-content: space-between;
+	align-items: center;
+	justify-content: start;
 }
 
 .detailsLeft > img,
@@ -45,6 +81,7 @@
 .buttons {
 	margin-right: 1rem;
 }
+
 .aboutSection,
 .experience,
 .education,
@@ -72,6 +109,12 @@
 	margin-right: 20px;
 }
 .interests {
+	margin-bottom: 3rem;
+}
+.interests > h3 {
+	padding: 20px;
+}
+.interests-container {
 	display: flex;
 	justify-content: space-evenly;
 	padding-top: 10px;
@@ -79,4 +122,15 @@
 .interests-div > img {
 	object-fit: contain;
 	height: 60px;
+}
+.experience > h3,
+.education > h3,
+.skills > h3 {
+	padding: 20px;
+}
+.skills > button {
+	margin-left: 10px;
+}
+.skills-list {
+	padding: 20px;
 }
