@@ -12,7 +12,7 @@ export const getProfiles = async () => {
         Authorization: `Bearer ${apiKey}`
       }
     });
-    if (apiResp.status === 200) {
+    if (apiResp.ok) {
       let profileList = await apiResp.json();
       return profileList;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
@@ -33,7 +33,7 @@ export const getMyProfile = async () => {
         Authorization: `Bearer ${apiKey}`
       }
     });
-    if (apiResp.status === 200) {
+    if (apiResp.ok) {
       let myProfile = await apiResp.json();
       return myProfile;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
@@ -54,7 +54,7 @@ export const getUserProfile = async (userId) => {
         Authorization: `Bearer ${apiKey}`
       }
     });
-    if (apiResp.status === 200) {
+    if (apiResp.ok) {
       let userProfile = await apiResp.json();
       return userProfile;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
@@ -75,7 +75,7 @@ export const getFilteredProfiles = async (filterString) => {
         Authorization: `Bearer ${apiKey}`
       }
     });
-    if (apiResp.status === 200) {
+    if (apiResp.ok) {
       let profileList = await apiResp.json();
       let matchingUsers = [];
       profileList.map((profile) =>
@@ -123,7 +123,7 @@ export const updateMyProfile = async () => {
         Authorization: `Bearer ${apiKey}`
       }
     });
-    if (apiResp.status === 200) {
+    if (apiResp.ok) {
       let userProfileUpdated = await apiResp.json();
       return userProfileUpdated;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
