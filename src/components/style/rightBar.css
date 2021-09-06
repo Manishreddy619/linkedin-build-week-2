@@ -70,9 +70,13 @@
 .right-people-img-container {
   width: 3rem;
   height: 3rem;
-  border: 1px solid black;
-  border-radius: 50%;
   margin-right: 0.75rem;
+}
+
+.right-people-user-image {
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
 }
 
 .right-people-details > p {
