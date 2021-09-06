@@ -67,6 +67,44 @@ export const getUserProfile = async (userId) => {
   }
 };
 
+export const getFilteredProfiles = async (filterString) => {
+  try {
+    const apiResp = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      }
+    });
+    if (apiResp.status === 200) {
+      let profileList = await apiResp.json();
+      let matchingUsers = [];
+      profileList.map((profile) =>
+        Object.values(profile).filter((userData) => {
+          if (
+            userData
+              .toString()
+              .toLowerCase()
+              .includes(filterString.toString().toLowerCase())
+          ) {
+            matchingUsers.push(profile);
+            matchingUsers = matchingUsers.reduce(
+              (acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]),
+              []
+            );
+          }
+        })
+      );
+      return matchingUsers;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const updateMyProfile = async () => {
   let profileData = {
     name: "Aron",
