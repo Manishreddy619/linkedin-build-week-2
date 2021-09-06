@@ -1,9 +1,14 @@
 import './App.css';
-
+import ProfileDetails from './components/ProfileDetails';
+import RightBar from './components/RightBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 	return (
 		<div className='app'>
-			<h3>Lets build it</h3>
+			<div className='profileBody'>
+				<ProfileDetails />
+				<RightBar />
+			</div>
 		</div>
 	);
 }

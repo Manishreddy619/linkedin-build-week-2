@@ -1,4 +1,6 @@
 // Global Variables
+
+
 const apiUrl = "https://striveschool-api.herokuapp.com/api/profile/";
 const apiKey = process.env.REACT_APP_API_KEY;
 //Functions
@@ -140,4 +142,5 @@ export const updateMyProfile = async (profileData) => {
   } catch (err) {
     throw err;
   }
+
 };
