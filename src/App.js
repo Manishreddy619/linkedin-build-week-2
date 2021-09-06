@@ -1,9 +1,12 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import RightBar from './components/RightBar'
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"></link>
 
 function App() {
 	return (
-		<div className='app'>
-			<h3>Lets build it</h3>
+		<div >
+			<RightBar />
 		</div>
 	);
 }
