@@ -6,18 +6,7 @@
   .right-bar {
     width: 100%;
     background-color: white;
-  }
-  .right-people-container {
-    margin-left: 3rem;
-  }
-  .right-people-button-container {
-    display: flex;
-    margin: auto;
-  }
-  .right-people-details {
-    display: flex;
-    margin: auto;
-    align-items: center;
+    padding: 0 25px;
   }
 }
 .right-bar > div {
@@ -172,7 +161,8 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
-.right-people-show-more:hover {
+.right-people-show-more:hover,
+.right-people-show-more:focus {
   background-color: rgba(0, 0, 0, 0.08);
   color: rgba(0, 0, 0, 0.6);
 }
