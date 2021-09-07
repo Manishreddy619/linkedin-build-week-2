@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileDetails.css";
 import { Avatar } from "@material-ui/core";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { getMyProfile } from "../Utilities/fetches";
 
+import Example from "./Modal";
 const ProfileDetails = () => {
   const [details, setDetails] = useState({});
   useEffect(() => {
@@ -11,6 +12,7 @@ const ProfileDetails = () => {
     mydetails.then((data) => setDetails(data));
   }, []);
   console.log(details);
+
   return (
     details && (
       <div className="profileDetails" key={details._id}>
@@ -29,12 +31,17 @@ const ProfileDetails = () => {
 
           <div className="details">
             <div className="detailsRight">
-              <h2>{details.username}</h2>
+              <h2>
+                {details.username}{" "}
+                <span style={{ display: "inline-flex", marginLeft: "3rem" }}>
+                  <Example details={details} />
+                </span>
+              </h2>
+
               <h4>{details.title}</h4>
               <p>email : {details.email}</p>
               <p>{details.area}</p>
               <p>
-                Connections{" "}
                 <span style={{ color: "blue", fontWeight: "500" }}>35</span>
               </p>
             </div>
@@ -55,7 +62,11 @@ const ProfileDetails = () => {
         </div>
         <div className="aboutSection">
           <h3>About</h3>
-          <p>{details && details.bio}</p>
+          <p>
+            {details
+              ? details.bio
+              : "My name is manish elaganti I'm a Front End Engineer based in  germany☀️. I describe myself as a passionate developer who loves coding"}
+          </p>
         </div>
         <div className="experience">
           <h3>Experience</h3>

@@ -1,7 +1,25 @@
 .right-bar {
   width: 300px;
+  background-color: white;
 }
-
+@media only screen and (max-width: 1100px) {
+  .right-bar {
+    width: 100%;
+    background-color: white;
+  }
+  .right-people-container {
+    margin-left: 3rem;
+  }
+  .right-people-button-container {
+    display: flex;
+    margin: auto;
+  }
+  .right-people-details {
+    display: flex;
+    margin: auto;
+    align-items: center;
+  }
+}
 .right-bar > div {
   border-radius: 0.5rem;
   border: 1px solid #e0dfdc;
