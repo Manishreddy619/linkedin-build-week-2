@@ -1,95 +1,96 @@
+import React from 'react';
+import { createUserExperience } from '../Utilities/fetches';
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import CreateIcon from '@material-ui/icons/Create';
-import { updateMyProfile } from '../Utilities/fetches';
-const Example = ({ details }) => {
+import AddIcon from '@material-ui/icons/Add';
+const ExperienceModal = ({ id }) => {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const [profileData, setProfileData] = useState({
-		name: details.name,
-		surname: details.surname,
-		email: details.email,
-		bio: details.bio,
-		title: details.title,
-		area: details.area,
+	const [userEx, setUserEx] = useState({
+		role: '',
+		company: '',
+		startDate: '',
+		endDate: '', //could be null
+		description: '',
+		area: '',
 	});
 	const handleInput = (e, propertyName) => {
-		setProfileData({
-			...profileData,
+		setUserEx({
+			...userEx,
 			[propertyName]: e.target.value,
 		});
 	};
 	const handleSubmit = async (e) => {
 		// with async/await
 		e.preventDefault();
-		await updateMyProfile(profileData);
+		await createUserExperience(id, userEx);
 	};
-
+	console.log(userEx);
 	return (
 		<>
 			<Button variant='primary' onClick={handleShow}>
-				<CreateIcon />
+				<AddIcon /> Add Experience
 			</Button>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Edit Profile</Modal.Title>
+					<Modal.Title>Add Your Experience</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className='mb-3'>
-							<Form.Label>Name</Form.Label>
+							<Form.Label>Role</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Enter name'
-								value={profileData.name}
-								onChange={(e) => handleInput(e, 'name')}
+								placeholder='Enter role'
+								value={userEx.role}
+								onChange={(e) => handleInput(e, 'role')}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3'>
-							<Form.Label>SurName</Form.Label>
+							<Form.Label>Company</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Enter Surname'
-								value={profileData.surname}
-								onChange={(e) => handleInput(e, 'surname')}
+								placeholder='Enter Company name'
+								value={userEx.company}
+								onChange={(e) => handleInput(e, 'company')}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3'>
-							<Form.Label>Title</Form.Label>
+							<Form.Label>Start Date</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Enter Title'
-								value={profileData.title}
-								onChange={(e) => handleInput(e, 'title')}
+								placeholder='yyyy-mm-dd'
+								value={userEx.startDate}
+								onChange={(e) => handleInput(e, 'startDate')}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3'>
-							<Form.Label>Email address</Form.Label>
-							<Form.Control
-								type='email'
-								placeholder='Enter email'
-								value={profileData.email}
-								onChange={(e) => handleInput(e, 'email')}
-							/>
-						</Form.Group>
-						<Form.Group className='mb-3'>
-							<Form.Label>Bio</Form.Label>
-							<Form.Control
-								as='textarea'
-								placeholder='Enter bio'
-								value={profileData.bio}
-								onChange={(e) => handleInput(e, 'bio')}
-							/>
-						</Form.Group>
-						<Form.Group className='mb-3'>
-							<Form.Label>Area</Form.Label>
+							<Form.Label>End Date</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Enter Area'
-								value={profileData.area}
+								placeholder='yyyy-mm-dd'
+								value={userEx.endDate}
+								onChange={(e) => handleInput(e, 'endDate')}
+							/>
+						</Form.Group>
+						<Form.Group className='mb-3'>
+							<Form.Label>End Date</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='description'
+								value={userEx.description}
+								onChange={(e) => handleInput(e, 'description')}
+							/>
+						</Form.Group>
+						<Form.Group className='mb-3'>
+							<Form.Label>Location</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='Enter location'
+								value={userEx.area}
 								onChange={(e) => handleInput(e, 'area')}
 							/>
 						</Form.Group>
@@ -111,4 +112,5 @@ const Example = ({ details }) => {
 		</>
 	);
 };
-export default Example;
+
+export default ExperienceModal;
