@@ -3,7 +3,7 @@ import './ProfileDetails.css';
 import { Avatar } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
 import { getMyProfile } from '../Utilities/fetches';
-
+import CreateIcon from '@material-ui/icons/Create';
 const ProfileDetails = () => {
 	const [details, setDetails] = useState({});
 	useEffect(() => {
@@ -29,7 +29,13 @@ const ProfileDetails = () => {
 
 					<div className='details'>
 						<div className='detailsRight'>
-							<h2>{details.username}</h2>
+							<h2>
+								{details.username}{' '}
+								<span style={{ display: 'inline-flex', marginLeft: '3rem' }}>
+									<CreateIcon />
+								</span>
+							</h2>
+
 							<h4>{details.title}</h4>
 							<p>email : {details.email}</p>
 							<p>{details.area}</p>
