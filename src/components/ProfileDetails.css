@@ -1,0 +1,150 @@
+.profileDetails {
+	flex: 0.6;
+	margin: 0 25px;
+}
+.profileBox1 {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	justify-content: space-evenly;
+	border: 1px solid lightgray;
+	border-bottom: 0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: white;
+	padding-bottom: 10px;
+	align-items: center;
+}
+.Avatar {
+	position: absolute;
+	margin-bottom: 10px;
+	left: -12rem;
+	top: -3rem;
+}
+@media only screen and (max-width: 1400px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -2rem;
+		top: -3rem;
+	}
+	.detailsRight {
+		padding: 10px;
+	}
+}
+@media only screen and (max-width: 1100px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -4rem;
+		top: -3rem;
+	}
+	.detailsRight {
+		padding: 10px;
+	}
+}
+@media only screen and (max-width: 850px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -3rem;
+		top: -3rem;
+	}
+	.details {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.detailsLeft {
+		display: flex;
+		align-items: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+@media only screen and (max-width: 660px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -2rem;
+		top: -3rem;
+	}
+}
+
+.profileBox1 > img {
+	width: 100%;
+	margin-bottom: -10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	object-fit: cover;
+}
+.details {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+}
+
+.detailsLeft > img,
+.experience-div > img,
+.education-div > img {
+	object-fit: contain;
+	height: 70px;
+	margin-left: 4rem;
+}
+
+.buttons {
+	margin-right: 1rem;
+}
+
+.aboutSection,
+.experience,
+.education,
+.skills,
+.interests {
+	border: 1px solid lightgray;
+	border-bottom: 0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: white;
+	padding-bottom: 10px;
+	margin-top: 1rem;
+}
+.aboutSection {
+	padding: 20px;
+}
+.education-div,
+.experience-div {
+	display: flex;
+	justify-content: flex-start;
+	padding: 20px;
+}
+.education-div > img,
+.experience-div > img {
+	margin-right: 20px;
+}
+.interests {
+	margin-bottom: 3rem;
+}
+.interests > h3 {
+	padding: 20px;
+}
+.interests-container {
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 10px;
+}
+.interests-div > img {
+	object-fit: contain;
+	height: 60px;
+}
+.experience > h3,
+.education > h3,
+.skills > h3 {
+	padding: 20px;
+}
+.skills > button {
+	margin-left: 10px;
+}
+.skills-list {
+	padding: 20px;
+}
