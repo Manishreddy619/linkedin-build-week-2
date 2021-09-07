@@ -1,8 +1,14 @@
+import { useHistory } from "react-router-dom";
+
 const RightPeopleCol = ({ profile }) => {
+  const history = useHistory();
   return (
     profile !== undefined && (
       <li>
-        <div className="right-people-container">
+        <div
+          className="right-people-container"
+          // onClick={() => history.push(`profile/${profile._id}`)}
+        >
           <div className="right-people-img-container">
             <img
               src={profile.image}
