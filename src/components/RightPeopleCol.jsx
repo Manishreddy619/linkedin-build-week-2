@@ -7,7 +7,7 @@ const RightPeopleCol = ({ profile }) => {
       <li>
         <div
           className="right-people-container"
-          // onClick={() => history.push(`profile/${profile._id}`)}
+          onClick={() => history.push(`profile/${profile._id}`)}
         >
           <div className="right-people-img-container">
             <img
