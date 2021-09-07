@@ -32,7 +32,9 @@ const ProfileDetails = () => {
 							<h2>
 								{details.username}{' '}
 								<span style={{ display: 'inline-flex', marginLeft: '3rem' }}>
-									<CreateIcon />
+									<Button>
+										<CreateIcon />
+									</Button>
 								</span>
 							</h2>
 
