@@ -3,16 +3,33 @@ import './ProfileDetails.css';
 import { Avatar } from '@material-ui/core';
 import { Button, Modal } from 'react-bootstrap';
 import { getMyProfile } from '../Utilities/fetches';
-
+import { getUserExperienceList } from '../Utilities/fetches';
 import Example from './Modal';
+import ExperienceModal from './ExperienceModal';
 const ProfileDetails = () => {
 	const [details, setDetails] = useState({});
+	const [experience, setExperience] = useState([]);
+	const images = [
+		'https://media.istockphoto.com/photos/portrait-of-smiling-handsome-man-in-blue-tshirt-standing-with-crossed-picture-id1045886560?k=6&m=1045886560&s=612x612&w=0&h=hXrxai1QKrfdqWdORI4TZ-M0ceCVakt4o6532vHaS3I=',
+		'https://dm.henkel-dam.com/is/image/henkel/men_perfect_ch_thumbnails_home_pack_400x4001-wcms-ch?scl=1&fmt=jpeg',
+		'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFuJTIwaW4lMjBzdWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
+	];
+	const experiences = async () => {
+		let data = await getUserExperienceList(details._id);
+		setExperience(data);
+	};
+	let randomIndex = Math.floor(Math.random() * images.length);
+	let randomImage = images[randomIndex];
 	useEffect(() => {
 		let mydetails = getMyProfile();
 		mydetails.then((data) => setDetails(data));
 	}, []);
-	console.log(details);
+	useEffect(() => {
+		experiences();
+	}, [details._id]);
 
+	console.log(details);
+	console.log(experience);
 	return (
 		details && (
 			<div className='profileDetails' key={details._id}>
@@ -25,7 +42,7 @@ const ProfileDetails = () => {
 					<Avatar
 						className='Avatar'
 						// src={details.image}
-						src='https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFuJTIwaW4lMjBzdWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'
+						src={randomImage}
 						style={{ width: '200px', height: '200px' }}
 					/>
 
@@ -51,9 +68,9 @@ const ProfileDetails = () => {
 						</div>
 					</div>
 					<div className='buttons'>
-						<Button variant='primary' className='mx-1'>
-							Open section
-						</Button>
+						<span className='mx-1'>
+							<ExperienceModal id={details._id} />
+						</span>
 						<Button variant='light' className='mx-1'>
 							Add section
 						</Button>
@@ -71,17 +88,22 @@ const ProfileDetails = () => {
 				<div className='experience'>
 					<h3>Experience</h3>
 
-					<div className='experience-div'>
-						<img
-							src='https://strive.school/favicon.ico'
-							alt='striveschool'
-							alt=''
-						/>
-						<div className='experienceDetails'>
-							<h3>Full stack developer</h3>
-							<p>experience deatails</p>
-						</div>
-					</div>
+					{experience &&
+						experience.map((ex) => {
+							return (
+								<div className='experience-div' key={ex._id}>
+									<img
+										src='https://strive.school/favicon.ico'
+										alt='striveschool'
+									/>
+									<div className='experienceDetails'>
+										<h3>{ex.role}</h3>
+										<p>{ex.description}</p>
+										<p>{ex.company}</p>
+									</div>
+								</div>
+							);
+						})}
 				</div>
 				<div className='education'>
 					<h3>Education</h3>
