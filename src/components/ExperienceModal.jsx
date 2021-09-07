@@ -2,7 +2,7 @@ import React from 'react';
 import { createUserExperience } from '../Utilities/fetches';
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import AddIcon from '@material-ui/icons/Add';
+import CreateIcon from '@material-ui/icons/Create';
 const ExperienceModal = ({ id }) => {
 	const [show, setShow] = useState(false);
 
@@ -31,7 +31,7 @@ const ExperienceModal = ({ id }) => {
 	return (
 		<>
 			<Button variant='primary' onClick={handleShow}>
-				<AddIcon /> Add Experience
+				<CreateIcon />
 			</Button>
 
 			<Modal show={show} onHide={handleClose}>

@@ -1,6 +1,7 @@
 .profileDetails {
 	flex: 0.6;
 	margin: 0 25px;
+	position: relative;
 }
 .profileBox1 {
 	display: flex;
@@ -18,8 +19,12 @@
 .Avatar {
 	position: absolute;
 	margin-bottom: 10px;
-	left: -12rem;
-	top: -3rem;
+	left: -10rem;
+	top: -2rem;
+}
+.pencil {
+	position: absolute;
+	right: 3.5rem;
 }
 @media only screen and (max-width: 1400px) {
 	.Avatar {
@@ -95,7 +100,15 @@
 .buttons {
 	margin-right: 1rem;
 }
-
+.experience {
+	position: relative;
+}
+.experience > span {
+	display: flex;
+	position: absolute;
+	right: 3rem;
+	top: 2rem;
+}
 .aboutSection,
 .experience,
 .education,

@@ -45,14 +45,15 @@ const ProfileDetails = () => {
 						src={randomImage}
 						style={{ width: '200px', height: '200px' }}
 					/>
-
+					<span className='pencil'>
+						<Example details={details} />
+					</span>
 					<div className='details'>
 						<div className='detailsRight'>
 							<h2>
-								{details.username}{' '}
-								<span style={{ display: 'inline-flex', marginLeft: '3rem' }}>
-									<Example details={details} />
-								</span>
+								{details.username && details.username.length >= 10
+									? details.username.slice(0, 14)
+									: details.username}
 							</h2>
 
 							<h4>{details.title}</h4>
@@ -63,14 +64,15 @@ const ProfileDetails = () => {
 							</p>
 						</div>
 						<div className='detailsLeft'>
-							<img src='https://strive.school/favicon.ico' alt='striveschool' />
+							<img
+								src='https://strive.school/favicon.ico'
+								alt='striveschool'
+								style={{ marginRight: '20px' }}
+							/>
 							<span>StriveSchool</span>
 						</div>
 					</div>
 					<div className='buttons'>
-						<span className='mx-1'>
-							<ExperienceModal id={details._id} />
-						</span>
 						<Button variant='light' className='mx-1'>
 							Add section
 						</Button>
@@ -87,7 +89,9 @@ const ProfileDetails = () => {
 				</div>
 				<div className='experience'>
 					<h3>Experience</h3>
-
+					<span className='mx-1'>
+						<ExperienceModal id={details._id} />
+					</span>
 					{experience &&
 						experience.map((ex) => {
 							return (
@@ -98,8 +102,12 @@ const ProfileDetails = () => {
 									/>
 									<div className='experienceDetails'>
 										<h3>{ex.role}</h3>
-										<p>{ex.description}</p>
-										<p>{ex.company}</p>
+										<h5>Role:{ex.description}</h5>
+										<h6>Company:{ex.company}</h6>
+										<div>
+											<p>from: {new Date().toDateString(ex.startDate)}</p>
+											<p>To: {new Date().toDateString(ex.endDate)}</p>
+										</div>
 									</div>
 								</div>
 							);
@@ -107,6 +115,7 @@ const ProfileDetails = () => {
 				</div>
 				<div className='education'>
 					<h3>Education</h3>
+
 					<div className='experience-div'>
 						<img
 							src='https://strive.school/favicon.ico'
