@@ -30,9 +30,11 @@ const ExperienceModal = ({ id }) => {
 	console.log(userEx);
 	return (
 		<>
-			<Button variant='primary' onClick={handleShow}>
+			<button
+				onClick={handleShow}
+				style={{ border: 'none', backgroundColor: 'none' }}>
 				<CreateIcon />
-			</Button>
+			</button>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>

@@ -60,7 +60,9 @@ const ProfileDetails = () => {
 							<p>email : {details.email}</p>
 							<p>{details.area}</p>
 							<p>
-								<span style={{ color: 'blue', fontWeight: '500' }}>35</span>
+								<span style={{ color: 'blue', fontWeight: '500' }}>
+									35:Connections
+								</span>
 							</p>
 						</div>
 						<div className='detailsLeft'>
@@ -73,10 +75,13 @@ const ProfileDetails = () => {
 						</div>
 					</div>
 					<div className='buttons'>
-						<Button variant='light' className='mx-1'>
+						<Button className='btn1'>Open to</Button>
+						<Button variant='light' className='mx-1 btn1'>
 							Add section
 						</Button>
-						<Button variant='light'>More</Button>
+						<Button variant='light' className='btn1'>
+							More
+						</Button>
 					</div>
 				</div>
 				<div className='aboutSection'>
