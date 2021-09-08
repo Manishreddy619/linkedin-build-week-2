@@ -31,8 +31,7 @@ const ProfileDetails = () => {
 	useEffect(() => {
 		experiences();
 	}, [details._id]);
-	console.log(details);
-	console.log(experience);
+
 	return (
 		details && (
 			<div className='profileDetails' key={details._id}>
@@ -114,8 +113,8 @@ const ProfileDetails = () => {
 											<h5>Role:{ex.description}</h5>
 											<h6>Company:{ex.company}</h6>
 											<div>
-												<p>from: {new Date(ex.startDate).toDateString()}</p>
-												<p>To: {new Date(ex.endDate).toDateString()}</p>
+												<p>from: {new Date().toDateString(ex.startDate)}</p>
+												<p>To: {new Date().toDateString(ex.endDate)}</p>
 											</div>
 										</div>
 										<div>
