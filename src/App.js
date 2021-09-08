@@ -1,13 +1,29 @@
 import './App.css';
+import ProfileDetails from './components/ProfileDetails';
+import RightBar from './components/RightBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RightBar from './components/RightBar'
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"></link>
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { UserDetails } from './components/OtherUserDetails';
+import LeftFeedProfile from './components/LeftFeedProfile';
 function App() {
 	return (
-		<div >
-			<RightBar />
-		</div>
+		<Router>
+			<div className='app'>
+				{/* header component */}
+				<div className='profileBody'>
+					<Route path='/' exact>
+						<ProfileDetails />
+						<RightBar />
+					</Route>
+				</div>
+				<div className='profileBody'>
+					<Route path='/profile/:id'>
+						<UserDetails />
+						<RightBar />
+					</Route>
+				</div>
+			</div>
+		</Router>
 	);
 }
 

@@ -1,7 +1,9 @@
 import RightPeopleCol from "./RightPeopleCol";
-import "./style/rightBar.css";
+import "./RightBar.css";
 import { getProfiles } from "../Utilities/fetches";
 import { useState, useEffect } from "react";
+import BtnShowMore from "./BtnShowMore";
+import RightTopEditContainer from "./RightTopEditContainer";
 
 const RightBar = () => {
   const [profiles, setProfiles] = useState([]);
@@ -10,10 +12,6 @@ const RightBar = () => {
     const getProfile = async () => {
       let profiles = await getProfiles();
       let uniqueProfiles = [];
-      //   for (let index = 0; index < 20; index++) {
-      //       const profile = profiles[Math.floor(Math.random()* profiles.length)]
-      //       uniqueProfiles.push(profile);
-      //   }
       while (uniqueProfiles.length < 20) {
         const profile = profiles[Math.floor(Math.random() * profiles.length)];
         uniqueProfiles.push(profile);
@@ -126,5 +124,4 @@ const RightBar = () => {
     </>
   );
 };
-
 export default RightBar;

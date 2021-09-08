@@ -1,7 +1,7 @@
 // Global Variables
+
 const apiUrl = "https://striveschool-api.herokuapp.com/api/profile/";
-const apiKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM1ZDc0MzdiZTZjMTAwMTVmOWRiOTkiLCJpYXQiOjE2MzA5MTg0NjgsImV4cCI6MTYzMjEyODA2OH0._zo14VO4bjHUJ0UC6s3ciJfFHagr5f8SL0gvNXpPtak";
+const apiKey = process.env.REACT_APP_API_KEY;
 //Functions
 
 export const getProfiles = async () => {
@@ -87,11 +87,12 @@ export const getFilteredProfiles = async (filterString) => {
               .includes(filterString.toString().toLowerCase())
           ) {
             matchingUsers.push(profile);
-            matchingUsers = matchingUsers.reduce(
-              (acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]),
-              []
-            );
           }
+          matchingUsers = matchingUsers.reduce(
+            (acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]),
+            []
+          );
+          return matchingUsers;
         })
       );
       return matchingUsers;
@@ -106,6 +107,21 @@ export const getFilteredProfiles = async (filterString) => {
 };
 
 export const updateMyProfile = async (profileData) => {
+  // PROFILE Model:
+  // {
+  //     "_id": "5d84937322b7b54d848eb41b", //server generated
+  //     "name": "Diego",
+  //     "surname": "Banovaz",
+  //     "email": "diego@strive.school",
+  //     "bio": "SW ENG",
+  //     "title": "COO @ Strive School",
+  //     "area": "Berlin",
+  //     "image": ..., //server generated on upload
+  //     "username": "admin", //server generated from Auth
+  //     "createdAt": "2019-09-20T08:53:07.094Z", //server generated
+  //     "updatedAt": "2019-09-20T09:00:46.977Z", //server generated
+  //     "__v": 0 //server generated
+  // }
   try {
     const apiResp = await fetch(apiUrl, {
       method: "PUT",
@@ -118,6 +134,159 @@ export const updateMyProfile = async (profileData) => {
     if (apiResp.ok) {
       let userProfileUpdated = await apiResp.json();
       return userProfileUpdated;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+//Functions/Profile/Experience
+
+export const getUserExperienceList = async (userId) => {
+  try {
+    const apiResp = await fetch(apiUrl + userId + "/experiences", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      }
+    });
+    if (apiResp.ok) {
+      let ExperienceList = await apiResp.json();
+      return ExperienceList;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const createUserExperience = async (userId, experienceData) => {
+  // EXPERIENCE Model:
+  //   {
+  //       "_id": "5d925e677360c41e0046d1f5",  //server generated
+  //       "role": "CTO",
+  //       "company": "Strive School",
+  //       "startDate": "2019-06-16",
+  //       "endDate": "2019-06-16", //could be null
+  //       "description": "Doing stuff here and there",
+  //       "area": "Berlin",
+  //       "username": "admin",  //server generated
+  //       "createdAt": "2019-09-30T19:58:31.019Z",  //server generated
+  //       "updatedAt": "2019-09-30T19:58:31.019Z",  //server generated
+  //       "__v": 0  //server generated
+  //       "image": ... //server generated on upload
+  //   }
+  try {
+    const apiResp = await fetch(apiUrl + userId + "/experiences/", {
+      method: "POST",
+      body: JSON.stringify(experienceData),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`
+      }
+    });
+    if (apiResp.ok) {
+      let createdUserExperience = await apiResp.json();
+      return createdUserExperience;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const getUserExperience = async (userId, experienceId) => {
+  try {
+    const apiResp = await fetch(
+      apiUrl + userId + "/experiences/" + experienceId,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${apiKey}`
+        }
+      }
+    );
+    if (apiResp.ok) {
+      let userExperience = await apiResp.json();
+      return userExperience;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const updateUserExperience = async (
+  userId,
+  experienceId,
+  experienceData
+) => {
+  // EXPERIENCE Model:
+  //   {
+  //       "_id": "5d925e677360c41e0046d1f5",  //server generated
+  //       "role": "CTO",
+  //       "company": "Strive School",
+  //       "startDate": "2019-06-16",
+  //       "endDate": "2019-06-16", //could be null
+  //       "description": "Doing stuff here and there",
+  //       "area": "Berlin",
+  //       "username": "admin",  //server generated
+  //       "createdAt": "2019-09-30T19:58:31.019Z",  //server generated
+  //       "updatedAt": "2019-09-30T19:58:31.019Z",  //server generated
+  //       "__v": 0  //server generated
+  //       "image": ... //server generated on upload
+  //   }
+  try {
+    const apiResp = await fetch(
+      apiUrl + userId + "/experiences/" + experienceId,
+      {
+        method: "PUT",
+        body: JSON.stringify(experienceData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`
+        }
+      }
+    );
+    if (apiResp.ok) {
+      let updatedUserExperience = await apiResp.json();
+      return updatedUserExperience;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const deleteUserExperience = async (userId, experienceId) => {
+  try {
+    const apiResp = await fetch(
+      apiUrl + userId + "/experiences/" + experienceId,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${apiKey}`
+        }
+      }
+    );
+    if (apiResp.ok) {
+      return `${userId} experience with the id of ${experienceId} has been successfuly deleted`;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
       throw new Error("Client Side Error");
     } else if (apiResp.status > 500) {
