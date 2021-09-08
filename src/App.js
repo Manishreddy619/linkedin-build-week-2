@@ -2,21 +2,22 @@ import './App.css';
 import ProfileDetails from './components/ProfileDetails';
 import RightBar from './components/RightBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AppNavigation from './components/AppNavigation';
-import Footer from './components/Footer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { UserDetails } from './components/OtherUserDetails';
-
-	
-
+import AppNavigation from './components/AppNavigation.jsx';
+import Feed from './components/Feed';
+import Footer from './components/Footer';
 function App() {
 	return (
 		<Router>
 			<div className='app'>
-				{/* header component */}
+				<AppNavigation />
+				<Footer />
 				<div className='profileBody'>
 					<Route path='/' exact>
-						<AppNavigation/>
+						<Feed />
+					</Route>
+					<Route path='/me' exact>
 						<ProfileDetails />
 						<RightBar />
 					</Route>
