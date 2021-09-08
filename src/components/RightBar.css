@@ -186,3 +186,30 @@
 .display-none {
   display: none;
 }
+
+.right-top-tooltip-container {
+  position: relative;
+}
+
+.right-top-tooltiptext {
+  width: 344px;
+  visibility: hidden;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.9);
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e0dfdc;
+  border-radius: 0.5rem;
+  /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+    0px 4px 4px rgba(0, 0, 0, 0.03); */
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  right: -400%;
+}
+
+.right-top-tooltip-container:hover .right-top-tooltiptext {
+  visibility: visible;
+}
