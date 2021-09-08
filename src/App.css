@@ -26,6 +26,10 @@
 	text-align: center;
   }
   
+  .App {
+	text-align: center;
+  }
+  
   #linkedIn-logo {
 	height: 35px;
 	width: 35px;
@@ -86,10 +90,34 @@
 	animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s both;
   }
   
+  .profile-image{
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+  }
+  
+  .search-result:hover{
+	background-color: rgb(243,242,239);
+	cursor: pointer;
+  }
+  
+  .premium-container{
+	max-width: 71px;
+  }
+  
+  .try-premium{
+	color: rgb(191,125,87);
+  }
+  
+  .try-premium:hover{
+	text-decoration: underline;
+  }
+  
+  
   .footer{
 	position: fixed;
 	bottom: 0;
-	left: 50px; 
+	 
   }
   
   .footer-select{
