@@ -82,7 +82,7 @@ class AppNavigation extends Component {
                     {this.state.searchResults.length > 0 &&
                       this.state.searchResults.map((user) => (
                         <div key={user._id} className="d-flex search-result">
-                          {/*<Link to={'#'}>*/}
+                          <Link to={'/profile/' + user._id}>
                           <div className="mr-auto my-2 my-2 ml-3">
                             <strong href="/">{user.name} </strong>
                             <strong>{user.surname}</strong>
@@ -94,7 +94,7 @@ class AppNavigation extends Component {
                             alt=""
                             className="profile-image mr-3 my-2 text-align-center"
                           />
-                          {/*</Link>*/}
+                          </Link>
                         </div>
                       ))}
                   </div>
