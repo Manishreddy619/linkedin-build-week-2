@@ -40,7 +40,7 @@ const BtnShowMore = ({ number }) => {
   return (
     <div
       className="right-people-show-more"
-      tabindex="0"
+      tabIndex="0"
       onClick={() => btnShowMore(setShowMore(!showMore))}
     >
       <div className="right-people-show-more-container">
