@@ -1,9 +1,10 @@
 import React from 'react';
-
+import RightBar from './RightBar';
+import './Feed.css';
 const Feed = () => {
 	return (
-		<div>
-			<h1>Feed</h1>
+		<div className='feed'>
+			<RightBar />
 		</div>
 	);
 };

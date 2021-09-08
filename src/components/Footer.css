@@ -1,6 +1,10 @@
 .footer {
-	height: 10vw;
-	margin-bottom: 4px;
-	z-index: 5;
+	position: absolute;
+	width: 100%;
+	background-color: whitesmoke;
+	height: 100px;
+	bottom: 0;
+}
+.row {
 	background-color: whitesmoke;
 }
