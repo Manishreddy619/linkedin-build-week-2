@@ -1,5 +1,5 @@
 .left-feed-profile-container {
-	width: 225px;
+	flex: 0.2;
 }
 
 .left-feed-profile-container > div {

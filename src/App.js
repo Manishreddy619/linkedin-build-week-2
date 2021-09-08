@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { UserDetails } from './components/OtherUserDetails';
 import AppNavigation from './components/AppNavigation.jsx';
-import LeftFeedProfile from './components/LeftFeedProfile';
+
 import Feed from './components/Feed';
 import Footer from './components/Footer';
 function App() {
