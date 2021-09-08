@@ -8,7 +8,7 @@ class Footer extends Component {
 	render() {
 		return (
 			<div className='footer container-fluid'>
-				<Row>
+				<Row className='row'>
 					<ul>
 						<Image src={linkedInLonger} className='linkedInLonger' />
 					</ul>

@@ -1,9 +1,12 @@
 import React from 'react';
-
+import RightBar from './RightBar';
+import './Feed.css';
+import LeftFeedProfile from './LeftFeedProfile';
 const Feed = () => {
 	return (
-		<div>
-			<h1>Feed</h1>
+		<div className='feed'>
+			<LeftFeedProfile />
+			<RightBar />
 		</div>
 	);
 };
