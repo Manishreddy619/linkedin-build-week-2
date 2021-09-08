@@ -20,6 +20,7 @@ const ExperienceModal = ({ id }) => {
 	const handleInput = (e, propertyName) => {
 		setUserEx({
 			...userEx,
+
 			[propertyName]: e.target.value,
 		});
 	};
