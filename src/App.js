@@ -3,7 +3,7 @@ import ProfileDetails from './components/ProfileDetails';
 import RightBar from './components/RightBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import UserDetails from './UserDetails';
+import { UserDetails } from './components/OtherUserDetails';
 function App() {
 	return (
 		<Router>
@@ -14,8 +14,10 @@ function App() {
 						<ProfileDetails />
 						<RightBar />
 					</Route>
-					<Route path='/details/:name'>
-						<UserDetails path='/details/:Id' />
+				</div>
+				<div className='profileBody'>
+					<Route path='/profile/:id'>
+						<UserDetails />
 						<RightBar />
 					</Route>
 				</div>

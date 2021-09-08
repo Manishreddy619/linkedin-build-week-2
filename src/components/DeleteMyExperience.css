@@ -1,0 +1,31 @@
+.containerDelete {
+	position: relative;
+}
+.DeleteIcon {
+	position: absolute;
+	right: 3rem;
+	top: 4rem;
+	color: red;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+.AddIcon :hover {
+	background-color: gray;
+	color: green;
+	transition: all 0.3s ease-out;
+}
+.DeleteIcon:hover {
+	background-color: rgba(255, 0, 0, 0.411);
+	padding: 5px;
+	border-radius: 50%;
+}
+@media only screen and (max-width: 688px) {
+	.DeleteIcon {
+		top: 6rem;
+	}
+}
+@media only screen and (max-width: 1400px) {
+	.DeleteIcon {
+		top: 6rem;
+	}
+}
