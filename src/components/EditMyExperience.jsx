@@ -70,7 +70,7 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
 						<Form.Group className='mb-3'>
 							<Form.Label>Start Date</Form.Label>
 							<Form.Control
-								type='text'
+								type='date'
 								placeholder='yyyy-mm-dd'
 								value={updateEx.startDate}
 								onChange={(e) => handleInput(e, 'startDate')}
@@ -79,7 +79,7 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
 						<Form.Group className='mb-3'>
 							<Form.Label>End Date</Form.Label>
 							<Form.Control
-								type='text'
+								type='date'
 								placeholder='yyyy-mm-dd'
 								value={updateEx.endDate}
 								onChange={(e) => handleInput(e, 'endDate')}
