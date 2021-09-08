@@ -2,17 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { Button, Modal } from 'react-bootstrap';
-import { getUserProfile } from '../Utilities/fetches';
+import { getUserProfile, getUserExperienceList } from '../Utilities/fetches';
 export const UserDetails = () => {
 	const [userDetails, setUserDetails] = useState({});
+	const [exList, setExList] = useState([]);
 	const params = useParams();
 	const getUserData = async () => {
 		let data = await getUserProfile(params.id);
 		setUserDetails(data);
+
 		console.log(data);
+	};
+	const getUserEx = async () => {
+		let experienceList = await getUserExperienceList(params.id);
+		setExList(experienceList);
+		console.log(experienceList);
 	};
 	useEffect(() => {
 		getUserData();
+		getUserEx();
 	}, [params.id]);
 	// will recieve params from search
 	return (
@@ -73,6 +81,29 @@ export const UserDetails = () => {
 								? userDetails.bio
 								: "My name is xyzz I'm a Front End Engineer based in  germany☀️. I describe myself as a passionate developer who loves coding"}
 						</p>
+					</div>
+					<div className='experience'>
+						<h3>Experience</h3>
+
+						{exList &&
+							exList.map((ex) => {
+								return (
+									<>
+										<div className='experience-div' key={ex._id}>
+											<img src={ex.image} alt='striveschool' />
+											<div className='experienceDetails'>
+												<h3>{ex.role}</h3>
+												<h5>Role:{ex.description}</h5>
+												<h6>Company:{ex.company}</h6>
+												<div>
+													<p>from: {new Date().toDateString(ex.startDate)}</p>
+													<p>To: {new Date().toDateString(ex.endDate)}</p>
+												</div>
+											</div>
+										</div>
+									</>
+								);
+							})}
 					</div>
 				</div>
 			</div>
