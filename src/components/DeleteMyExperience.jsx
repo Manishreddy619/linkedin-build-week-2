@@ -25,7 +25,7 @@ const DeleteMyExperience = ({ exid, userId }) => {
 					backdrop='static'
 					keyboard={false}>
 					<Modal.Header closeButton>
-						<Modal.Title>Modal title</Modal.Title>
+						<Modal.Title>Delete Experience</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						Are you sure you want to delete your Experience

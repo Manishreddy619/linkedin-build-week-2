@@ -64,7 +64,7 @@ const ExperienceModal = ({ id }) => {
 						<Form.Group className='mb-3'>
 							<Form.Label>Start Date</Form.Label>
 							<Form.Control
-								type='text'
+								type='date'
 								placeholder='yyyy-mm-dd'
 								value={userEx.startDate}
 								onChange={(e) => handleInput(e, 'startDate')}
@@ -73,14 +73,14 @@ const ExperienceModal = ({ id }) => {
 						<Form.Group className='mb-3'>
 							<Form.Label>End Date</Form.Label>
 							<Form.Control
-								type='text'
+								type='date'
 								placeholder='yyyy-mm-dd'
 								value={userEx.endDate}
 								onChange={(e) => handleInput(e, 'endDate')}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3'>
-							<Form.Label>End Date</Form.Label>
+							<Form.Label>Description</Form.Label>
 							<Form.Control
 								type='text'
 								placeholder='description'
