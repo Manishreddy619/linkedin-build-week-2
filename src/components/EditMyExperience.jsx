@@ -1,44 +1,51 @@
 import React from 'react';
-import { createUserExperience } from '../Utilities/fetches';
+import { updateUserExperience } from '../Utilities/fetches';
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import CreateIcon from '@material-ui/icons/Create';
-const ExperienceModal = ({ id }) => {
+import './EditMyExperience.css';
+const EditMyExperience = ({ currentEx, exid, userId }) => {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const [userEx, setUserEx] = useState({
-		role: '',
-		company: '',
-		startDate: '',
-		endDate: '', //could be null
-		description: '',
-		area: '',
+	const [updateEx, setUpdateEx] = useState({
+		role: currentEx.role,
+		company: currentEx.company,
+		startDate: new Date().toDateString(currentEx.startDate),
+		endDate: new Date().toDateString(currentEx.endDate), //could be null
+		description: currentEx.description,
+		area: currentEx.area,
 	});
+	console.log(currentEx);
 	const handleInput = (e, propertyName) => {
-		setUserEx({
-			...userEx,
+		setUpdateEx({
+			...updateEx,
 			[propertyName]: e.target.value,
 		});
 	};
 	const handleSubmit = async (e) => {
 		// with async/await
 		e.preventDefault();
-		await createUserExperience(id, userEx);
+		await updateUserExperience(userId, exid, updateEx);
 	};
-	console.log(userEx);
+	console.log(updateEx);
 	return (
-		<>
-			<button
+		<div className='containerEditEx'>
+			<div
 				onClick={handleShow}
-				style={{ border: 'none', backgroundColor: 'none' }}>
+				style={{
+					border: 'none',
+					backgroundColor: 'none',
+					marginLeft: '10rem',
+				}}
+				className='editIcon'>
 				<CreateIcon />
-			</button>
+			</div>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Add Your Experience</Modal.Title>
+					<Modal.Title>Edit Your Experience</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form onSubmit={handleSubmit}>
@@ -47,7 +54,7 @@ const ExperienceModal = ({ id }) => {
 							<Form.Control
 								type='text'
 								placeholder='Enter role'
-								value={userEx.role}
+								value={updateEx.role}
 								onChange={(e) => handleInput(e, 'role')}
 							/>
 						</Form.Group>
@@ -56,7 +63,7 @@ const ExperienceModal = ({ id }) => {
 							<Form.Control
 								type='text'
 								placeholder='Enter Company name'
-								value={userEx.company}
+								value={updateEx.company}
 								onChange={(e) => handleInput(e, 'company')}
 							/>
 						</Form.Group>
@@ -65,7 +72,7 @@ const ExperienceModal = ({ id }) => {
 							<Form.Control
 								type='text'
 								placeholder='yyyy-mm-dd'
-								value={userEx.startDate}
+								value={updateEx.startDate}
 								onChange={(e) => handleInput(e, 'startDate')}
 							/>
 						</Form.Group>
@@ -74,7 +81,7 @@ const ExperienceModal = ({ id }) => {
 							<Form.Control
 								type='text'
 								placeholder='yyyy-mm-dd'
-								value={userEx.endDate}
+								value={updateEx.endDate}
 								onChange={(e) => handleInput(e, 'endDate')}
 							/>
 						</Form.Group>
@@ -83,7 +90,7 @@ const ExperienceModal = ({ id }) => {
 							<Form.Control
 								type='text'
 								placeholder='description'
-								value={userEx.description}
+								value={updateEx.description}
 								onChange={(e) => handleInput(e, 'description')}
 							/>
 						</Form.Group>
@@ -92,7 +99,7 @@ const ExperienceModal = ({ id }) => {
 							<Form.Control
 								type='text'
 								placeholder='Enter location'
-								value={userEx.area}
+								value={updateEx.area}
 								onChange={(e) => handleInput(e, 'area')}
 							/>
 						</Form.Group>
@@ -111,8 +118,8 @@ const ExperienceModal = ({ id }) => {
 					</Button>
 				</Modal.Footer>
 			</Modal>
-		</>
+		</div>
 	);
 };
 
-export default ExperienceModal;
+export default EditMyExperience;

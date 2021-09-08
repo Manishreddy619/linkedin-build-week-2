@@ -4,11 +4,15 @@ import { Avatar } from '@material-ui/core';
 import { Button, Modal } from 'react-bootstrap';
 import { getMyProfile } from '../Utilities/fetches';
 import { getUserExperienceList } from '../Utilities/fetches';
-import Example from './Modal';
-import ExperienceModal from './ExperienceModal';
+import Example from './UpdateMyProfile';
+
+import ExperienceModal from './AddExperienceModal';
+import EditMyExperience from './EditMyExperience';
+import DeleteMyExperience from './DeleteMyExperience';
 const ProfileDetails = () => {
 	const [details, setDetails] = useState({});
 	const [experience, setExperience] = useState([]);
+
 	const images = [
 		'https://media.istockphoto.com/photos/portrait-of-smiling-handsome-man-in-blue-tshirt-standing-with-crossed-picture-id1045886560?k=6&m=1045886560&s=612x612&w=0&h=hXrxai1QKrfdqWdORI4TZ-M0ceCVakt4o6532vHaS3I=',
 		'https://dm.henkel-dam.com/is/image/henkel/men_perfect_ch_thumbnails_home_pack_400x4001-wcms-ch?scl=1&fmt=jpeg',
@@ -28,8 +32,6 @@ const ProfileDetails = () => {
 		experiences();
 	}, [details._id]);
 
-	console.log(details);
-	console.log(experience);
 	return (
 		details && (
 			<div className='profileDetails' key={details._id}>
@@ -100,21 +102,33 @@ const ProfileDetails = () => {
 					{experience &&
 						experience.map((ex) => {
 							return (
-								<div className='experience-div' key={ex._id}>
-									<img
-										src='https://strive.school/favicon.ico'
-										alt='striveschool'
-									/>
-									<div className='experienceDetails'>
-										<h3>{ex.role}</h3>
-										<h5>Role:{ex.description}</h5>
-										<h6>Company:{ex.company}</h6>
+								<>
+									<div className='experience-div' key={ex._id}>
+										<img
+											src='https://strive.school/favicon.ico'
+											alt='striveschool'
+										/>
+										<div className='experienceDetails'>
+											<h3>{ex.role}</h3>
+											<h5>Role:{ex.description}</h5>
+											<h6>Company:{ex.company}</h6>
+											<div>
+												<p>from: {new Date().toDateString(ex.startDate)}</p>
+												<p>To: {new Date().toDateString(ex.endDate)}</p>
+											</div>
+										</div>
 										<div>
-											<p>from: {new Date().toDateString(ex.startDate)}</p>
-											<p>To: {new Date().toDateString(ex.endDate)}</p>
+											<DeleteMyExperience exid={ex._id} userId={details._id} />
+										</div>
+										<div>
+											<EditMyExperience
+												exid={ex._id}
+												currentEx={ex}
+												userId={details._id}
+											/>
 										</div>
 									</div>
-								</div>
+								</>
 							);
 						})}
 				</div>

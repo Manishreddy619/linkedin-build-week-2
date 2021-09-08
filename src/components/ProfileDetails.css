@@ -131,10 +131,24 @@
 	justify-content: flex-start;
 	padding: 20px;
 }
+
 .education-div > img,
 .experience-div > img {
 	margin-right: 20px;
 }
+.experience-div {
+	position: relative;
+	display: flex;
+}
+@media only screen and (max-width: 600px) {
+	.experience-div {
+		display: flex;
+		flex-direction: column;
+
+		justify-content: flex-start;
+	}
+}
+
 .interests {
 	margin-bottom: 3rem;
 }
