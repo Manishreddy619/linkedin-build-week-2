@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import CreateIcon from '@material-ui/icons/Create';
 import './EditMyExperience.css';
+
 const EditMyExperience = ({ currentEx, exid, userId }) => {
 	const [show, setShow] = useState(false);
 
@@ -12,8 +13,8 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
 	const [updateEx, setUpdateEx] = useState({
 		role: currentEx.role,
 		company: currentEx.company,
-		startDate: new Date().toDateString(currentEx.startDate),
-		endDate: new Date().toDateString(currentEx.endDate), //could be null
+		startDate: currentEx.startDate,
+		endDate: currentEx.endDate, //could be null
 		description: currentEx.description,
 		area: currentEx.area,
 	});
