@@ -1,0 +1,210 @@
+.feed-right-bar {
+  width: 315px;
+}
+
+.feed-right-bar > div:nth-child(-n + 2) {
+  border-radius: 0.5rem;
+  border: 1px solid #e0dfdc;
+  background-color: white;
+}
+
+.feed-right-main-container {
+  padding: 0.75rem;
+}
+
+.feed-right-main-container,
+.feed-right-main-container-2,
+.feed-right-footer {
+  width: 100%;
+}
+
+.feed-right-main-container-2 {
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+}
+
+.feed-right-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 0.75rem;
+}
+
+.feed-right-title {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+
+.feed-right-title-container .bi.bi-info-square-fill {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.feed-right-people-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.feed-right-people-ul > li {
+  align-items: center;
+  margin: 0.75rem 0;
+}
+
+.feed-right-container {
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+}
+
+.feed-right-img-container {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.75rem;
+}
+
+.feed-right-user-image {
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+}
+
+.feed-right-name {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+
+.feed-right-details {
+  width: 100%;
+}
+
+.feed-right-details > * {
+  margin-bottom: 0rem;
+}
+
+.feed-right-area {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.feed-right-button-container {
+  padding-left: 3.75rem;
+  margin-top: 4px;
+}
+
+.feed-right-btn-follow {
+  display: block;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 2rem;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 5px 15px;
+  width: 6.25rem;
+}
+
+.feed-right-btn-follow:hover {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.feed-right-btn-recommendations {
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 2px 32px;
+}
+
+.bi.bi-arrow-right {
+  margin-left: 0.25rem;
+}
+
+.feed-right-btn-recommendations .bi.bi-arrow-right {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.feed-right-courses-ol {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  margin-top: 1rem;
+  list-style-position: inside;
+}
+
+.feed-right-courses-li {
+  padding: 0.25rem 2rem 0.25rem 0.75rem;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.feed-right-courses-li p {
+  margin-bottom: 0;
+  margin-left: 1.25rem;
+  font-size: 12px;
+}
+
+.feed-right-courses-li:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.feed-right-footer {
+  margin-top: 1rem;
+}
+
+.feed-right-footer-container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feed-right-footer-container1 > div > span,
+.feed-right-footer-text-arrow {
+  margin: 0.25rem 0.5rem;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.feed-right-footer-container2 {
+  margin: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.feed-right-linkedln-logo {
+  display: flex;
+  align-items: flex-start;
+  margin-right: 0.25rem;
+  color: #0a66c2;
+  font-weight: 700;
+}
+
+.feed-right-linkedln-logo .bi.bi-linkedin {
+  margin-left: 1px;
+}
+
+.feed-right-linkedln-corporation {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.feed-right-footer-text-arrow {
+  display: flex;
+  align-items: center;
+}
+
+.feed-right-footer-container1 > div {
+  display: flex;
+}
+
+.feed-right-footer-text-arrow .bi.bi-chevron-compact-down {
+  margin-left: 0.25rem;
+}

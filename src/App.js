@@ -4,6 +4,7 @@ import RightBar from './components/RightBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { UserDetails } from './components/OtherUserDetails';
+import FeedRightBar from './components/FeedRightBar'
 function App() {
 	return (
 		<Router>
@@ -13,6 +14,7 @@ function App() {
 					<Route path='/' exact>
 						<ProfileDetails />
 						<RightBar />
+						<FeedRightBar />
 					</Route>
 				</div>
 				<div className='profileBody'>
