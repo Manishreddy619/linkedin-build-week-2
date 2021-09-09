@@ -8,15 +8,28 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import './CreatePostCard.css';
 import { Avatar } from '@material-ui/core';
-import PostCard from './PostCard';
+import { createPost } from '../Utilities/fetches';
 
 const CreatePostCard = () => {
-	const [input, setInput] = useState('');
-	const sendpost = (e) => {
-		e.preventDefault();
+	const [post, setPost] = useState({
+		text: '',
+	});
+	const handleInput = (e, propertyName) => {
+		setPost({
+			...post,
 
-		// setInput('');
+			[propertyName]: e.target.value,
+		});
 	};
+
+	const sendpost = async (e) => {
+		e.preventDefault();
+		await createPost(post);
+		setPost({
+			text: '',
+		});
+	};
+
 	return (
 		<>
 			<div className='post'>
@@ -27,16 +40,14 @@ const CreatePostCard = () => {
 							className='avatar'
 						/>
 						{/* <CreateIcon /> */}
-						<form>
+						<form onClick={sendpost}>
 							<input
 								type='text'
 								placeholder='Start a post'
-								value={input}
-								onChange={(e) => setInput(e.target.value)}
+								value={post.text}
+								onChange={(e) => handleInput(e, 'text')}
 							/>
-							<button onClick={sendpost} type='submit'>
-								Send
-							</button>
+							<button type='submit'>Send</button>
 						</form>
 					</div>
 					<div className='postInputOptions'>
