@@ -14,18 +14,20 @@ function App() {
 			<div className='app'>
 				<AppNavigation />
 
-				<div>
+				<div className='feedbody'>
 					<Route path='/' exact>
 						<Feed />
 					</Route>
-					<Route path='/me' exact>
-						<ProfileDetails />
+				</div>
+				<div className='otherUserbody'>
+					<Route path='/profile/:id' exact>
+						<UserDetails />
 						<RightBar />
 					</Route>
 				</div>
-				<div className='profileBody'>
-					<Route path='/profile/:id'>
-						<UserDetails />
+				<div className='userBody'>
+					<Route path='/me'>
+						<ProfileDetails />
 						<RightBar />
 					</Route>
 				</div>

@@ -1,6 +1,7 @@
 .right-bar {
 	max-width: 300px;
 	margin-left: 2rem;
+	flex: 0;
 }
 @media only screen and (max-width: 800px) {
 	.right-bar {
