@@ -118,10 +118,9 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
             }}
           >
             <Form.Group className="mb-3">
-              <Form.Label>Location</Form.Label>
+              <Form.Label>Experience Picture</Form.Label>
               <Form.Control
                 type="file"
-                placeholder="Enter location"
                 onChange={(e) => setInputFile(e.target.files[0])}
               />
             </Form.Group>
