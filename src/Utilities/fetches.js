@@ -143,8 +143,62 @@ export const updateMyProfile = async (profileData) => {
   }
 };
 
+export const uploadProfilePicture = async (userId, profilePicture) => {
+  // profilePicture should be the input field with the file upload
+  const formData = new FormData();
+  formData.append("profile", profilePicture.files[0]);
+  try {
+    const apiResp = await fetch(apiUrl + userId + "/picture", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      }
+    });
+    if (apiResp.ok) {
+      let uploadedProfilePicture = await apiResp.json();
+      return uploadedProfilePicture;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
 //Functions/Profile/Experience
-
+export const uploadExperiencePicture = async (
+  userId,
+  experienceId,
+  experiencePicture
+) => {
+  // experiencePicture should be the input field with the file upload
+  const formData = new FormData();
+  formData.append("profile", experiencePicture.files[0]);
+  try {
+    const apiResp = await fetch(
+      apiUrl + userId + "/experiences/" + experienceId + "/picture",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${apiKey}`
+        }
+      }
+    );
+    if (apiResp.ok) {
+      let uploadedExperiencePicture = await apiResp.json();
+      return uploadedExperiencePicture;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
 export const getUserExperienceList = async (userId) => {
   try {
     const apiResp = await fetch(apiUrl + userId + "/experiences", {
@@ -301,6 +355,30 @@ export const deleteUserExperience = async (userId, experienceId) => {
 };
 
 //Functions/Posts
+export const uploadPostPicture = async (postId, postPicture) => {
+  // postPicture should be the input field with the file upload
+  const formData = new FormData();
+  formData.append("profile", postPicture.files[0]);
+  try {
+    const apiResp = await fetch(postsApiUrl + postId, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      }
+    });
+    if (apiResp.ok) {
+      let uploadedPostPicture = await apiResp.json();
+      return uploadedPostPicture;
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
 
 export const getPosts = async () => {
   try {
