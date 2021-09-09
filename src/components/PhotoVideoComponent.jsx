@@ -15,18 +15,26 @@ const PhotoVideoComponent = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [posts, setPosts] = useState([]);
-
+	const [id, setId] = useState([]);
 	const fetchPosts = async () => {
+		let arr = [];
 		const fetchedPosts = await getPosts();
 		setPosts(fetchedPosts.reverse());
+		posts
+			.filter((post) => post.user?._id === '6135d7437be6c10015f9db99')
+			.map((b) => {
+				arr.push(b);
+			});
+		return setId(arr);
 	};
 	useEffect(() => {
 		fetchPosts();
 	}, []);
-
+	console.log(id);
 	const fileUpLoadHandler = async (e) => {
 		e.preventDefault();
-		await uploadPostPicture('613a0039fe6c48001525cec8', file);
+
+		await uploadPostPicture(id[0]._id, file);
 	};
 
 	console.log(posts);
