@@ -28,6 +28,7 @@
 	color: gray;
 	padding-left: 15px;
 	margin-left: 3rem;
+	cursor: pointer;
 }
 .img {
 	object-fit: contain;

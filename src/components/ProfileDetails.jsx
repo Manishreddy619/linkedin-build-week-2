@@ -13,17 +13,11 @@ const ProfileDetails = () => {
 	const [details, setDetails] = useState({});
 	const [experience, setExperience] = useState([]);
 
-	const images = [
-		'https://media.istockphoto.com/photos/portrait-of-smiling-handsome-man-in-blue-tshirt-standing-with-crossed-picture-id1045886560?k=6&m=1045886560&s=612x612&w=0&h=hXrxai1QKrfdqWdORI4TZ-M0ceCVakt4o6532vHaS3I=',
-		'https://dm.henkel-dam.com/is/image/henkel/men_perfect_ch_thumbnails_home_pack_400x4001-wcms-ch?scl=1&fmt=jpeg',
-		'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFuJTIwaW4lMjBzdWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
-	];
 	const experiences = async () => {
 		let data = await getUserExperienceList(details._id);
 		setExperience(data);
 	};
-	let randomIndex = Math.floor(Math.random() * images.length);
-	let randomImage = images[randomIndex];
+
 	useEffect(() => {
 		let mydetails = getMyProfile();
 		mydetails.then((data) => setDetails(data));
@@ -44,8 +38,7 @@ const ProfileDetails = () => {
 
 					<Avatar
 						className='Avatar'
-						// src={details.image}
-						src={randomImage}
+						src={details.image}
 						style={{ width: '200px', height: '200px' }}
 					/>
 					<span className='pencil'>
