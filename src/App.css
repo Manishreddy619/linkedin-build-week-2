@@ -1,6 +1,7 @@
 .app {
 	background-color: #f3f2ef;
 	position: relative;
+	margin-top: 6rem;
 }
 * {
 	margin: 0;
@@ -115,7 +116,7 @@ input.searchbar {
 	text-decoration: underline;
 }
 
-.createPost {
+/* .createPost {
 	border: 1px solid rgb(0 0 0 / 60%);
 	border-radius: 15px;
 	background-color: rgb(255, 255, 255);
@@ -219,7 +220,7 @@ input.searchbar {
 
 .post-button:hover {
 	background-color: #294d72;
-}
+} */
 
 .footer {
 	position: fixed;

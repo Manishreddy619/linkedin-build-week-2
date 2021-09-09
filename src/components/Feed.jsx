@@ -3,11 +3,15 @@ import RightBar from './RightBar';
 import './Feed.css';
 import LeftFeedProfile from './LeftFeedProfile';
 import CreatePostCard from './CreatePostCard';
+import PostCard from './PostCard';
 const Feed = () => {
 	return (
 		<div className='feed'>
 			<LeftFeedProfile />
-			<CreatePostCard />
+			<div className='main-feed'>
+				<CreatePostCard />
+				<PostCard />
+			</div>
 			<RightBar />
 		</div>
 	);

@@ -13,8 +13,8 @@ function App() {
 		<Router>
 			<div className='app'>
 				<AppNavigation />
-				<Footer />
-				<div className='profileBody'>
+
+				<div>
 					<Route path='/' exact>
 						<Feed />
 					</Route>

@@ -1,0 +1,22 @@
+.inputOption {
+	display: flex;
+	align-items: center;
+	margin-top: 15px;
+	color: gray;
+	padding: 10px;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+.inputOption:hover {
+	background-color: whitesmoke;
+	border-radius: 10px;
+}
+.inputOption > h6 {
+	margin-left: 5px;
+}
+@media only screen and (max-width: 600px) {
+	.inputOption {
+		display: flex;
+		flex-direction: column;
+	}
+}
