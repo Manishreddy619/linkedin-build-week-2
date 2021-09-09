@@ -98,10 +98,7 @@ const ProfileDetails = () => {
 							return (
 								<>
 									<div className='experience-div' key={ex._id}>
-										<img
-											src='https://strive.school/favicon.ico'
-											alt='striveschool'
-										/>
+										<img src={ex.image} alt='striveschool' />
 										<div className='experienceDetails'>
 											<h3>{ex.role}</h3>
 											<h5>Role:{ex.description}</h5>
