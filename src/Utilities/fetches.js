@@ -3,7 +3,7 @@ const apiUrl = "https://striveschool-api.herokuapp.com/api/profile/";
 const apiKey = process.env.REACT_APP_API_KEY;
 //Functions
 const postsApiUrl = "https://striveschool-api.herokuapp.com/api/posts/ ";
-const getProfiles = async () => {
+export const getProfiles = async () => {
   try {
     const apiResp = await fetch(apiUrl, {
       method: "GET",
@@ -144,6 +144,7 @@ export const updateMyProfile = async (profileData) => {
 };
 
 export const uploadProfilePicture = async (userId, profilePicture) => {
+  // profilePicture should be the input field with the file upload
   const formData = new FormData();
   formData.append("profile", profilePicture.files[0]);
   try {
@@ -172,6 +173,7 @@ export const uploadExperiencePicture = async (
   experienceId,
   experiencePicture
 ) => {
+  // experiencePicture should be the input field with the file upload
   const formData = new FormData();
   formData.append("profile", experiencePicture.files[0]);
   try {
@@ -354,6 +356,7 @@ export const deleteUserExperience = async (userId, experienceId) => {
 
 //Functions/Posts
 export const uploadPostPicture = async (postId, postPicture) => {
+  // postPicture should be the input field with the file upload
   const formData = new FormData();
   formData.append("profile", postPicture.files[0]);
   try {
