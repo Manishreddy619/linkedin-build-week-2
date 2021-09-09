@@ -1,10 +1,8 @@
-// Global Variables
-
+// Global Variables//functionsss
 const apiUrl = "https://striveschool-api.herokuapp.com/api/profile/";
-const postsApiUrl = "https://striveschool-api.herokuapp.com/api/posts/ ";
 const apiKey = process.env.REACT_APP_API_KEY;
 //Functions
-
+const postsApiUrl = "https://striveschool-api.herokuapp.com/api/posts/ ";
 export const getProfiles = async () => {
   try {
     const apiResp = await fetch(apiUrl, {
