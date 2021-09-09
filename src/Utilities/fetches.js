@@ -144,9 +144,8 @@ export const updateMyProfile = async (profileData) => {
 };
 
 export const uploadProfilePicture = async (userId, profilePicture) => {
-  // profilePicture should be the input field with the file upload
   const formData = new FormData();
-  formData.append("profile", profilePicture.files[0]);
+  formData.append("profile", profilePicture);
   try {
     const apiResp = await fetch(apiUrl + userId + "/picture", {
       method: "POST",
@@ -356,7 +355,6 @@ export const deleteUserExperience = async (userId, experienceId) => {
 
 //Functions/Posts
 export const uploadPostPicture = async (postId, postPicture) => {
-  // postPicture should be the input field with the file upload
   const formData = new FormData();
   formData.append("post", postPicture);
   try {
