@@ -140,6 +140,11 @@
 	position: relative;
 	display: flex;
 }
+.ex-img {
+	width: 100px;
+	height: 100px;
+	margin-left: 1rem;
+}
 @media only screen and (max-width: 600px) {
 	.experience-div {
 		display: flex;
