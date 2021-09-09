@@ -23,14 +23,10 @@ const PhotoVideoComponent = () => {
 	useEffect(() => {
 		fetchPosts();
 	}, []);
-	const fileSelectHandler = (e) => {
-		setFile(e.target.files[0]);
-	};
+
 	const fileUpLoadHandler = async (e) => {
 		e.preventDefault();
-		if (file && posts._id) {
-			await uploadPostPicture(posts[0]._id, file);
-		}
+		await uploadPostPicture('613a0039fe6c48001525cec8', file);
 	};
 	console.log(posts);
 	return (
@@ -52,7 +48,11 @@ const PhotoVideoComponent = () => {
 									className='border-0'
 									type='file'
 									placeholder='Upload a image '
-									onChange={(e) => fileSelectHandler(e)}
+									onChange={(e) => {
+										setFile(e.target.files[0]);
+										console.log(e.target.files);
+										console.log(file);
+									}}
 								/>
 							</Form.Group>
 
