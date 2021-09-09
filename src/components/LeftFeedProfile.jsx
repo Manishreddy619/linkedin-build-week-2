@@ -49,10 +49,13 @@ const LeftFeedProfile = () => {
                 </div>
               </div>
               <div className="left-feed-profile-item">
-                <span className="text-dark-e6">
+                <span className="text-dark-99">
                   Access exclusive tools &amp; insights
                 </span>
-                <span className="text-dark-99">Try Premium for free</span>
+                <div>
+                  <div className="left-feed-profile-item-square"></div>
+                  <span className="text-dark-e6">Try Premium for free</span>
+                </div>
               </div>
               <div className="left-feed-profile-item">
                 <div>
@@ -73,7 +76,9 @@ const LeftFeedProfile = () => {
 
             <div className="left-feed-profile2">
               <ul className="left-feed-profile-ul">
-                <li>Groups</li>
+                <li>
+                  <span>Groups</span>
+                </li>
                 <li>
                   <div className="left-feed-profile-event-li">
                     <span>Event</span>
@@ -89,7 +94,9 @@ const LeftFeedProfile = () => {
                     </svg>
                   </div>
                 </li>
-                <li>Followed Hashtags</li>
+                <li>
+                  <span>Followed Hashtags</span>
+                </li>
               </ul>
               <div className="left-feed-profile-btn-discover">
                 <spam>Discover more</spam>

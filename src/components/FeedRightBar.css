@@ -23,6 +23,10 @@
   padding: 0.75rem 0;
 }
 
+.feed-right-main-container-2 .feed-right-title-container {
+  margin-right: 0.25rem;
+}
+
 .feed-right-title-container {
   display: flex;
   align-items: center;
@@ -117,7 +121,12 @@
   font-weight: 500;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.6);
-  padding: 2px 32px;
+  padding: 10px 20px 2px;
+}
+
+.feed-right-btn-recommendations div {
+  display: flex;
+  align-items: center;
 }
 
 .bi.bi-arrow-right {
@@ -143,6 +152,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  position: relative;
 }
 
 .feed-right-courses-li p {
@@ -207,4 +217,44 @@
 
 .feed-right-footer-text-arrow .bi.bi-chevron-compact-down {
   margin-left: 0.25rem;
+}
+
+.feed-right-footer-container1 > div > span:hover,
+.feed-right-footer-text-arrow:hover {
+  text-decoration: underline;
+  text-decoration-color: #0a66c2;
+  color: #0a66c2;
+}
+
+.feed-right-footer-container1 > div > span,
+.feed-right-footer-text-arrow {
+  cursor: pointer;
+}
+
+.feed-right-square-background {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feed-right-main-container-2
+  .feed-right-title-container
+  .feed-right-square-background:hover,
+.feed-right-btn-recommendations div:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.feed-right-courses-li .bi.bi-box-arrow-up-right {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+}
+
+.feed-right-courses-li:hover .bi.bi-box-arrow-up-right {
+  visibility: visible;
 }

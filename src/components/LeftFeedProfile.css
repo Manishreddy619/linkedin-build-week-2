@@ -12,8 +12,22 @@
   margin-bottom: 0.5rem;
 }
 
-.left-feed-profile > div:nth-child(-n + 3) {
+.left-feed-profile {
+  font-weight: 500;
+}
+
+.left-feed-profile > div:nth-child(3),
+.left-feed-profile > div:first-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.left-feed-profile > div:nth-child(3) {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.left-feed-profile > div:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .left-feed-profile-background {
@@ -21,6 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(#a0b4b7 50%, #fff 50%);
 }
 
 .left-feed-profile-deatils {
@@ -37,7 +52,7 @@
   width: inherit;
   object-fit: contain;
   border-radius: 50%;
-  border: 2px solid #000;
+  border: 2px solid #fff;
 }
 
 .left-feed-profile-name {
@@ -46,6 +61,13 @@
   font-size: 16px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.9);
+}
+
+.left-feed-profile-background:hover + .left-feed-profile-name,
+.left-feed-profile-name:hover,
+.left-feed-profile-ul > li:hover {
+  text-decoration: underline;
+  text-decoration-color: #0a66c2;
 }
 
 .left-feed-profile-name p,
@@ -62,7 +84,7 @@
 }
 
 .left-feed-profile-item-first {
-  margin-top: 0.75rem;
+  margin: 0.75rem 0;
   padding: 0.25rem 0.75rem;
 }
 
@@ -76,6 +98,12 @@
 .left-feed-profile-item {
   width: 100%;
   font-size: 12px;
+}
+
+.left-feed-profile-item-first:hover,
+.left-feed-profile-item:hover,
+.left-feed-profile-btn-discover:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .left-feed-profile-connection {
@@ -97,6 +125,7 @@
 
 .left-feed-profile-item div .bi.bi-bookmark-fill {
   margin-right: 0.5rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .left-feed-profile-ul {
@@ -129,4 +158,40 @@
   justify-content: center;
   padding: 0.75rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.left-feed-profile-item-square {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.5rem;
+  border-radius: 0.15rem;
+  background-image: linear-gradient(
+    45deg,
+    rgb(231, 163, 62) 50%,
+    rgb(248, 199, 126) 50%
+  );
+}
+
+.left-feed-profile-item div {
+  display: flex;
+  align-items: center;
+}
+
+.left-feed-profile-event-li .bi.bi-plus {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.left-feed-profile-event-li .bi.bi-plus:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.9);
+  border-radius: 50%;
+}
+
+.left-feed-profile-img-container,
+.left-feed-profile-name,
+.left-feed-profile-item-first,
+.left-feed-profile-item,
+.left-feed-profile-ul > li,
+.left-feed-profile-btn-discover {
+  cursor: pointer;
 }
