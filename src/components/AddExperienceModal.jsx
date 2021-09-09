@@ -6,7 +6,7 @@ import AddIcon from "@material-ui/icons/Add";
 
 const ExperienceModal = ({ id }) => {
   const [show, setShow] = useState(false);
-
+  const [inputFile, setInputFile] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [userEx, setUserEx] = useState({
@@ -104,13 +104,21 @@ const ExperienceModal = ({ id }) => {
               Submit
             </Button>
           </Form>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                type="file"
+                placeholder="Enter location"
+                value={inputFile}
+                onChange={(e) => setInputFile(e.target)}
+              />
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

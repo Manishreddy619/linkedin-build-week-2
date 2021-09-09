@@ -4,10 +4,11 @@ import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import CreateIcon from "@material-ui/icons/Create";
 import "./EditMyExperience.css";
+import { uploadExperiencePicture } from "../Utilities/fetches";
 
 const EditMyExperience = ({ currentEx, exid, userId }) => {
   const [show, setShow] = useState(false);
-
+  const [inputFile, setInputFile] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [updateEx, setUpdateEx] = useState({
@@ -110,13 +111,26 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
               Submit
             </Button>
           </Form>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              uploadExperiencePicture(userId, exid, inputFile);
+            }}
+          >
+            <Form.Group className="mb-3">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                type="file"
+                placeholder="Enter location"
+                onChange={(e) => setInputFile(e.target.files[0])}
+              />
+            </Form.Group>
+            <Button type="submit">Upload</Button>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

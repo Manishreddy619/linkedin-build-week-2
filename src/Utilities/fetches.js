@@ -175,7 +175,7 @@ export const uploadExperiencePicture = async (
 ) => {
   // experiencePicture should be the input field with the file upload
   const formData = new FormData();
-  formData.append("profile", experiencePicture.files[0]);
+  formData.append("experience", experiencePicture);
   try {
     const apiResp = await fetch(
       apiUrl + userId + "/experiences/" + experienceId + "/picture",
@@ -358,7 +358,7 @@ export const deleteUserExperience = async (userId, experienceId) => {
 export const uploadPostPicture = async (postId, postPicture) => {
   // postPicture should be the input field with the file upload
   const formData = new FormData();
-  formData.append("profile", postPicture.files[0]);
+  formData.append("post", postPicture);
   try {
     const apiResp = await fetch(postsApiUrl + postId, {
       method: "POST",
