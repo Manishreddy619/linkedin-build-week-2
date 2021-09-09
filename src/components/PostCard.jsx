@@ -7,17 +7,38 @@ import ShareIcon from '@material-ui/icons/Share';
 import CommentIcon from '@material-ui/icons/Comment';
 import SendIcon from '@material-ui/icons/Send';
 import { useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Button, Modal } from 'react-bootstrap';
+import EditPictureModal from './EditPictureModal';
 
 export default function PostCard() {
 	const [posts, setPosts] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 	const [isTextExpanded, setTextExpanded] = useState(false);
+
+	const [myPost, setMypost] = useState(null);
+
+	let myId = '6135d7437be6c10015f9db99';
 	const fetchPosts = async () => {
 		const fetchedPosts = await getPosts();
-		setPosts(fetchedPosts.reverse());
+		setPosts(fetchedPosts?.reverse());
 		setLoading(false);
 	};
+	const updateMYpicture = async (e, singlePost) => {
+		// console.log(e);
+		// console.log(singlePost.user?._id);
+		// posts
+		// .filter((post) => post.user?._id === '6135d7437be6c10015f9db99')
+		// .map((b) => {
+		// 	// return b && <div>{console.log(b)}</div>;
+		// 	return '';
+		// });
+
+		if (singlePost.user?._id === myId) {
+			console.log(singlePost);
+			setMypost(singlePost);
+		}
+	};
+	console.log(posts);
 	useEffect(() => {
 		fetchPosts();
 	}, []);
@@ -49,9 +70,12 @@ export default function PostCard() {
 									</div>
 								</div>
 							</div>
-							<div>
+							<div onClick={(e) => updateMYpicture(e, post)}>
 								<MoreHorizIcon className='horizontalDots' />
 							</div>
+							{myPost && (
+								<EditPictureModal id={myPost._id} message={myPost.text} />
+							)}
 						</div>
 						<div className='postCardMiddle d-flex flex-column'>
 							<div className='postCardMiddle'>{post.text}</div>

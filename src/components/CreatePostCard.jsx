@@ -1,11 +1,11 @@
 import CreateIcon from '@material-ui/icons/Create';
 import React, { useEffect, useState } from 'react';
 import './Feed.css';
-import InputOption from './InputOption';
-import ImageIcon from '@material-ui/icons/Image';
-import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
-import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
-import EventNoteIcon from '@material-ui/icons/EventNote';
+// import InputOption from './InputOption';
+// import ImageIcon from '@material-ui/icons/Image';
+// import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
+// import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
+// import EventNoteIcon from '@material-ui/icons/EventNote';
 import './CreatePostCard.css';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { Avatar } from '@material-ui/core';

@@ -28,6 +28,7 @@ const PhotoVideoComponent = () => {
 		e.preventDefault();
 		await uploadPostPicture('613a0039fe6c48001525cec8', file);
 	};
+
 	console.log(posts);
 	return (
 		<div className='postInputOptions'>
