@@ -14,7 +14,7 @@ import { getMyProfile } from '../Utilities/fetches';
 import PhotoVideoComponent from './PhotoVideoComponent';
 import { uploadPostPicture } from '../Utilities/fetches';
 import { getPosts } from '../Utilities/fetches';
-
+import SendIcon from '@material-ui/icons/Send';
 const CreatePostCard = () => {
 	const [post, setPost] = useState({
 		text: '',
@@ -106,11 +106,10 @@ const CreatePostCard = () => {
 									</Form.Group>
 
 									<Button
-										variant='success'
 										type='submit'
 										className='mx-2 my-3'
 										onClick={() => fetchPost()}>
-										Send post
+										<SendIcon />
 									</Button>
 									<Form>
 										<Form.Group className='mb-3'>
