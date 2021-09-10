@@ -1,6 +1,7 @@
 import React from 'react';
 import './PostCard.css';
 import { getPosts } from '../Utilities/fetches';
+
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ShareIcon from '@material-ui/icons/Share';
@@ -73,8 +74,8 @@ export default function PostCard() {
 							<div onClick={(e) => updateMYpicture(e, post)}>
 								<MoreHorizIcon className='horizontalDots' />
 							</div>
-							{myPost && (
-								<EditPictureModal id={myPost._id} message={myPost.text} />
+							{post.user._id === myId && (
+								<EditPictureModal id={post._id} message={post.text} />
 							)}
 						</div>
 						<div className='postCardMiddle d-flex flex-column'>

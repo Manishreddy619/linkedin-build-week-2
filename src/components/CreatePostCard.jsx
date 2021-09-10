@@ -12,16 +12,19 @@ import { Avatar } from '@material-ui/core';
 import { createPost } from '../Utilities/fetches';
 import { getMyProfile } from '../Utilities/fetches';
 import PhotoVideoComponent from './PhotoVideoComponent';
+import { uploadPostPicture } from '../Utilities/fetches';
+import { getPosts } from '../Utilities/fetches';
 
 const CreatePostCard = () => {
 	const [post, setPost] = useState({
 		text: '',
 	});
+	const [file, setFile] = useState(null);
 	const [show, setShow] = useState(false);
-
+	const [latestPost, setLatestPost] = useState(null);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-
+	const [posts, setPosts] = useState([]);
 	const [profile, setProfile] = useState(null);
 
 	useEffect(() => {
@@ -41,12 +44,30 @@ const CreatePostCard = () => {
 
 	const Sendpost = async (e) => {
 		e.preventDefault();
-		await createPost(post);
+		let data = await createPost(post);
+		console.log(data);
+		setLatestPost(data);
 		setPost({
 			text: '',
 		});
 	};
+	const fileUpLoadHandler = async (e) => {
+		e.preventDefault();
 
+		await uploadPostPicture(latestPost?._id, file);
+		handleClose();
+	};
+	const fetchPost = async () => {
+		const fetchedPosts = await getPosts();
+		setPosts(fetchedPosts?.reverse());
+	};
+	useEffect(() => {
+		fetchPost();
+	}, [latestPost]);
+
+	console.log(post);
+	console.log(latestPost);
+	console.log(file);
 	return (
 		<>
 			<div className='post'>
@@ -84,9 +105,35 @@ const CreatePostCard = () => {
 										/>
 									</Form.Group>
 
-									<Button variant='success' type='submit' onClick={handleClose}>
+									<Button
+										variant='success'
+										type='submit'
+										className='mx-2 my-3'
+										onClick={() => fetchPost()}>
 										Send post
 									</Button>
+									<Form>
+										<Form.Group className='mb-3'>
+											{/* <Form.Label>Choose image </Form.Label> */}
+											<Form.Control
+												className='border-0'
+												type='file'
+												placeholder='Upload a image '
+												onChange={(e) => {
+													setFile(e.target.files[0]);
+													console.log(e.target.files);
+													console.log(file);
+												}}
+											/>
+										</Form.Group>
+
+										<Button
+											variant='success'
+											type='submit'
+											onClick={fileUpLoadHandler}>
+											Send Image
+										</Button>
+									</Form>
 								</Form>
 							</Modal.Body>
 							<Modal.Footer>
