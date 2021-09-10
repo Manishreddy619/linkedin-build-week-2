@@ -209,6 +209,7 @@
 .feed-right-footer-text-arrow {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .feed-right-footer-container1 > div {
@@ -220,7 +221,7 @@
 }
 
 .feed-right-footer-container1 > div > span:hover,
-.feed-right-footer-text-arrow:hover {
+.feed-right-footer-text-arrow-container:hover {
   text-decoration: underline;
   text-decoration-color: #0a66c2;
   color: #0a66c2;
@@ -243,7 +244,8 @@
 .feed-right-main-container-2
   .feed-right-title-container
   .feed-right-square-background:hover,
-.feed-right-btn-recommendations div:hover {
+.feed-right-btn-recommendations div:hover,
+.feed-right-drop-up > div:hover {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
@@ -258,3 +260,26 @@
 .feed-right-courses-li:hover .bi.bi-box-arrow-up-right {
   visibility: visible;
 }
+
+/* .feed-right-drop-up {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border: 1px solid #e0dfdc;
+  background-color: #fff;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  bottom: 120%;
+  left: -60%;
+  min-width: 168px;
+  max-width: 26.4rem;
+  padding: 0.25rem 0;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: -2px 5px 5px 2px #888888;
+}
+
+.feed-right-drop-up > div {
+  padding: 0.25rem 1rem;
+} */
