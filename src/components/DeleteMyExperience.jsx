@@ -10,6 +10,7 @@ const DeleteMyExperience = ({ exid, userId }) => {
 	const handleShow = () => setShow(true);
 	const Delete = async () => {
 		let del = await deleteUserExperience(userId, exid);
+		handleClose();
 	};
 
 	return (
