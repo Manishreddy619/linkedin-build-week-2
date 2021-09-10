@@ -108,6 +108,7 @@ const Example = ({ details, loadingState }) => {
               e.preventDefault();
               uploadProfilePicture(details._id, inputFile);
               loadingState(true);
+              handleClose();
             }}
           >
             <Form.Group className="mb-3">
