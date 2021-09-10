@@ -24,9 +24,11 @@ const PhotoVideoComponent = () => {
 			.filter((post) => post.user?._id === '6135d7437be6c10015f9db99')
 			.map((b) => {
 				arr.push(b);
+				console.log(b);
 			});
 		console.log(arr);
-		return setId(arr);
+		setId(arr);
+		return;
 	};
 	useEffect(() => {
 		fetchPosts();
@@ -36,7 +38,7 @@ const PhotoVideoComponent = () => {
 		e.preventDefault();
 		console.log(id);
 		if (id) {
-			await uploadPostPicture(id[0]?._id, file);
+			await uploadPostPicture(id[0]._id, file);
 		}
 	};
 

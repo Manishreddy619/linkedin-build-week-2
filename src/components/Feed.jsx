@@ -3,6 +3,7 @@ import RightBar from './RightBar';
 import './Feed.css';
 import LeftFeedProfile from './LeftFeedProfile';
 import CreatePostCard from './CreatePostCard';
+import FeedRightBar from './FeedRightBar';
 import PostCard from './PostCard';
 const Feed = () => {
 	return (
@@ -12,7 +13,7 @@ const Feed = () => {
 				<CreatePostCard />
 				<PostCard />
 			</div>
-			<RightBar />
+			<FeedRightBar />
 		</div>
 	);
 };

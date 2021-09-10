@@ -17,6 +17,7 @@
 	left: -7rem;
 	position: absolute;
 	margin-left: 3rem;
+	max-width: 225px;
 }
 .postInputContainer {
 	background-color: white;
