@@ -1,10 +1,11 @@
 .profileDetails {
 	flex: 0.6;
-	margin: 0 20px;
+	margin: 0 25px;
+	position: relative;
 }
 .profileBox1 {
-	position: relative;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: space-evenly;
 	border: 1px solid lightgray;
@@ -16,9 +17,63 @@
 	align-items: center;
 }
 .Avatar {
-	margin-bottom: 10px;
 	position: absolute;
-	left: -20rem;
+	margin-bottom: 10px;
+	left: -10rem;
+	top: -2rem;
+}
+.pencil {
+	position: absolute;
+	right: 3.5rem;
+}
+@media only screen and (max-width: 1400px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -2rem;
+		top: -3rem;
+	}
+	.detailsRight {
+		padding: 10px;
+	}
+}
+@media only screen and (max-width: 1100px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -4rem;
+		top: -3rem;
+	}
+	.detailsRight {
+		padding: 10px;
+	}
+}
+@media only screen and (max-width: 850px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -3rem;
+		top: -3rem;
+	}
+	.details {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.detailsLeft {
+		display: flex;
+		align-items: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+@media only screen and (max-width: 660px) {
+	.Avatar {
+		position: absolute;
+		margin-bottom: 10px;
+		left: -2rem;
+		top: -3rem;
+	}
 }
 
 .profileBox1 > img {
@@ -30,8 +85,8 @@
 }
 .details {
 	display: flex;
-
-	justify-content: space-between;
+	align-items: center;
+	justify-content: start;
 }
 
 .detailsLeft > img,
@@ -44,6 +99,15 @@
 
 .buttons {
 	margin-right: 1rem;
+}
+.experience {
+	position: relative;
+}
+.experience > span {
+	display: flex;
+	position: absolute;
+	right: 3rem;
+	top: 2rem;
 }
 .aboutSection,
 .experience,
@@ -71,7 +135,31 @@
 .experience-div > img {
 	margin-right: 20px;
 }
+.experience-div {
+	position: relative;
+	display: flex;
+}
+.ex-img {
+	width: 100px;
+	height: 100px;
+	margin-left: 1rem;
+}
+@media only screen and (max-width: 600px) {
+	.experience-div {
+		display: flex;
+		flex-direction: column;
+
+		justify-content: flex-start;
+	}
+}
+
 .interests {
+	margin-bottom: 3rem;
+}
+.interests > h3 {
+	padding: 20px;
+}
+.interests-container {
 	display: flex;
 	justify-content: space-evenly;
 	padding-top: 10px;
@@ -79,4 +167,18 @@
 .interests-div > img {
 	object-fit: contain;
 	height: 60px;
+}
+.experience > h3,
+.education > h3,
+.skills > h3 {
+	padding: 20px;
+}
+.skills > button {
+	margin-left: 10px;
+}
+.skills-list {
+	padding: 20px;
+}
+.btn1 {
+	border-radius: 30px !important;
 }

@@ -1,0 +1,90 @@
+.postCard {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	justify-content: center;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	background-color: white;
+	padding-bottom: 10px;
+	align-items: center;
+	max-width: 540px;
+	margin-top: 6px;
+}
+
+.postCardTop img {
+	border-radius: 50%;
+}
+
+.profileMuted {
+	font-size: 10px;
+}
+
+.postCardTop {
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 12px;
+	padding-bottom: 16px;
+	width: 100%;
+}
+
+.postCardMiddle {
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-bottom: 16px;
+}
+
+.postCardLine {
+	display: block;
+	width: 100%;
+	border-color: rgba(128, 128, 128, 0.205);
+	margin-bottom: 16px;
+}
+.postCardIcons {
+	cursor: pointer;
+	transform: scale(1);
+	transition: all 0.4s ease-in;
+}
+.postCardIcon {
+	cursor: pointer;
+
+	transform: translateX(10px);
+	transition: all 0.4s ease-in;
+}
+.postCardIcons:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+	transition: all 0.6s ease-out;
+	color: rgb(36, 131, 175);
+}
+
+.postCardIcon:hover {
+	cursor: pointer;
+	transform: translateX(1px);
+	color: rgb(36, 131, 175);
+}
+.postCardBottom {
+	padding-left: 16px;
+	padding-right: 16px;
+	color: gray;
+	padding-bottom: 16px;
+}
+
+.bottomIcons {
+	min-width: 70px;
+	height: 75%;
+}
+
+.bottomIcons:hover {
+	background-color: rgba(128, 128, 128, 0.1);
+	border-radius: 5px;
+}
+
+.horizontalDots {
+	color: gray;
+}
+
+.horizontalDots:hover {
+	background-color: rgba(128, 128, 128, 0.1);
+	border-radius: 50%;
+}

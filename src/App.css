@@ -1,15 +1,283 @@
 .app {
 	background-color: #f3f2ef;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	position: relative;
+	margin-top: 6rem;
 }
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-.profileBody {
+.userBody {
 	display: flex;
-	justify-content: space-around;
+	margin-top: 20px;
+	margin-left: 15rem;
+}
+.otherUserbody {
+	display: flex;
+	margin-left: 10rem;
+	margin-right: 3rem;
+}
+@media only screen and (max-width: 1100px) {
+	.userBody,
+	.otherUserbody {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.userBody,
+	.otherUserbody {
+		margin: 0;
+	}
+}
+
+.App {
+	text-align: center;
+}
+
+#linkedIn-logo {
+	height: 35px;
+	width: 35px;
+}
+
+.NavLink {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.Navbaricon {
+	font-size: 25px;
+}
+.search-container {
+	opacity: 1;
+	flex-grow: 1;
+	position: relative;
+	max-width: 280px;
+}
+.search-icon {
+	width: 40px;
+	position: absolute;
+	z-index: 1;
+	top: 10px;
+	left: 2px;
+	justify-content: center;
+	align-items: center;
+}
+
+input.searchbar {
+	border-style: none;
+	background-color: #eef3f8;
+	border-radius: 2px;
+	color: rgb(0, 0, 0, 0.9);
+	width: 280px;
+	padding: 0 8px 0 40px;
+	height: 34px;
+	line-height: 1.75;
+}
+
+.search-results-container {
+	position: absolute;
+	z-index: 1;
+	width: 600px;
+	max-height: 300px;
+	overflow: hidden scroll;
+	background-color: #fff;
+	border-radius: 0.6rem 0.6rem 0.6rem 0.6rem;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	padding: 0px 0px;
+	top: 40px;
+}
+
+.swing-in-top-fwd {
+	-webkit-animation: swing-in-top-fwd 0.5s
+		cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s both;
+	animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s
+		both;
+}
+
+.profile-image {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+}
+
+.search-result:hover {
+	background-color: rgb(243, 242, 239);
+	cursor: pointer;
+}
+
+.premium-container {
+	max-width: 71px;
+}
+
+.try-premium {
+	color: rgb(191, 125, 87);
+}
+
+.try-premium:hover {
+	text-decoration: underline;
+}
+
+/* .createPost {
+	border: 1px solid rgb(0 0 0 / 60%);
+	border-radius: 15px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0 0 0 / 60%);
+	margin: 0 auto;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	justify-content: left;
+	text-align: center;
+	border-style: 2px solid black;
+}
+
+.post-card-icon {
+	font-size: 25px;
+	margin-right: 6px;
+}
+
+.start-post-image {
+	font-size: 55px;
+	margin-right: 4px;
+}
+
+.share-card-button {
+	border-radius: 5px;
+	background-color: white;
+	border: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.share-card-button:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+.modal-profile-rounded {
+	font-size: 50px;
+}
+
+.post-comment textarea {
+	border: none;
+}
+
+.post-comment .form-control:focus {
+	border: none;
+}
+
+.start-post {
+	border-radius: 25px;
+	border: 1px solid lightslategray;
+	height: 50px;
+}
+
+.start-post:hover {
+	background-color: rgb(231, 231, 231);
+}
+
+.post-dropdown {
+	border-radius: 15px;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.post-dropdown:hover {
+	background-color: lightgray;
+}
+
+.add-hashtag {
+	color: #427cb6;
+	border-radius: 5px;
+	background-color: white;
+	border: none;
+}
+
+.add-hashtag:hover {
+	background-color: rgb(202, 215, 219);
+	border: none;
+}
+
+.share-icons {
+	margin-left: 7px;
+	margin-right: 7px;
+	font-size: 22px;
+}
+
+.anyone-button {
+	border: none;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.anyone-button:hover {
+	background-color: lightgrey;
+}
+
+.post-button {
+	border: none;
+	border-radius: 15px;
+	color: white;
+	background-color: #0a66c2;
+}
+
+.post-button:hover {
+	background-color: #294d72;
+} */
+
+.footer {
+	position: fixed;
+	bottom: 0;
+}
+
+.footer-select {
+	border-radius: 2px;
+	color: rgb(0, 0, 0, 0.9);
+	width: 280px;
+	padding: 0 0px 0 0px;
+	height: 30px;
+}
+
+ul#language {
+	padding-left: 0px;
+}
+
+.linkedInLonger {
+	height: 65px;
+}
+
+.footer ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-align: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
+}
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.App-link {
+	color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }

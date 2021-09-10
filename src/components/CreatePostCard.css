@@ -1,0 +1,60 @@
+.post {
+	width: 544px;
+	margin: 0 auto;
+	position: relative;
+}
+@media only screen and (max-width: 800px) {
+	.post {
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 412px) {
+	.post {
+		width: 70%;
+	}
+}
+.avatar {
+	left: -7rem;
+	position: absolute;
+	margin-left: 3rem;
+}
+.postInputContainer {
+	background-color: white;
+	padding: 10px;
+	padding-bottom: 20px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+.postInput {
+	border: 1px solid lightgray;
+	border-radius: 30px;
+	display: flex;
+	padding: 6px;
+	color: gray;
+	padding-left: 15px;
+	margin-left: 3rem;
+	cursor: pointer;
+}
+.img {
+	object-fit: contain;
+	height: 30px;
+}
+.postInput > form {
+	display: flex;
+	width: 100%;
+}
+.postInput > form > input {
+	border: none;
+	flex: 1;
+	margin-left: 10px;
+	outline-width: 0;
+	font-weight: 600;
+}
+.postInput > form > button {
+	display: none;
+}
+.postInputOptions {
+	display: flex;
+	justify-content: space-evenly;
+}
