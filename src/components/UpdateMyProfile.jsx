@@ -3,7 +3,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import CreateIcon from "@material-ui/icons/Create";
 import { updateMyProfile } from "../Utilities/fetches";
 import { uploadProfilePicture } from "../Utilities/fetches";
-const Example = ({ details }) => {
+const Example = ({ details, loadingState }) => {
   const [show, setShow] = useState(false);
   const [inputFile, setInputFile] = useState(null);
   const handleClose = () => setShow(false);
@@ -26,6 +26,7 @@ const Example = ({ details }) => {
     // with async/await
     e.preventDefault();
     await updateMyProfile(profileData);
+    loadingState(true);
   };
 
   return (
@@ -106,6 +107,7 @@ const Example = ({ details }) => {
             onSubmit={(e) => {
               e.preventDefault();
               uploadProfilePicture(details._id, inputFile);
+              loadingState(true);
             }}
           >
             <Form.Group className="mb-3">
