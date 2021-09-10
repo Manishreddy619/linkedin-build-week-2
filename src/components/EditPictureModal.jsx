@@ -1,7 +1,14 @@
 import React from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { useState } from 'react';
-import { updatePost } from '../Utilities/fetches';
+import {
+	updatePost,
+	uploadPostPicture,
+	deletePost,
+} from '../Utilities/fetches';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SendIcon from '@material-ui/icons/Send';
 const EditPictureModal = ({ id, message }) => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -9,6 +16,7 @@ const EditPictureModal = ({ id, message }) => {
 	const [post, setPost] = useState({
 		text: message,
 	});
+	const [file, setFile] = useState(null);
 	const handleInput = (e, propertyName) => {
 		setPost({
 			...post,
@@ -16,26 +24,39 @@ const EditPictureModal = ({ id, message }) => {
 			[propertyName]: e.target.value,
 		});
 	};
-
-	const Sendpost = async (e) => {
+	const deletePostItem = async (e) => {
 		e.preventDefault();
+		await deletePost(id);
+		handleClose();
+	};
+	const Sendpost = async (e) => {
 		await updatePost(id, post);
+
 		setPost({
 			text: '',
 		});
 	};
+	const fileUpLoadHandler = async (e) => {
+		Sendpost();
+		e.preventDefault();
+
+		await uploadPostPicture(id, file);
+		handleClose();
+	};
+	console.log(id);
+
 	return (
 		<div>
-			<Button variant='primary' onClick={handleShow}>
-				editpost
-			</Button>
+			<p variant='primary' onClick={handleShow}>
+				<MoreHorizIcon className='horizontalDots' />
+			</p>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>edit post</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form onSubmit={Sendpost}>
+					<Form>
 						<Form.Group className='mb-3'>
 							<Form.Label>write something</Form.Label>
 							<Form.Control
@@ -47,8 +68,33 @@ const EditPictureModal = ({ id, message }) => {
 							/>
 						</Form.Group>
 
-						<Button variant='success' type='submit' onClick={handleClose}>
+						{/* <Button variant='success'>
 							Send post
+						</Button> */}
+					</Form>
+					<Form>
+						<Form.Group className='mb-3'>
+							{/* <Form.Label>Choose image </Form.Label> */}
+							<Form.Control
+								className='border-0'
+								type='file'
+								placeholder='Upload a image '
+								onChange={(e) => {
+									setFile(e.target.files[0]);
+									console.log(e.target.files);
+									console.log(file);
+								}}
+							/>
+						</Form.Group>
+						<Button
+							variant='danger'
+							type='submit'
+							className='mx-3'
+							onClick={deletePostItem}>
+							<DeleteIcon /> delete post
+						</Button>
+						<Button variant='success' type='submit' onClick={fileUpLoadHandler}>
+							<SendIcon /> send post
 						</Button>
 					</Form>
 				</Modal.Body>
