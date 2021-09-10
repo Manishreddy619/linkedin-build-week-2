@@ -1,7 +1,7 @@
 import React from "react";
 import "./PostCard.css";
 import { getPosts } from "../Utilities/fetches";
-
+import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ShareIcon from "@material-ui/icons/Share";
@@ -10,8 +10,9 @@ import SendIcon from "@material-ui/icons/Send";
 import { useEffect, useState } from "react";
 import { Spinner, Button, Modal } from "react-bootstrap";
 import EditPictureModal from "./EditPictureModal";
+import CreatePostCard from "./CreatePostCard";
 
-export default function PostCard() {
+export default function PostCard({ loadingState }) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [isTextExpanded, setTextExpanded] = useState(false);
@@ -49,8 +50,9 @@ export default function PostCard() {
   }, [isLoading]);
 
   return (
-    <div>
-      {isLoading && <Spinner className="mx-auto" animation="grow" />}
+    <div className="d-flex flex-column align-items-center">
+      <CreatePostCard loadingState={(state) => setLoading(state)} />
+      {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&
         posts.slice(0, 70).map((post) => (
           <div key={post._id} className="postCard d-flex flex-column">
