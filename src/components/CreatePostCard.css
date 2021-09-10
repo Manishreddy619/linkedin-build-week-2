@@ -13,6 +13,24 @@
 		width: 70%;
 	}
 }
+@media only screen and (max-width: 1100px) {
+	.post {
+		margin-top: 1rem;
+		margin-left: -1.5rem;
+	}
+}
+@media only screen and (max-width: 830px) {
+	.post {
+		margin-top: 1rem;
+		margin-left: 0;
+	}
+}
+@media only screen and (max-width: 800px) {
+	.post {
+		margin-top: 1rem;
+		margin-left: -3rem;
+	}
+}
 .avatar {
 	left: -7rem;
 	position: absolute;

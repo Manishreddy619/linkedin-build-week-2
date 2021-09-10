@@ -38,7 +38,7 @@ const PhotoVideoComponent = () => {
 		e.preventDefault();
 		console.log(id);
 		if (id) {
-			await uploadPostPicture(id[0]._id, file);
+			await uploadPostPicture(id[0]?._id, file);
 		}
 	};
 

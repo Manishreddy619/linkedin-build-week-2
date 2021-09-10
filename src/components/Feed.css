@@ -19,6 +19,7 @@
 	.feed {
 		display: flex;
 		margin: 0;
+		flex-direction: column;
 	}
 	.main-feed {
 		display: flex;

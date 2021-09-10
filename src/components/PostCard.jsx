@@ -72,7 +72,9 @@ export default function PostCard() {
 								</div>
 							</div>
 							<div onClick={(e) => updateMYpicture(e, post)}>
-								<MoreHorizIcon className='horizontalDots' />
+								{post.user._id !== myId && (
+									<MoreHorizIcon className='horizontalDots' />
+								)}
 							</div>
 							{post.user._id === myId && (
 								<EditPictureModal id={post._id} message={post.text} />
