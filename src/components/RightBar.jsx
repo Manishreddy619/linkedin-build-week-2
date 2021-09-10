@@ -1,21 +1,28 @@
 import RightPeopleCol from "./RightPeopleCol";
 import "./RightBar.css";
-import { getProfiles } from "../Utilities/fetches";
+import { getProfiles, getMyProfile } from "../Utilities/fetches";
 import { useState, useEffect } from "react";
 import BtnShowMore from "./BtnShowMore";
 import RightTopEditContainer from "./RightTopEditContainer";
 
 const RightBar = () => {
   const [profiles, setProfiles] = useState([]);
+  const [myProfile, setMyProfile] = useState();
 
   useEffect(() => {
     const getProfile = async () => {
       let profiles = await getProfiles();
+      let myProfile = await getMyProfile();
+      setMyProfile(myProfile);
       let uniqueProfiles = [];
       while (uniqueProfiles.length < 20) {
         const profile = profiles[Math.floor(Math.random() * profiles.length)];
-        uniqueProfiles.push(profile);
-        uniqueProfiles = [...new Set(uniqueProfiles)];
+        if (profile._id !== myProfile._id) {
+          uniqueProfiles.push(profile);
+          uniqueProfiles = [...new Set(uniqueProfiles)];
+        } else {
+          continue;
+        }
       }
       setProfiles(uniqueProfiles);
     };
