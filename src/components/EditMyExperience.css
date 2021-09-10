@@ -19,6 +19,11 @@
 		position: relative;
 	}
 	.editIcon {
-		margin-top: 30px;
+		margin-top: -14rem;
+	}
+}
+@media only screen and (max-width: 337px) {
+	.editIcon {
+		margin-top: -10rem;
 	}
 }
