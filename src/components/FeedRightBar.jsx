@@ -20,6 +20,8 @@ const FeedRightBar = () => {
     getProfile();
   }, []);
 
+  const btnDropUp = (str) => {};
+
   return (
     <>
       {profiles.length > 0 && (
@@ -181,20 +183,37 @@ const FeedRightBar = () => {
                 </div>
                 <div>
                   <div className="feed-right-footer-text-arrow">
-                    <span>Privacy &amp; Terms</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-chevron-compact-down"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"
-                      />
-                    </svg>
+                    <div className="feed-right-footer-text-arrow-container">
+                      <span>Privacy &amp; Terms</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-chevron-compact-down"
+                        viewBox="0 0 16 16"
+                        onClick={() => btnDropUp("privacy")}
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"
+                        />
+                      </svg>
+                    </div>
+                    {/* <div className="feed-right-drop-up">
+                      <div>
+                        <span>Privacy Policy</span>
+                      </div>
+                      <div>
+                        <span>User Agreement</span>
+                      </div>
+                      <div>
+                        <span>Cookie Policy</span>
+                      </div>
+                      <div>
+                        <span>Copyright Policy</span>
+                      </div>
+                    </div> */}
                   </div>
 
                   <span>Ad Choices</span>
