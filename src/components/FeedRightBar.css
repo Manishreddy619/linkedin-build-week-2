@@ -261,7 +261,7 @@
   visibility: visible;
 }
 
-/* .feed-right-drop-up {
+.feed-right-drop-up {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -282,4 +282,4 @@
 
 .feed-right-drop-up > div {
   padding: 0.25rem 1rem;
-} */
+}
