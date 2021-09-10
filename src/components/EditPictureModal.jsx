@@ -39,7 +39,9 @@ const EditPictureModal = ({ id, message }) => {
 	const fileUpLoadHandler = async (e) => {
 		Sendpost();
 		e.preventDefault();
-
+		if (!file) {
+			handleClose();
+		}
 		await uploadPostPicture(id, file);
 		handleClose();
 	};
