@@ -50,7 +50,7 @@ export default function PostCard() {
 
   return (
     <div>
-      {isLoading && <Spinner className="mx-auto" animation="grow" />}
+      {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&
         posts.slice(0, 70).map((post) => (
           <div key={post._id} className="postCard d-flex flex-column">
