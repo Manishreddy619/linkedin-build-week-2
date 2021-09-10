@@ -20,13 +20,13 @@ function App() {
 					</Route>
 				</div>
 				<div className='otherUserbody'>
-					<Route path='/profile/:id' exact>
+					<Route path='/profile/:id'>
 						<UserDetails />
 						<RightBar />
 					</Route>
 				</div>
 				<div className='userBody'>
-					<Route path='/me'>
+					<Route path='/me' exact>
 						<ProfileDetails />
 						<RightBar />
 					</Route>
