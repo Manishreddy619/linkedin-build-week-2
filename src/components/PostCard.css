@@ -40,7 +40,29 @@
 	border-color: rgba(128, 128, 128, 0.205);
 	margin-bottom: 16px;
 }
+.postCardIcons {
+	cursor: pointer;
+	transform: scale(1);
+	transition: all 0.4s ease-in;
+}
+.postCardIcon {
+	cursor: pointer;
 
+	transform: translateX(10px);
+	transition: all 0.4s ease-in;
+}
+.postCardIcons:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+	transition: all 0.6s ease-out;
+	color: rgb(36, 131, 175);
+}
+
+.postCardIcon:hover {
+	cursor: pointer;
+	transform: translateX(1px);
+	color: rgb(36, 131, 175);
+}
 .postCardBottom {
 	padding-left: 16px;
 	padding-right: 16px;

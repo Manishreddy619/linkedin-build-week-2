@@ -11,6 +11,7 @@
 	background-color: whitesmoke;
 	border-radius: 10px;
 }
+
 .inputOption > h6 {
 	margin-left: 5px;
 }
@@ -18,5 +19,13 @@
 	.inputOption {
 		display: flex;
 		flex-direction: column;
+	}
+}
+@media only screen and (max-width: 300px) {
+	.inputOption {
+		margin-left: 20px;
+	}
+	.inputOption > h6 {
+		margin: 0;
 	}
 }

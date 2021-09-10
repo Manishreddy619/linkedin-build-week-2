@@ -102,20 +102,20 @@ export default function PostCard() {
 						<div className='postCardBottom d-flex flex-wrap justify-content-between w-100'>
 							<hr className='postCardLine' />
 							<div className='d-flex align-items-center justify-content-center bottomIcons'>
-								<ThumbUpIcon />
-								<div>Like</div>
+								<ThumbUpIcon className='postCardIcons' />
+								<div className='postCardIcon'>Like</div>
 							</div>
-							<div className='d-flex align-items-center justify-content-center bottomIcons'>
-								<CommentIcon />
-								<div>Comment</div>
+							<div className='d-flex align-items-center justify-content-center bottomIcons "'>
+								<CommentIcon className='postCardIcons' />
+								<div className='postCardIcon'>Comment</div>
 							</div>
-							<div className='d-flex align-items-center justify-content-center bottomIcons'>
-								<ShareIcon />
-								<div>Share</div>
+							<div className='d-flex align-items-center justify-content-center bottomIcons "'>
+								<ShareIcon className='postCardIcons' />
+								<div className='postCardIcon'>Share</div>
 							</div>
-							<div className='d-flex align-items-center justify-content-center bottomIcons'>
-								<SendIcon />
-								<div>Send</div>
+							<div className='d-flex align-items-center justify-content-center bottomIcons "'>
+								<SendIcon className='postCardIcons' />
+								<div className='postCardIcon'>Send</div>
 							</div>
 						</div>
 					</div>

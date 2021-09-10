@@ -8,9 +8,15 @@
 		width: 100%;
 	}
 }
+@media only screen and (max-width: 412px) {
+	.post {
+		width: 70%;
+	}
+}
 .avatar {
 	left: -4rem;
 	position: absolute;
+	margin-left: 3rem;
 }
 .postInputContainer {
 	background-color: white;

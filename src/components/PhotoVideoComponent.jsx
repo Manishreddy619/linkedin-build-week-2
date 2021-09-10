@@ -25,16 +25,19 @@ const PhotoVideoComponent = () => {
 			.map((b) => {
 				arr.push(b);
 			});
+		console.log(arr);
 		return setId(arr);
 	};
 	useEffect(() => {
 		fetchPosts();
 	}, []);
-	console.log(id);
+
 	const fileUpLoadHandler = async (e) => {
 		e.preventDefault();
-
-		await uploadPostPicture(id[0]._id, file);
+		console.log(id);
+		if (id) {
+			await uploadPostPicture(id[0]?._id, file);
+		}
 	};
 
 	console.log(posts);
