@@ -34,7 +34,12 @@
   margin-bottom: 0.5rem;
 }
 
-.left-feed-profile > div:nth-child(-n + 3) {
+.left-feed-profile {
+  font-weight: 500;
+}
+
+.left-feed-profile > div:nth-child(3),
+.left-feed-profile > div:first-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -52,6 +57,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(#a0b4b7 50%, #fff 50%);
 }
 
 .left-feed-profile-deatils {
@@ -68,7 +74,7 @@
   width: inherit;
   object-fit: contain;
   border-radius: 50%;
-  border: 2px solid #000;
+  border: 2px solid #fff;
 }
 
 .left-feed-profile-name {
