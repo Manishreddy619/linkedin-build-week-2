@@ -101,7 +101,10 @@ const ProfileDetails = () => {
         <div className="experience">
           <h3>Experience</h3>
           <span className="mx-1">
-            <ExperienceModal id={details._id} />
+            <ExperienceModal
+              loadingState={(state) => setLoading(state)}
+              id={details._id}
+            />
           </span>
           {experience &&
             experience.map((ex) => {
