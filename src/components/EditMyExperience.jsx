@@ -6,7 +6,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import "./EditMyExperience.css";
 import { uploadExperiencePicture } from "../Utilities/fetches";
 
-const EditMyExperience = ({ currentEx, exid, userId }) => {
+const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
   const [show, setShow] = useState(false);
   const [inputFile, setInputFile] = useState(null);
   const handleClose = () => setShow(false);
@@ -30,6 +30,7 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
     // with async/await
     e.preventDefault();
     await updateUserExperience(userId, exid, updateEx);
+    loadingState(true);
   };
   console.log(updateEx);
   return (
@@ -115,6 +116,7 @@ const EditMyExperience = ({ currentEx, exid, userId }) => {
             onSubmit={(e) => {
               e.preventDefault();
               uploadExperiencePicture(userId, exid, inputFile);
+              loadingState(true);
             }}
           >
             <Form.Group className="mb-3">
