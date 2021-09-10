@@ -20,7 +20,7 @@ const ProfileDetails = () => {
     }
     let experienceData = await getUserExperienceList(details._id);
     if (experienceData !== experience) {
-      setExperience(experienceData);
+      setExperience(experienceData.reverse());
     }
     setLoading(false);
   };
