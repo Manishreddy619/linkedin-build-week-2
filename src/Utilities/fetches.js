@@ -26,15 +26,16 @@ export const getProfiles = async () => {
 
 export const getMyProfile = async () => {
 	try {
-		const apiResp = await fetch(apiUrl + '61642ba7c7ce9a61a178ef42', {
-			method: 'GET'
+		const apiResp = await fetch(apiUrl + '61656206d9b9e312c927feb9', {
+			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
+		console.log('API URL',apiUrl+ '61642ba7c7ce9a61a178ef42')
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
-			console.log('MY PROFILE FETCH',myProfile)
+			//console.log('MY PROFILE FETCH',myProfile)
 			return myProfile;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');

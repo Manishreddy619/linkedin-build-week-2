@@ -30,12 +30,14 @@ const CreatePostCard = ({ loadingState }) => {
 
   const [profile, setProfile] = useState(null);
 
+
+  const getProfile = async () => {
+    let myProfile = await getMyProfile();
+    //console.log('LOOK HERE',myProfile)
+    setProfile(myProfile);
+  };
+
   useEffect(() => {
-    const getProfile = async () => {
-      let myProfile = await getMyProfile();
-      console.log('LOOK HERE',myProfile)
-      setProfile(myProfile);
-    };
     getProfile();
   }, []);
   const handleInput = (e, propertyName) => {
