@@ -16,6 +16,7 @@ import { uploadPostPicture } from "../Utilities/fetches";
 import { getPosts } from "../Utilities/fetches";
 
 const CreatePostCard = ({ loadingState }) => {
+  const[thisUser,setThisUser]=useState('61656206d9b9e312c927feb9')//MANISH
   const [post, setPost] = useState({
     text: "",
     username:'Bimal',
@@ -32,14 +33,19 @@ const CreatePostCard = ({ loadingState }) => {
 
 
   const getProfile = async () => {
-    let myProfile = await getMyProfile();
-    //console.log('LOOK HERE',myProfile)
+    let myProfile = await getMyProfile(thisUser);
     setProfile(myProfile);
+    setPost({
+      ...post,
+      username:myProfile.username
+    })
+    console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
   };
 
   useEffect(() => {
     getProfile();
   }, []);
+
   const handleInput = (e, propertyName) => {
     setPost({
       ...post,

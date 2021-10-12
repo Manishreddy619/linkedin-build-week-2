@@ -24,15 +24,15 @@ export const getProfiles = async () => {
 	}
 };
 
-export const getMyProfile = async () => {
+export const getMyProfile = async (thisUser) => {
+
 	try {
-		const apiResp = await fetch(apiUrl + '61656206d9b9e312c927feb9', {
+		const apiResp = await fetch(apiUrl + thisUser, {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
-		console.log('API URL',apiUrl+ '61642ba7c7ce9a61a178ef42')
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
 			//console.log('MY PROFILE FETCH',myProfile)
