@@ -15,26 +15,39 @@ import PhotoVideoComponent from "./PhotoVideoComponent";
 import { uploadPostPicture } from "../Utilities/fetches";
 import { getPosts } from "../Utilities/fetches";
 
-const CreatePostCard = ({ loadingState }) => {
+const CreatePostCard = ({ loadingState,fetchPosts }) => {
+  const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026')//MARCO (just because I've filled Manish's profile with useless posts)
   const [post, setPost] = useState({
-    text: ""
+    text: "",
+    username:'',
+    image:'anImage'
   });
   const [latestPost, setLatestPost] = useState(null);
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
+
   const [posts, setPosts] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [profile, setProfile] = useState(null);
 
+
+  const getProfile = async () => {
+    let myProfile = await getMyProfile(thisUser);
+    setProfile(myProfile);
+    setPost({
+      ...post,
+      username:myProfile.username
+    })
+    console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
+    getPosts()
+  };
+
   useEffect(() => {
-    const getProfile = async () => {
-      let myProfile = await getMyProfile();
-      setProfile(myProfile);
-    };
     getProfile();
   }, []);
+
   const handleInput = (e, propertyName) => {
     setPost({
       ...post,
@@ -42,33 +55,48 @@ const CreatePostCard = ({ loadingState }) => {
       [propertyName]: e.target.value
     });
   };
-
+//********************************************************************* */
   const Sendpost = async (e) => {
     e.preventDefault();
-    let data = await createPost(post);
-    console.log(data);
+    //const postToSend={text:'hardcoding',username:'Bimal',image:'aParrot'}
+    console.log('POST DATA',post);
+    let data = await createPost(post); // post
     setLatestPost(data);
     setPost({
       text: ""
     });
+    handleClose()
+    fetchPosts()
   };
+  //***************************************************************** */
   const fileUpLoadHandler = async (e) => {
     e.preventDefault();
-
-    await uploadPostPicture(latestPost?._id, file);
+    // INSERTED
+    let postId = await createPost(post); //postId=data from fetch.POST
+    setLatestPost(postId);
+    setPost({
+      text: ""
+    });
+    // END
+    console.log('DATA',postId)
+    await uploadPostPicture(postId,file)//(latestPost?._id, file);
+    //console.log('LOOOOOK',latestPost)
     loadingState(true);
     handleClose();
+    fetchPosts()
   };
   const fetchPost = async () => {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts?.reverse());
   };
+  
   useEffect(() => {
     fetchPost();
   }, [latestPost]);
-  console.log(post);
-  console.log(latestPost);
-  console.log(file);
+  
+  // console.log(post);
+  // console.log(latestPost);
+  // console.log(file);
   return (
     <>
       <div className="post">
@@ -123,8 +151,8 @@ const CreatePostCard = ({ loadingState }) => {
                         placeholder="Upload a image "
                         onChange={(e) => {
                           setFile(e.target.files[0]);
-                          console.log(e.target.files);
-                          console.log(file);
+                          // console.log(e.target.files);
+                          // console.log(file);
                         }}
                       />
                     </Form.Group>

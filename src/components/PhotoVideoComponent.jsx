@@ -30,10 +30,11 @@ const PhotoVideoComponent = () => {
 		setId(arr);
 		return;
 	};
+	/*
 	useEffect(() => {
 		fetchPosts();
 	}, []);
-
+*/
 	const fileUpLoadHandler = async (e) => {
 		e.preventDefault();
 		console.log(id);

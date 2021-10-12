@@ -19,7 +19,9 @@ const ExperienceModal = ({ id, loadingState }) => {
     startDate: "",
     endDate: "",
     description: "",
-    area: ""
+    area: "",
+    //username:'sacca',
+    //image:'placeholder'
   });
   const handleInput = (e, propertyName) => {
     setUserEx({
@@ -31,7 +33,9 @@ const ExperienceModal = ({ id, loadingState }) => {
   const handleSubmit = async (e) => {
     // with async/await
     e.preventDefault();
-    let exp = await createUserExperience(id, userEx);
+    //const username=userEx.username
+    //console.log('USERNAME',username)
+    let exp = await createUserExperience(userEx);
     fetchProfileData();
     setExid(userEx);
     setLastExp(exp);

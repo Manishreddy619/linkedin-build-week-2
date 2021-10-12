@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { getPosts } from "../Utilities/fetches";
+import { deletePost, getPosts,like } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -19,11 +19,14 @@ export default function PostCard({ loadingState }) {
 
   const [myPost, setMypost] = useState(null);
 
-  let myId = "6135d7437be6c10015f9db99";
+
+
+  let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
   const fetchPosts = async () => {
     const fetchedPosts = await getPosts();
-    setPosts(fetchedPosts?.reverse());
+    setPosts(fetchedPosts);//?.reverse()
     setLoading(false);
+    console.log('HERE I AM')
   };
   const updateMYpicture = async (e, singlePost) => {
     // console.log(e);
@@ -41,6 +44,7 @@ export default function PostCard({ loadingState }) {
     }
   };
   console.log(posts);
+  
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -49,12 +53,20 @@ export default function PostCard({ loadingState }) {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
 
+  //**********LIKE POST****************
+  const like=()=>{
+
+  }
+
   return (
     <div className="d-flex flex-column align-items-center">
-      <CreatePostCard loadingState={(state) => setLoading(state)} />
+      <CreatePostCard loadingState={(state) => setLoading(state)} fetchPosts={fetchPosts} />
       {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&
-        posts.slice(0, 70).map((post) => (
+        posts //.slice(0, 70)
+        .slice(Math.max(posts.length - 10, 0))
+        .reverse()
+        .map((post) => (
           <div key={post._id} className="postCard d-flex flex-column">
             <div className="postCardTop d-flex justify-content-between">
               <div className="d-flex justify-content-center align-items-center">
@@ -116,7 +128,9 @@ export default function PostCard({ loadingState }) {
               <hr className="postCardLine" />
               <div className="d-flex align-items-center justify-content-center bottomIcons">
                 <ThumbUpIcon className="postCardIcons" />
-                <div className="postCardIcon">Like</div>
+                <div className="postCardIcon"
+                onClick={()=>like()}
+                >Like</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
                 <CommentIcon className="postCardIcons" />
