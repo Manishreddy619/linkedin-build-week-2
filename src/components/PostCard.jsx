@@ -41,7 +41,7 @@ export default function PostCard({ loadingState }) {
     }
   };
   console.log(posts);
-  /*
+  
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -49,7 +49,7 @@ export default function PostCard({ loadingState }) {
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
-*/
+
   return (
     <div className="d-flex flex-column align-items-center">
       <CreatePostCard loadingState={(state) => setLoading(state)} />
