@@ -15,7 +15,7 @@ import PhotoVideoComponent from "./PhotoVideoComponent";
 import { uploadPostPicture } from "../Utilities/fetches";
 import { getPosts } from "../Utilities/fetches";
 
-const CreatePostCard = ({ loadingState }) => {
+const CreatePostCard = ({ loadingState,fetchPosts }) => {
   const[thisUser,setThisUser]=useState('61656206d9b9e312c927feb9')//MANISH
   const [post, setPost] = useState({
     text: "",
@@ -65,7 +65,7 @@ const CreatePostCard = ({ loadingState }) => {
       text: ""
     });
     handleClose()
-    getProfile()
+    fetchPosts()
   };
   //***************************************************************** */
   const fileUpLoadHandler = async (e) => {

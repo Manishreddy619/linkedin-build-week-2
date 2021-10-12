@@ -390,7 +390,7 @@ export const getPosts = async () => {
 		});
 		if (apiResp.ok) {
 			let posts = await apiResp.json();
-			//console.log('LOOK HERE',posts)
+			console.log('LOOK HERE',posts)
 			return posts.posts;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
