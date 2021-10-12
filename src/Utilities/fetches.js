@@ -222,7 +222,7 @@ export const getUserExperienceList = async (userId) => {
 	}
 };
 
-export const createUserExperience = async (userId, experienceData) => {
+export const createUserExperience = async (userEx) => {
 	// EXPERIENCE Model:
 	//   {
 	//       "_id": "5d925e677360c41e0046d1f5",  //server generated
@@ -238,12 +238,14 @@ export const createUserExperience = async (userId, experienceData) => {
 	//       "__v": 0  //server generated
 	//       "image": ... //server generated on upload
 	//   }
-	experienceData.startDate = new Date(experienceData.startDate).toISOString();
-	experienceData.endDate = new Date(experienceData.endDate).toISOString();
+	//experienceData.startDate = new Date(experienceData.startDate).toISOString();
+	//experienceData.endDate = new Date(experienceData.endDate).toISOString();
+
 	try {
-		const apiResp = await fetch(apiUrl + userId + '/experiences/', {
+		console.log('USER EXP',userEx)
+		const apiResp = await fetch(apiUrl + 'sacca' + '/experiences', {
 			method: 'POST',
-			body: JSON.stringify(experienceData),
+			body: JSON.stringify(userEx),
 			headers: {
 				'Content-Type': 'application/json',
 				// Authorization: `Bearer ${apiKey}`,
