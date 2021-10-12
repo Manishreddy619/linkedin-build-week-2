@@ -26,14 +26,15 @@ export const getProfiles = async () => {
 
 export const getMyProfile = async () => {
 	try {
-		const apiResp = await fetch(apiUrl + 'me', {
-			method: 'GET',
+		const apiResp = await fetch(apiUrl + '61642ba7c7ce9a61a178ef42', {
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
+			console.log('MY PROFILE FETCH',myProfile)
 			return myProfile;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -401,6 +402,7 @@ export const getPosts = async () => {
 };
 
 export const createPost = async (postData) => {
+	console.log('POST DATA',postData)
 	// POST Model:
 	//   {
 	//       "_id": "5d93ac84b86e220017e76ae1", //server generated
@@ -421,6 +423,7 @@ export const createPost = async (postData) => {
 		});
 		if (apiResp.ok) {
 			let createdPost = await apiResp.json();
+			console.log('CREATED POST',createdPost)
 			return createdPost;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');

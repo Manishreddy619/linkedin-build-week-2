@@ -17,7 +17,9 @@ import { getPosts } from "../Utilities/fetches";
 
 const CreatePostCard = ({ loadingState }) => {
   const [post, setPost] = useState({
-    text: ""
+    text: "",
+    username:'Bimal',
+    image:'anImage'
   });
   const [latestPost, setLatestPost] = useState(null);
   const [show, setShow] = useState(false);
@@ -31,6 +33,7 @@ const CreatePostCard = ({ loadingState }) => {
   useEffect(() => {
     const getProfile = async () => {
       let myProfile = await getMyProfile();
+      console.log('LOOK HERE',myProfile)
       setProfile(myProfile);
     };
     getProfile();
@@ -42,16 +45,18 @@ const CreatePostCard = ({ loadingState }) => {
       [propertyName]: e.target.value
     });
   };
-
+//********************************************************************* */
   const Sendpost = async (e) => {
     e.preventDefault();
-    let data = await createPost(post);
-    console.log(data);
+    //const postToSend={text:'hardcoding',username:'Bimal',image:'aParrot'}
+    console.log('POST DATA',post);
+    let data = await createPost(post); // post
     setLatestPost(data);
     setPost({
       text: ""
     });
   };
+  //***************************************************************** */
   const fileUpLoadHandler = async (e) => {
     e.preventDefault();
 
@@ -63,14 +68,14 @@ const CreatePostCard = ({ loadingState }) => {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts?.reverse());
   };
-  /*
+  
   useEffect(() => {
     fetchPost();
   }, [latestPost]);
-  */
-  console.log(post);
-  console.log(latestPost);
-  console.log(file);
+  
+  // console.log(post);
+  // console.log(latestPost);
+  // console.log(file);
   return (
     <>
       <div className="post">
