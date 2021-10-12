@@ -359,6 +359,7 @@ export const deleteUserExperience = async (userId, experienceId) => {
 export const uploadPostPicture = async (postId, postPicture) => {
 	const formData = new FormData();
 	formData.append('post', postPicture);
+	console.log('POST ID',postId)
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'POST',

@@ -16,7 +16,7 @@ import { uploadPostPicture } from "../Utilities/fetches";
 import { getPosts } from "../Utilities/fetches";
 
 const CreatePostCard = ({ loadingState,fetchPosts }) => {
-  const[thisUser,setThisUser]=useState('61656206d9b9e312c927feb9')//MANISH
+  const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026')//MARCO (just because I've filled Manish's profile with useless posts)
   const [post, setPost] = useState({
     text: "",
     username:'',
@@ -25,6 +25,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
   const [latestPost, setLatestPost] = useState(null);
   const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
+
   const [posts, setPosts] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -70,10 +71,19 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
   //***************************************************************** */
   const fileUpLoadHandler = async (e) => {
     e.preventDefault();
-
-    await uploadPostPicture(latestPost?._id, file);
+    // INSERTED
+    let postId = await createPost(post); //postId=data from fetch.POST
+    setLatestPost(postId);
+    setPost({
+      text: ""
+    });
+    // END
+    console.log('DATA',postId)
+    await uploadPostPicture(postId,file)//(latestPost?._id, file);
+    //console.log('LOOOOOK',latestPost)
     loadingState(true);
     handleClose();
+    fetchPosts()
   };
   const fetchPost = async () => {
     const fetchedPosts = await getPosts();
@@ -141,8 +151,8 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
                         placeholder="Upload a image "
                         onChange={(e) => {
                           setFile(e.target.files[0]);
-                          console.log(e.target.files);
-                          console.log(file);
+                          // console.log(e.target.files);
+                          // console.log(file);
                         }}
                       />
                     </Form.Group>
