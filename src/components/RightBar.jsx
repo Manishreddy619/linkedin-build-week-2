@@ -8,27 +8,31 @@ import RightTopEditContainer from "./RightTopEditContainer";
 const RightBar = () => {
   const [profiles, setProfiles] = useState([]);
   const [myProfile, setMyProfile] = useState();
-/*
+
   useEffect(() => {
     const getProfile = async () => {
       let profiles = await getProfiles();
       let myProfile = await getMyProfile();
       setMyProfile(myProfile);
       let uniqueProfiles = [];
+      console.log('PROFILES',profiles.users)
+      /*
       while (uniqueProfiles.length < 20) {
-        const profile = profiles[Math.floor(Math.random() * profiles.length)];
-        if (profile._id !== myProfile._id) {
+        const profile = profiles.users[Math.floor(Math.random() * profiles.users.length)];
+        console.log('PROFILE',profile)
+        //if (profile._id !== myProfile._id) {
           uniqueProfiles.push(profile);
           uniqueProfiles = [...new Set(uniqueProfiles)];
-        } else {
-          continue;
-        }
+        //} else {
+        //  continue;
+        //}
       }
+      */
       setProfiles(uniqueProfiles);
     };
     getProfile();
   }, []);
-*/
+
   return (
     <>
       {profiles.length > 0 && (

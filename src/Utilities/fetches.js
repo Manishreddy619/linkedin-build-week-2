@@ -6,13 +6,14 @@ const postsApiUrl = process.env.REACT_APP_POST_URL;
 export const getProfiles = async () => {
 	try {
 		const apiResp = await fetch(apiUrl, {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
 		if (apiResp.ok) {
 			let profileList = await apiResp.json();
+			console.log('PROFILE LIST',profileList)
 			return profileList;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -25,17 +26,17 @@ export const getProfiles = async () => {
 };
 
 export const getMyProfile = async (thisUser) => {
-
+	console.log('THIS USER',thisUser)
 	try {
 		const apiResp = await fetch(apiUrl + thisUser, {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
-			//console.log('MY PROFILE FETCH',myProfile)
+			console.log('MY PROFILE FETCH',myProfile)
 			return myProfile;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -203,7 +204,7 @@ export const uploadExperiencePicture = async (
 export const getUserExperienceList = async (userId) => {
 	try {
 		const apiResp = await fetch(apiUrl + userId + '/experiences', {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
