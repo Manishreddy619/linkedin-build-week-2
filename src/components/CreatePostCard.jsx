@@ -19,7 +19,7 @@ const CreatePostCard = ({ loadingState }) => {
   const[thisUser,setThisUser]=useState('61656206d9b9e312c927feb9')//MANISH
   const [post, setPost] = useState({
     text: "",
-    username:'Bimal',
+    username:'',
     image:'anImage'
   });
   const [latestPost, setLatestPost] = useState(null);
@@ -40,6 +40,7 @@ const CreatePostCard = ({ loadingState }) => {
       username:myProfile.username
     })
     console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
+    getPosts()
   };
 
   useEffect(() => {
@@ -63,6 +64,8 @@ const CreatePostCard = ({ loadingState }) => {
     setPost({
       text: ""
     });
+    handleClose()
+    getProfile()
   };
   //***************************************************************** */
   const fileUpLoadHandler = async (e) => {

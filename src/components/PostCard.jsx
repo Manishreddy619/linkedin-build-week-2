@@ -19,7 +19,7 @@ export default function PostCard({ loadingState }) {
 
   const [myPost, setMypost] = useState(null);
 
-  let myId = "6135d7437be6c10015f9db99";
+  let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
   const fetchPosts = async () => {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts?.reverse());
