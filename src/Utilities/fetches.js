@@ -6,7 +6,7 @@ const postsApiUrl =process.env.REACT_APP_POST_URL;
 export const getProfiles = async () => {
 	try {
 		const apiResp = await fetch(apiUrl, {
-			method: 'GET',
+			method: 'GET'
 			/*
 			headers: {
 				Authorization: `Bearer ${apiKey}`,
@@ -28,13 +28,13 @@ export const getProfiles = async () => {
 
 export const getMyProfile = async () => {
 	try {
-		const apiResp = await fetch(apiUrl + 'me', {
-			method: 'GET',
-			/*
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
-			*/
+		const apiResp = await fetch(apiUrl+'61642ba7c7ce9a61a178ef42', {
+			method: 'GET'
+			
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
+			
 		});
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
@@ -52,7 +52,7 @@ export const getMyProfile = async () => {
 export const getUserProfile = async (userId) => {
 	try {
 		const apiResp = await fetch(apiUrl + userId, {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
@@ -73,7 +73,7 @@ export const getUserProfile = async (userId) => {
 export const getFilteredProfiles = async (filterString) => {
 	try {
 		const apiResp = await fetch(apiUrl, {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
@@ -205,7 +205,7 @@ export const uploadExperiencePicture = async (
 export const getUserExperienceList = async (userId) => {
 	try {
 		const apiResp = await fetch(apiUrl + userId + '/experiences', {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
@@ -268,7 +268,7 @@ export const getUserExperience = async (userId, experienceId) => {
 		const apiResp = await fetch(
 			apiUrl + userId + '/experiences/' + experienceId,
 			{
-				method: 'GET',
+				method: 'GET'
 				// headers: {
 				// 	Authorization: `Bearer ${apiKey}`,
 				// },
@@ -385,7 +385,7 @@ export const uploadPostPicture = async (postId, postPicture) => {
 export const getPosts = async () => {
 	try {
 		const apiResp = await fetch(postsApiUrl, {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
@@ -438,7 +438,7 @@ export const createPost = async (postData) => {
 export const getPost = async (postId) => {
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
-			method: 'GET',
+			method: 'GET'
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },

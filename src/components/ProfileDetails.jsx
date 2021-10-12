@@ -24,7 +24,7 @@ const ProfileDetails = () => {
     }
     setLoading(false);
   };
-
+/*
   useEffect(() => {
     fetchProfileData();
   }, []);
@@ -34,6 +34,7 @@ const ProfileDetails = () => {
       fetchProfileData();
     }
   }, [isLoading, details, experience]);
+  */
   return (
     details && (
       <div className="profileDetails" key={details._id}>

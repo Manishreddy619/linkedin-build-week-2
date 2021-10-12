@@ -20,11 +20,13 @@ export default function PostCard({ loadingState }) {
   const [myPost, setMypost] = useState(null);
 
   let myId = "6135d7437be6c10015f9db99";
+
   const fetchPosts = async () => {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts?.reverse());
     setLoading(false);
   };
+
   const updateMYpicture = async (e, singlePost) => {
     // console.log(e);
     // console.log(singlePost.user?._id);
@@ -40,6 +42,7 @@ export default function PostCard({ loadingState }) {
       setMypost(singlePost);
     }
   };
+  /*
   console.log(posts);
   useEffect(() => {
     fetchPosts();
@@ -48,7 +51,7 @@ export default function PostCard({ loadingState }) {
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
-
+*/
   return (
     <div className="d-flex flex-column align-items-center">
       <CreatePostCard loadingState={(state) => setLoading(state)} />

@@ -27,7 +27,7 @@ const CreatePostCard = ({ loadingState }) => {
   const handleShow = () => setShow(true);
 
   const [profile, setProfile] = useState(null);
-
+/*
   useEffect(() => {
     const getProfile = async () => {
       let myProfile = await getMyProfile();
@@ -35,6 +35,7 @@ const CreatePostCard = ({ loadingState }) => {
     };
     getProfile();
   }, []);
+  */
   const handleInput = (e, propertyName) => {
     setPost({
       ...post,
@@ -61,7 +62,7 @@ const CreatePostCard = ({ loadingState }) => {
   };
   const fetchPost = async () => {
     const fetchedPosts = await getPosts();
-    setPosts(fetchedPosts?.reverse());
+    //setPosts(fetchedPosts?.reverse());
   };
   useEffect(() => {
     fetchPost();
