@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { getPosts } from "../Utilities/fetches";
+import { deletePost, getPosts,like } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -52,6 +52,11 @@ export default function PostCard({ loadingState }) {
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
+
+  //**********LIKE POST****************
+  const like=()=>{
+
+  }
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -123,7 +128,9 @@ export default function PostCard({ loadingState }) {
               <hr className="postCardLine" />
               <div className="d-flex align-items-center justify-content-center bottomIcons">
                 <ThumbUpIcon className="postCardIcons" />
-                <div className="postCardIcon">Like</div>
+                <div className="postCardIcon"
+                onClick={()=>like()}
+                >Like</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
                 <CommentIcon className="postCardIcons" />

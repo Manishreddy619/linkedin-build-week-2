@@ -509,3 +509,10 @@ export const deletePost = async (postId) => {
 		throw err;
 	}
 };
+export const like=async(postId)=>{
+	try{
+
+	}catch(err){
+		throw err;
+	}
+};
