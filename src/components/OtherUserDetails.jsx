@@ -18,10 +18,12 @@ export const UserDetails = () => {
 		setExList(experienceList);
 		console.log(experienceList);
 	};
+	/*
 	useEffect(() => {
 		getUserData();
 		getUserEx();
 	}, [params.id]);
+	*/
 	// will recieve params from search
 	return (
 		userDetails && (

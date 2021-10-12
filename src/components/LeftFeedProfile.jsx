@@ -4,7 +4,7 @@ import "./LeftFeedProfile.css";
 
 const LeftFeedProfile = () => {
   const [profile, setProfile] = useState(null);
-
+/*
   useEffect(() => {
     const getProfile = async () => {
       let myProfile = await getMyProfile();
@@ -12,7 +12,7 @@ const LeftFeedProfile = () => {
     };
     getProfile();
   }, []);
-
+*/
   return (
     <>
       {profile !== null && (

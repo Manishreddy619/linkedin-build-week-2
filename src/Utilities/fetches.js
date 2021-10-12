@@ -1,15 +1,15 @@
 // Global Variables//functionsss
-const apiUrl = 'https://striveschool-api.herokuapp.com/api/profile/';
-const apiKey = process.env.REACT_APP_API_KEY;
+const apiUrl = process.env.REACT_APP_API_URL;
+//const apiKey = process.env.REACT_APP_API_KEY;
 //Functions
-const postsApiUrl = 'https://striveschool-api.herokuapp.com/api/posts/';
+const postsApiUrl = process.env.REACT_APP_POST_URL;
 export const getProfiles = async () => {
 	try {
 		const apiResp = await fetch(apiUrl, {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let profileList = await apiResp.json();
@@ -28,9 +28,9 @@ export const getMyProfile = async () => {
 	try {
 		const apiResp = await fetch(apiUrl + 'me', {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
@@ -49,9 +49,9 @@ export const getUserProfile = async (userId) => {
 	try {
 		const apiResp = await fetch(apiUrl + userId, {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let userProfile = await apiResp.json();
@@ -70,9 +70,9 @@ export const getFilteredProfiles = async (filterString) => {
 	try {
 		const apiResp = await fetch(apiUrl, {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let profileList = await apiResp.json();
@@ -127,7 +127,7 @@ export const updateMyProfile = async (profileData) => {
 			body: JSON.stringify(profileData),
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey}`,
+				// Authorization: `Bearer ${apiKey}`,
 			},
 		});
 		if (apiResp.ok) {
@@ -150,9 +150,9 @@ export const uploadProfilePicture = async (userId, profilePicture) => {
 		const apiResp = await fetch(apiUrl + userId + '/picture', {
 			method: 'POST',
 			body: formData,
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let uploadedProfilePicture = await apiResp.json();
@@ -181,9 +181,9 @@ export const uploadExperiencePicture = async (
 			{
 				method: 'POST',
 				body: formData,
-				headers: {
-					Authorization: `Bearer ${apiKey}`,
-				},
+				// headers: {
+				// 	Authorization: `Bearer ${apiKey}`,
+				// },
 			},
 		);
 		if (apiResp.ok) {
@@ -202,9 +202,9 @@ export const getUserExperienceList = async (userId) => {
 	try {
 		const apiResp = await fetch(apiUrl + userId + '/experiences', {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let ExperienceList = await apiResp.json();
@@ -243,7 +243,7 @@ export const createUserExperience = async (userId, experienceData) => {
 			body: JSON.stringify(experienceData),
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey}`,
+				// Authorization: `Bearer ${apiKey}`,
 			},
 		});
 		if (apiResp.ok) {
@@ -265,9 +265,9 @@ export const getUserExperience = async (userId, experienceId) => {
 			apiUrl + userId + '/experiences/' + experienceId,
 			{
 				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${apiKey}`,
-				},
+				// headers: {
+				// 	Authorization: `Bearer ${apiKey}`,
+				// },
 			},
 		);
 		if (apiResp.ok) {
@@ -313,7 +313,7 @@ export const updateUserExperience = async (
 				body: JSON.stringify(experienceData),
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${apiKey}`,
+					// Authorization: `Bearer ${apiKey}`,
 				},
 			},
 		);
@@ -336,9 +336,9 @@ export const deleteUserExperience = async (userId, experienceId) => {
 			apiUrl + userId + '/experiences/' + experienceId,
 			{
 				method: 'DELETE',
-				headers: {
-					Authorization: `Bearer ${apiKey}`,
-				},
+				// headers: {
+				// 	Authorization: `Bearer ${apiKey}`,
+				// },
 			},
 		);
 		if (apiResp.ok) {
@@ -361,9 +361,9 @@ export const uploadPostPicture = async (postId, postPicture) => {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'POST',
 			body: formData,
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let uploadedPostPicture = await apiResp.json();
@@ -382,9 +382,9 @@ export const getPosts = async () => {
 	try {
 		const apiResp = await fetch(postsApiUrl, {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let posts = await apiResp.json();
@@ -415,7 +415,7 @@ export const createPost = async (postData) => {
 			body: JSON.stringify(postData),
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey}`,
+				// Authorization: `Bearer ${apiKey}`,
 			},
 		});
 		if (apiResp.ok) {
@@ -435,9 +435,9 @@ export const getPost = async (postId) => {
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			let userExperience = await apiResp.json();
@@ -468,7 +468,7 @@ export const updatePost = async (postId, postData) => {
 			body: JSON.stringify(postData),
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey}`,
+				// Authorization: `Bearer ${apiKey}`,
 			},
 		});
 		if (apiResp.ok) {
@@ -488,9 +488,9 @@ export const deletePost = async (postId) => {
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'DELETE',
-			headers: {
-				Authorization: `Bearer ${apiKey}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${apiKey}`,
+			// },
 		});
 		if (apiResp.ok) {
 			return `Post with the id of ${postId} has been successfuly deleted`;

@@ -8,7 +8,7 @@ import RightTopEditContainer from "./RightTopEditContainer";
 const RightBar = () => {
   const [profiles, setProfiles] = useState([]);
   const [myProfile, setMyProfile] = useState();
-
+/*
   useEffect(() => {
     const getProfile = async () => {
       let profiles = await getProfiles();
@@ -28,7 +28,7 @@ const RightBar = () => {
     };
     getProfile();
   }, []);
-
+*/
   return (
     <>
       {profiles.length > 0 && (

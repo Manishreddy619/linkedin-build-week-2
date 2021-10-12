@@ -63,9 +63,11 @@ const CreatePostCard = ({ loadingState }) => {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts?.reverse());
   };
+  /*
   useEffect(() => {
     fetchPost();
   }, [latestPost]);
+  */
   console.log(post);
   console.log(latestPost);
   console.log(file);

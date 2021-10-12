@@ -46,11 +46,11 @@ class AppNavigation extends Component {
 				: this.setState({ showSearchResults: false });
 		}
 	};
-
+/*
 	componentDidMount = async () => {
 		await getFilteredProfiles(this.state.searchResults);
 	};
-
+*/
 	searchInputTextHandler = (event) => {
 		this.setState({ searchInput: event.target.value });
 	};
