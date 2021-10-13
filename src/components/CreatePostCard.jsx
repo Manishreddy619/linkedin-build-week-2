@@ -20,7 +20,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
   const [post, setPost] = useState({
     text: "",
     username:'',
-    image:'anImage'
+    image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder' 
   });
   const [latestPost, setLatestPost] = useState(null);
   const [show, setShow] = useState(false);
@@ -55,11 +55,11 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
       [propertyName]: e.target.value
     });
   };
-//********************************************************************* */
+//**********************************USELESS FUNCTION*********************************** */
   const Sendpost = async (e) => {
     e.preventDefault();
     //const postToSend={text:'hardcoding',username:'Bimal',image:'aParrot'}
-    console.log('POST DATA',post);
+    //console.log('POST DATA',post);
     let data = await createPost(post); // post
     setLatestPost(data);
     setPost({
@@ -134,14 +134,14 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
                     />
                   </Form.Group>
 
-                  <Button
+                  {/* <Button
                     variant="success"
                     type="submit"
                     className="mx-2 my-3"
                     onClick={() => fetchPost()}
                   >
                     Send post
-                  </Button>
+                  </Button> */}
                   <Form>
                     <Form.Group className="mb-3">
                       {/* <Form.Label>Choose image </Form.Label> */}
@@ -162,7 +162,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
                       type="submit"
                       onClick={fileUpLoadHandler}
                     >
-                      Send Image
+                      Send Post
                     </Button>
                   </Form>
                 </Form>

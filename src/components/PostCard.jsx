@@ -60,6 +60,8 @@ export default function PostCard({ loadingState }) {
   //**********DELETE CLICKED POST********
   const deleteThisPost=async(e)=>{
     console.log('POST ID: ',e)
+    await deletePost(e)
+    fetchPosts()
   }
 
   return (
@@ -120,7 +122,7 @@ export default function PostCard({ loadingState }) {
                   height="285px"
                 />
               )}
-              {post.image === undefined && (
+              {/* {post.image === undefined && (
                 <img
                   src="https://picsum.photos/540/285"
                   alt=""
@@ -128,7 +130,7 @@ export default function PostCard({ loadingState }) {
                   width="540px"
                   height="285px"
                 />
-              )}
+              )} */}
             </div>
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
