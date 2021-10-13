@@ -66,6 +66,11 @@ export default function PostCard({ loadingState }) {
     const numberOfLikes=arrayOfLikes.length
     return numberOfLikes
   }
+  //**********COMMENT A POST************* */
+  const commentThisPost=(e)=>{
+    
+    console.log('FOR ADDING A COMMENT, POST ID: ',e)
+  }
   //**********DELETE CLICKED POST********
   const deleteThisPost=async(e)=>{
     console.log('DELETED POST ID: ',e)
@@ -121,7 +126,7 @@ export default function PostCard({ loadingState }) {
             </div>
             <div className="postCardMiddle d-flex flex-column">
               <div className="postCardMiddle">{post.text}</div>
-              <a className="align-self-end postCardMiddle">...see more</a>
+              <a className="align-self-end postCardMiddle">update this post</a>
               {post.image && (
                 <img
                   src={post.image}
@@ -146,13 +151,15 @@ export default function PostCard({ loadingState }) {
             )}
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
-              <div className="d-flex align-items-center justify-content-center bottomIcons">
-                <ThumbUpIcon className="postCardIcons"
-                onClick={(e)=>likeThisPost(post._id)}
-                />
+              <div className="d-flex align-items-center justify-content-center bottomIcons"
+              onClick={(e)=>likeThisPost(post._id)}
+              >
+                <ThumbUpIcon className="postCardIcons"/>
                 <div className="postCardIcon">Like</div>
               </div>
-              <div className='d-flex align-items-center justify-content-center bottomIcons "'>
+              <div className='d-flex align-items-center justify-content-center bottomIcons "'
+              onClick={(e)=>commentThisPost(post._id)}
+              >
                 <CommentIcon className="postCardIcons" />
                 <div className="postCardIcon">Comment</div>
               </div>
