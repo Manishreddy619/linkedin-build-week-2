@@ -19,6 +19,8 @@ export default function PostCard({ loadingState }) {
 
   const [myPost, setMypost] = useState(null);
 
+  const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
+
 
 
   let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
@@ -26,7 +28,7 @@ export default function PostCard({ loadingState }) {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts);//?.reverse()
     setLoading(false);
-    console.log('HERE I AM')
+    //console.log('HERE I AM')
   };
   const updateMYpicture = async (e, singlePost) => {
     // console.log(e);
@@ -43,8 +45,8 @@ export default function PostCard({ loadingState }) {
       setMypost(singlePost);
     }
   };
-  console.log(posts);
-  
+  //console.log(posts);
+  //**********USE EFFECT****************
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -52,14 +54,21 @@ export default function PostCard({ loadingState }) {
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
-
   //**********LIKE POST****************
-  const like=()=>{
-
+  const likeThisPost=async(e)=>{
+    const thisUserId={'id':thisUser}
+    const response=await like(e,thisUserId)
+    // console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes)
+  }
+  //*********LIKES COUNTER************* */
+  const counter=(e)=>{
+    const arrayOfLikes=e
+    const numberOfLikes=arrayOfLikes.length
+    return numberOfLikes
   }
   //**********DELETE CLICKED POST********
   const deleteThisPost=async(e)=>{
-    console.log('POST ID: ',e)
+    console.log('DELETED POST ID: ',e)
     await deletePost(e)
     fetchPosts()
   }
@@ -120,25 +129,28 @@ export default function PostCard({ loadingState }) {
                   srcset=""
                   width="540px"
                   height="285px"
-                />
-              )}
+                  />
+                  )}
               {/* {post.image === undefined && (
                 <img
-                  src="https://picsum.photos/540/285"
-                  alt=""
-                  srcset=""
-                  width="540px"
-                  height="285px"
+                src="https://picsum.photos/540/285"
+                alt=""
+                srcset=""
+                width="540px"
+                height="285px"
                 />
               )} */}
             </div>
+            {post.likes&&(
+              <a>likes number: {counter(post.likes)}</a>
+            )}
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
               <div className="d-flex align-items-center justify-content-center bottomIcons">
-                <ThumbUpIcon className="postCardIcons" />
-                <div className="postCardIcon"
-                onClick={()=>like()}
-                >Like</div>
+                <ThumbUpIcon className="postCardIcons"
+                onClick={(e)=>likeThisPost(post._id)}
+                />
+                <div className="postCardIcon">Like</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
                 <CommentIcon className="postCardIcons" />
