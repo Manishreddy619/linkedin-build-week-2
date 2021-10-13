@@ -5,7 +5,7 @@ import RightFeedBarCol from "./RightFeedBarCol";
 
 const FeedRightBar = () => {
   const [profiles, setProfiles] = useState([]);
-/*
+
   useEffect(() => {
     const getProfile = async () => {
       let profiles = await getProfiles();
@@ -19,7 +19,7 @@ const FeedRightBar = () => {
     };
     getProfile();
   }, []);
-*/
+
   const btnDropUp = (str) => {};
 
   return (
