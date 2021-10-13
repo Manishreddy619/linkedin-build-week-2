@@ -6,17 +6,22 @@ import RightFeedBarCol from "./RightFeedBarCol";
 const FeedRightBar = () => {
   const [profiles, setProfiles] = useState([]);
 
+  const getProfile = async () => {
+    let profilesDataObj = await getProfiles();
+    const profilesDataArray=profilesDataObj.users
+    setProfiles(profilesDataArray)
+    console.log('PROFILES >>>>', profilesDataObj.users)
+    console.log('UNIQUE PROFILES >>>>', profilesDataArray)
+    //let uniqueProfiles = [];
+    // while (uniqueProfiles.length < 3) {
+    //   const profile = profiles[Math.floor(Math.random() * profiles.length)];
+    //   uniqueProfiles.push(profile);
+    //   uniqueProfiles = [...new Set(uniqueProfiles)];
+    // }
+    //setProfiles(uniqueProfiles);
+    
+  };
   useEffect(() => {
-    const getProfile = async () => {
-      let profiles = await getProfiles();
-      let uniqueProfiles = [];
-      while (uniqueProfiles.length < 3) {
-        const profile = profiles[Math.floor(Math.random() * profiles.length)];
-        uniqueProfiles.push(profile);
-        uniqueProfiles = [...new Set(uniqueProfiles)];
-      }
-      setProfiles(uniqueProfiles);
-    };
     getProfile();
   }, []);
 

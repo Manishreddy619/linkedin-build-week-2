@@ -3,19 +3,21 @@ import { useState, useEffect } from "react";
 import "./LeftFeedProfile.css";
 
 const LeftFeedProfile = () => {
-  const [profile, setProfile] = useState(null);
-/*
+  const [profile, setProfile] = useState();
+  const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
+
   useEffect(() => {
     const getProfile = async () => {
-      let myProfile = await getMyProfile();
+      let myProfile = await getMyProfile(thisUser);
+      console.log('THIS IS MY PROFILE: ', myProfile)
       setProfile(myProfile);
     };
     getProfile();
   }, []);
-*/
+
   return (
     <>
-      {profile !== null && (
+      {profile !== undefined && (
         <>
           <div className="left-feed-profile-container">
             <div className="left-feed-profile">
@@ -31,8 +33,7 @@ const LeftFeedProfile = () => {
                 </div>
                 <div className="left-feed-profile-name">
                   <p>
-                    {profile.name}
-                    {profile.surname}
+                    {profile.name} {profile.surname}
                   </p>
                 </div>
                 <div className="left-feed-profile-area">
