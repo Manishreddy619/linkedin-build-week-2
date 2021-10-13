@@ -57,6 +57,10 @@ export default function PostCard({ loadingState }) {
   const like=()=>{
 
   }
+  //**********DELETE CLICKED POST********
+  const deleteThisPost=async(e)=>{
+    console.log('POST ID: ',e)
+  }
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -91,7 +95,9 @@ export default function PostCard({ loadingState }) {
               </div>
               <div onClick={(e) => updateMYpicture(e, post)}>
                 {post.user._id !== myId && (
-                  <MoreHorizIcon className="horizontalDots" />
+                  <MoreHorizIcon className="horizontalDots"
+                  onClick={()=>deleteThisPost(post._id)}
+                  />
                 )}
               </div>
               {post.user._id === myId && (
