@@ -19,6 +19,8 @@ export default function PostCard({ loadingState }) {
 
   const [myPost, setMypost] = useState(null);
 
+  const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
+
 
 
   let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
@@ -54,12 +56,14 @@ export default function PostCard({ loadingState }) {
   }, [isLoading]);
 
   //**********LIKE POST****************
-  const like=()=>{
-
+  const likeThisPost=async(e)=>{
+    const thisUserId={'id':thisUser}
+    await like(e,thisUserId)
+    console.log('LIKED POST ID: ', e)
   }
   //**********DELETE CLICKED POST********
   const deleteThisPost=async(e)=>{
-    console.log('POST ID: ',e)
+    console.log('DELETED POST ID: ',e)
     await deletePost(e)
     fetchPosts()
   }
@@ -135,9 +139,11 @@ export default function PostCard({ loadingState }) {
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
               <div className="d-flex align-items-center justify-content-center bottomIcons">
-                <ThumbUpIcon className="postCardIcons" />
+                <ThumbUpIcon className="postCardIcons"
+                onClick={(e)=>likeThisPost(post._id)}
+                />
                 <div className="postCardIcon"
-                onClick={()=>like()}
+                
                 >Like</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
