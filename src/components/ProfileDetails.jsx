@@ -15,23 +15,23 @@ const ProfileDetails = () => {
   const [isLoading, setLoading] = useState(true);
   const fetchProfileData = async () => {
     //console.log(details._id)
-    let profileData = await getMyProfile('6165f83709b1c7080226a026');
+    let profileData = await getMyProfile("6165f83709b1c7080226a026");
     if (profileData !== details) {
       setDetails(profileData);
-      //console.log('PROFILE DATA',profileData, details._id)
+      console.log("PROFILE DATA", profileData);
     }
-    let experienceData = await getUserExperienceList('6165f83709b1c7080226a026');
+    let experienceData = await getUserExperienceList("vinay425");
     if (experienceData !== experience) {
       setExperience(experienceData.reverse());
     }
-    
+
     setLoading(false);
   };
 
   useEffect(() => {
     fetchProfileData();
   }, []);
-/*
+  /*
   useEffect(() => {
     if (isLoading) {
       fetchProfileData();
