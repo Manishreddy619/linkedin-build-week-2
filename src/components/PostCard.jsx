@@ -58,8 +58,9 @@ export default function PostCard({ loadingState }) {
   //**********LIKE POST****************
   const likeThisPost=async(e)=>{
     const thisUserId={'id':thisUser}
-    await like(e,thisUserId)
-    console.log('LIKED POST ID: ', e)
+    const response=await like(e,thisUserId)
+    console.log('LIKED POST ID: ', e, response.likes)
+    //alert(likeResponse)
   }
   //**********DELETE CLICKED POST********
   const deleteThisPost=async(e)=>{
@@ -135,6 +136,7 @@ export default function PostCard({ loadingState }) {
                   height="285px"
                 />
               )} */}
+              <a>likes number:{post.likes}</a>
             </div>
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
@@ -142,9 +144,7 @@ export default function PostCard({ loadingState }) {
                 <ThumbUpIcon className="postCardIcons"
                 onClick={(e)=>likeThisPost(post._id)}
                 />
-                <div className="postCardIcon"
-                
-                >Like</div>
+                <div className="postCardIcon">Like</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
                 <CommentIcon className="postCardIcons" />

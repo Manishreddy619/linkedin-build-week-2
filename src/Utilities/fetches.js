@@ -515,17 +515,18 @@ export const deletePost = async (postId) => {
 
 // ****************** LIKE AND UNLIKE (with same fetch) ******************************
 export const like=async(postId,thisUserId)=>{
-	console.log('POST ID FROM FETCH',postId,' USER ID FROM FETCH: ',thisUserId)
+	//console.log('POST ID FROM FETCH',postId,' USER ID FROM FETCH: ',thisUserId)
 	try {
 		const apiResp=await fetch(postsApiUrl+postId+'/like',{method:'POST',body:JSON.stringify(thisUserId),
 		headers:{'Content-Type':'application/json'},
 		});
-		if (apiResp.ok) {
-			let like=await apiResp.json();
-			return like;
-		}else if (apiResp.status>400&&apiResp.status<500){
+		if(apiResp.ok){
+			let likeResponse=await apiResp.json();
+			//console.log('LIKE RESPONSE FROM FETCH: ',likeResponse)
+			return likeResponse;
+		}else if(apiResp.status>400&&apiResp.status<500){
 			throw new Error('CLIENT SIDE ERROR');
-		}else if (apiResp.status>500){
+		}else if(apiResp.status>500){
 			throw new Error('SERVER GONE');
 		}
 	}catch (err){
