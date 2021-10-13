@@ -522,7 +522,7 @@ export const like=async(postId,thisUserId)=>{
 		});
 		if(apiResp.ok){
 			let likeResponse=await apiResp.json();
-			//console.log('LIKE RESPONSE FROM FETCH: ',likeResponse)
+			console.log('LIKE RESPONSE FROM FETCH: ',likeResponse.likes)
 			return likeResponse;
 		}else if(apiResp.status>400&&apiResp.status<500){
 			throw new Error('CLIENT SIDE ERROR');

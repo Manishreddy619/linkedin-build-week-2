@@ -28,7 +28,7 @@ export default function PostCard({ loadingState }) {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts);//?.reverse()
     setLoading(false);
-    console.log('HERE I AM')
+    //console.log('HERE I AM')
   };
   const updateMYpicture = async (e, singlePost) => {
     // console.log(e);
@@ -45,8 +45,8 @@ export default function PostCard({ loadingState }) {
       setMypost(singlePost);
     }
   };
-  console.log(posts);
-  
+  //console.log(posts);
+  //**********USE EFFECT****************
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -54,13 +54,17 @@ export default function PostCard({ loadingState }) {
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
-
   //**********LIKE POST****************
   const likeThisPost=async(e)=>{
     const thisUserId={'id':thisUser}
     const response=await like(e,thisUserId)
-    console.log('LIKED POST ID: ', e, response.likes)
-    //alert(likeResponse)
+    // console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes)
+  }
+  //*********LIKES COUNTER************* */
+  const counter=(e)=>{
+    const arrayOfLikes=e
+    const numberOfLikes=arrayOfLikes.length
+    return numberOfLikes
   }
   //**********DELETE CLICKED POST********
   const deleteThisPost=async(e)=>{
@@ -125,19 +129,21 @@ export default function PostCard({ loadingState }) {
                   srcset=""
                   width="540px"
                   height="285px"
-                />
-              )}
+                  />
+                  )}
               {/* {post.image === undefined && (
                 <img
-                  src="https://picsum.photos/540/285"
-                  alt=""
-                  srcset=""
-                  width="540px"
-                  height="285px"
+                src="https://picsum.photos/540/285"
+                alt=""
+                srcset=""
+                width="540px"
+                height="285px"
                 />
               )} */}
-              <a>likes number:{post.likes}</a>
             </div>
+            {post.likes&&(
+              <a>likes number: {counter(post.likes)}</a>
+            )}
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
               <div className="d-flex align-items-center justify-content-center bottomIcons">
