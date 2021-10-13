@@ -6,14 +6,14 @@ const postsApiUrl = process.env.REACT_APP_POST_URL;
 export const getProfiles = async () => {
 	try {
 		const apiResp = await fetch(apiUrl, {
-			method: 'GET'
+			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
 		if (apiResp.ok) {
 			let profileList = await apiResp.json();
-			console.log('PROFILE LIST',profileList)
+			console.log('PROFILE LIST', profileList);
 			return profileList;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -26,17 +26,17 @@ export const getProfiles = async () => {
 };
 
 export const getMyProfile = async (thisUser) => {
-	console.log('THIS USER',thisUser)
+	console.log('THIS USER', thisUser);
 	try {
-		const apiResp = await fetch(apiUrl + thisUser, {
-			method: 'GET'
+		const apiResp = await fetch(apiUrl + '/' + '61642ba7c7ce9a61a178ef42', {
+			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
 		});
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
-			console.log('MY PROFILE FETCH',myProfile)
+			console.log('MY PROFILE FETCH', myProfile);
 			return myProfile;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -108,7 +108,7 @@ export const getFilteredProfiles = async (filterString) => {
 	}
 };
 
-export const updateMyProfile = async (profileData) => {
+export const updateMyProfile = async (profileData, userId) => {
 	// PROFILE Model:
 	// {
 	//     "_id": "5d84937322b7b54d848eb41b", //server generated
@@ -124,14 +124,21 @@ export const updateMyProfile = async (profileData) => {
 	//     "updatedAt": "2019-09-20T09:00:46.977Z", //server generated
 	//     "__v": 0 //server generated
 	// }
+	const formData = new FormData();
+	const { name, surname, email, bio, title, area, image } = profileData;
+	let img =
+		'https://res.cloudinary.com/dytffimtv/image/upload/v1634140859/hjqypmpvl90fffy6fjlk.jpg';
+	formData.append('name', name);
+	formData.append('surname', surname);
+	formData.append('email', email);
+	formData.append('bio', bio);
+	formData.append('title', title);
+	formData.append('area', area);
+	formData.append('image', img);
 	try {
-		const apiResp = await fetch(apiUrl, {
+		const apiResp = await fetch(apiUrl + '/' + '61642ba7c7ce9a61a178ef42', {
 			method: 'PUT',
-			body: JSON.stringify(profileData),
-			headers: {
-				'Content-Type': 'application/json',
-				// Authorization: `Bearer ${apiKey}`,
-			},
+			body: formData,
 		});
 		if (apiResp.ok) {
 			let userProfileUpdated = await apiResp.json();
@@ -204,7 +211,7 @@ export const uploadExperiencePicture = async (
 export const getUserExperienceList = async (userId) => {
 	try {
 		const apiResp = await fetch(apiUrl + userId + '/experiences', {
-			method: 'GET'
+			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
 			// },
@@ -242,7 +249,7 @@ export const createUserExperience = async (userEx) => {
 	//experienceData.endDate = new Date(experienceData.endDate).toISOString();
 
 	try {
-		console.log('USER EXP',userEx)
+		console.log('USER EXP', userEx);
 		const apiResp = await fetch(apiUrl + 'sacca' + '/experiences', {
 			method: 'POST',
 			body: JSON.stringify(userEx),
@@ -362,7 +369,7 @@ export const deleteUserExperience = async (userId, experienceId) => {
 export const uploadPostPicture = async (postId, postPicture) => {
 	const formData = new FormData();
 	formData.append('post', postPicture);
-	console.log('POST ID',postId)
+	console.log('POST ID', postId);
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'POST',
@@ -394,7 +401,7 @@ export const getPosts = async () => {
 		});
 		if (apiResp.ok) {
 			let posts = await apiResp.json();
-			console.log('LOOK HERE',posts)
+			console.log('LOOK HERE', posts);
 			return posts.posts;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -407,7 +414,7 @@ export const getPosts = async () => {
 };
 
 export const createPost = async (postData) => {
-	console.log('POST DATA',postData)
+	console.log('POST DATA', postData);
 	// POST Model:
 	//   {
 	//       "_id": "5d93ac84b86e220017e76ae1", //server generated
@@ -428,7 +435,7 @@ export const createPost = async (postData) => {
 		});
 		if (apiResp.ok) {
 			let createdPost = await apiResp.json();
-			console.log('CREATED POST',createdPost)
+			console.log('CREATED POST', createdPost);
 			return createdPost;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -512,10 +519,9 @@ export const deletePost = async (postId) => {
 		throw err;
 	}
 };
-export const like=async(postId)=>{
-	try{
-
-	}catch(err){
+export const like = async (postId) => {
+	try {
+	} catch (err) {
 		throw err;
 	}
 };
