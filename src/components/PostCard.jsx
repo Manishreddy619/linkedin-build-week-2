@@ -61,8 +61,8 @@ export default function PostCard({ loadingState }) {
     // console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes)
   }
   //*********LIKES COUNTER************* */
-  const counter=(e)=>{
-    const arrayOfLikes=e
+  const counter=(likes)=>{
+    const arrayOfLikes=likes
     const numberOfLikes=arrayOfLikes.length
     return numberOfLikes
   }

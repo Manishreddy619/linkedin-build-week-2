@@ -28,7 +28,7 @@ export const getProfiles = async () => {
 export const getMyProfile = async (thisUser) => {
 	console.log('THIS USER', thisUser);
 	try {
-		const apiResp = await fetch(apiUrl + '/' + '61642ba7c7ce9a61a178ef42', {
+		const apiResp = await fetch(apiUrl + '/' + thisUser, {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
