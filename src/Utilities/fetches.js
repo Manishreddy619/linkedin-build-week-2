@@ -243,7 +243,7 @@ export const createUserExperience = async (userEx) => {
 
   try {
     console.log("USER EXP", userEx);
-    const apiResp = await fetch(apiUrl + "sacca" + "/experiences", {
+    const apiResp = await fetch(apiUrl + "/sacca" + "/experiences", {
       method: "POST",
       body: JSON.stringify(userEx),
       headers: {
