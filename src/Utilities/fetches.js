@@ -295,7 +295,7 @@ export const createUserExperience = async (userEx) => {
     formData.append("image", image);
 
     console.log("USER EXP", userEx);
-    const apiResp = await fetch(`${apiUrl}/vinay425/experiences`, {
+    const apiResp = await fetch(`${apiUrl}/Bimal/experiences`, {
       method: "POST",
       body: formData,
       //   headers: {
