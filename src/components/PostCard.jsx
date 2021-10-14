@@ -51,10 +51,14 @@ export default function PostCard({ loadingState }) {
   const handleShow=()=>setShow(true);
   const[thisPostComments,setThisPostComments]=useState()
   const getComments=async(postId)=>{
-    const response=await getCommentsFromDB(postId)
-    setThisPostComments({response})
-    console.log('THIS POST COMMENTS: ',thisPostComments)
-    handleShow()
+    if(show===true){
+      handleClose()
+    }else{
+      const response=await getCommentsFromDB(postId,setThisPostComments)
+      //setThisPostComments(response)
+      console.log('THIS POST COMMENTS: ',thisPostComments,'RESPONSE',response)
+      handleShow()
+    }
   }
   // *******************************************************
 
@@ -215,7 +219,8 @@ export default function PostCard({ loadingState }) {
                 <div className="postCardIcon">Send</div>
               </div>
             </div>
-            {profile&&show&&(
+            {profile&&show&&thisPostComments&&(
+            <>
             <div className="postInput" >
               <Avatar
                 src={
@@ -238,11 +243,15 @@ export default function PostCard({ loadingState }) {
                 <SendIcon className="postCardIcons" onClick={()=>addComment(post._id)} />
               </p>
             </div>
+            <div>
+              {thisPostComments&&thisPostComments.map((comment)=>(
+                <div key={thisPostComments._id} className="profileName">
+                {comment.postWithUser.user.name} {comment.postWithUser.user.surname} said: {comment.comment}
+                </div>
+              ))}
+            </div>
+            </>
             )}
-            {
-              <div>
-              </div>
-            }
           </div>
         ))}
     </div>

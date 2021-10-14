@@ -565,7 +565,7 @@ export const postAComment=async(postId,commentText)=>{
 	}
 };
 // ************************* GET COMMENTS *****************************
-export const getCommentsFromDB=async(postId)=>{
+export const getCommentsFromDB=async(postId,setThisPostComments)=>{
 	try{
 		const apiResp = await fetch(postsApiUrl+postId+'/comment', {
 			method: 'GET',
@@ -573,6 +573,7 @@ export const getCommentsFromDB=async(postId)=>{
 		if (apiResp.ok) {
 			let comments = await apiResp.json();
 			console.log('POST ID FROM FETCH: ',postId,'COMMENTS FROM FETCH: ', comments);
+			setThisPostComments(comments)
 			return comments;
 		}else if(apiResp.status>400&&apiResp.status<500){
 			throw new Error('Client Side Error');
