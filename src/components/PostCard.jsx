@@ -54,11 +54,17 @@ export default function PostCard({ loadingState }) {
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
-  //**********LIKE POST****************
+  //**********LIKE POST WITH ALERT****************
   const likeThisPost=async(e)=>{
     const thisUserId={'id':thisUser}
     const response=await like(e,thisUserId)
-    // console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes)
+    const isThisUserInLikesArray=response.likes.indexOf(thisUser)
+    if(isThisUserInLikesArray==-1){
+      alert('You UNLIKED this Post')
+    }else{
+      alert('You LIKED this Post')
+    }
+    //console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes, 'isThisUserInLikesArray',isThisUserInLikesArray)
   }
   //*********LIKES COUNTER************* */
   const counter=(likes)=>{
