@@ -13,15 +13,17 @@ import { createPost } from "../Utilities/fetches";
 import { getMyProfile } from "../Utilities/fetches";
 import PhotoVideoComponent from "./PhotoVideoComponent";
 import { uploadPostPicture } from "../Utilities/fetches";
-import { getPosts,updatePost } from "../Utilities/fetches";
+import { getPosts,updatePost,getPost } from "../Utilities/fetches";
 
-const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal,thisPostId,setThisPostId }) => {
+const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal,thisPostId,setThisPostId,post,setPost }) => {
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026')//MARCO (just because I've filled Manish's profile with useless posts)
+  /*
   const [post, setPost] = useState({
     text: "",
     username:'',
     image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder' 
   });
+  */
   const [latestPost, setLatestPost] = useState(null)
   const [file, setFile] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -104,6 +106,7 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
       setThisPostId()
     }else{
       //console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
+      //console.log('THIS SINGLE POST',thisSinglePost)
       let data=await updatePost(thisPostId,post)
       //setLatestPost(data);
       setPost({

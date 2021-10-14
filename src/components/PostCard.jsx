@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { deletePost, getPosts,like,getMyProfile,postAComment,getCommentsFromDB,updateComment } from "../Utilities/fetches";
+import { deletePost, getPosts,like,getMyProfile,postAComment,getCommentsFromDB,updateComment,getPost } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -131,11 +131,23 @@ export default function PostCard({ loadingState }) {
     fetchPosts()
   }
   //**********UPDATE POST*****************
+  const [post, setPost] = useState({
+    text: "",
+    username:'',
+    image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder' 
+  });
   const updateThisPost=async(postId)=>{
     console.log('POST ID: ',postId)
     setShowPostModal(true)
     setThisPostId(postId)
-    console.log('STATE THIS POST ID: ',thisPostId)
+    const thisSinglePost=await getPost(postId)
+    console.log('THIS SINGLE POST',thisSinglePost)
+    setPost({
+      text: thisSinglePost.text,
+      image:thisSinglePost.image,
+      username:thisSinglePost.username
+    });
+    //console.log('STATE THIS POST ID: ',thisPostId)
   }
 
   
@@ -149,6 +161,8 @@ export default function PostCard({ loadingState }) {
       setShowPostModal={setShowPostModal}
       thisPostId={thisPostId}
       setThisPostId={setThisPostId}
+      post={post}
+      setPost={setPost}
       />
       {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&

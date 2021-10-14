@@ -460,8 +460,8 @@ export const getPost = async (postId) => {
 			// },
 		});
 		if (apiResp.ok) {
-			let userExperience = await apiResp.json();
-			return userExperience;
+			let aPost = await apiResp.json();
+			return aPost;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
 		} else if (apiResp.status > 500) {
