@@ -1,5 +1,8 @@
 import React from "react";
-import { updateUserExperience } from "../Utilities/fetches";
+import {
+  updateUserExperience,
+  updateUserExperienceTwo,
+} from "../Utilities/fetches";
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import CreateIcon from "@material-ui/icons/Create";
@@ -17,20 +20,28 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
     startDate: currentEx.startDate,
     endDate: currentEx.endDate,
     description: currentEx.description,
-    area: currentEx.area
+    area: currentEx.area,
+    image: undefined,
   });
   console.log(currentEx);
   const handleInput = (e, propertyName) => {
     setUpdateEx({
       ...updateEx,
-      [propertyName]: e.target.value
+      [propertyName]:
+        propertyName === "image" ? e.target.files[0] : e.target.value,
     });
   };
   const handleSubmit = async (e) => {
     // with async/await
     e.preventDefault();
-    await updateUserExperience(userId, exid, updateEx);
-    loadingState(true);
+    if (updateEx.image === undefined) {
+      await updateUserExperienceTwo(userId, exid, updateEx);
+      handleClose();
+    } else {
+      await updateUserExperience(userId, exid, updateEx);
+      loadingState(true);
+      handleClose();
+    }
   };
   console.log(updateEx);
   return (
@@ -40,7 +51,7 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
         style={{
           border: "none",
           backgroundColor: "none",
-          marginLeft: "10rem"
+          marginLeft: "10rem",
         }}
         className="editIcon"
       >
@@ -90,7 +101,7 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>End Date</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="description"
@@ -99,7 +110,7 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Location</Form.Label>
+              <Form.Label>Area</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter location"
@@ -107,12 +118,21 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
                 onChange={(e) => handleInput(e, "area")}
               />
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>image</Form.Label>
+              <Form.Control
+                onChange={(e) => handleInput(e, "image")}
+                type="file"
+                // placeholder="Enter location"
+                // value={updateEx.image}
+              />
+            </Form.Group>
 
             <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>
-          <Form
+          {/* <Form
             onSubmit={(e) => {
               e.preventDefault();
               uploadExperiencePicture(userId, exid, inputFile);
@@ -128,7 +148,7 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
               />
             </Form.Group>
             <Button type="submit">Upload</Button>
-          </Form>
+          </Form> */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

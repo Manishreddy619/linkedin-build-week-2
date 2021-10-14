@@ -217,7 +217,7 @@ export const uploadExperiencePicture = async (
   formData.append("experience", experiencePicture);
   try {
     const apiResp = await fetch(
-      apiUrl + userId + "/experiences/" + experienceId + "/picture",
+      `${apiUrl}/${userId}/experiences/${experienceId}/picture`,
       {
         method: "POST",
         body: formData,
@@ -227,8 +227,9 @@ export const uploadExperiencePicture = async (
       }
     );
     if (apiResp.ok) {
-      let uploadedExperiencePicture = await apiResp.json();
-      return uploadedExperiencePicture;
+      alert("experience updated");
+      //   let uploadedExperiencePicture = await apiResp.json();
+      //   return uploadedExperiencePicture;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
       throw new Error("Client Side Error");
     } else if (apiResp.status > 500) {
@@ -240,7 +241,7 @@ export const uploadExperiencePicture = async (
 };
 export const getUserExperienceList = async (userId) => {
   try {
-    const apiResp = await fetch(apiUrl + userId + "/experiences", {
+    const apiResp = await fetch(apiUrl + "/" + userId + "/experiences", {
       method: "GET",
       // headers: {
       // 	Authorization: `Bearer ${apiKey}`,
@@ -279,18 +280,33 @@ export const createUserExperience = async (userEx) => {
   //experienceData.endDate = new Date(experienceData.endDate).toISOString();
 
   try {
+    const formData = new FormData();
+    const { role, company, startDate, endDate, description, area, image } =
+      userEx;
+
+    // let img =
+    // 	'https://res.cloudinary.com/dytffimtv/image/upload/v1634140859/hjqypmpvl90fffy6fjlk.jpg';
+    formData.append("role", role);
+    formData.append("company", company);
+    formData.append("startDate", startDate);
+    formData.append("endDate", endDate);
+    formData.append("description", description);
+    formData.append("area", area);
+    formData.append("image", image);
+
     console.log("USER EXP", userEx);
-    const apiResp = await fetch(apiUrl + "sacca" + "/experiences", {
+    const apiResp = await fetch(`${apiUrl}/vinay425/experiences`, {
       method: "POST",
-      body: JSON.stringify(userEx),
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: `Bearer ${apiKey}`,
-      },
+      body: formData,
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     // Authorization: `Bearer ${apiKey}`,
+      //   },
     });
     if (apiResp.ok) {
-      let createdUserExperience = await apiResp.json();
-      return createdUserExperience;
+      alert("data sent");
+      //   let createdUserExperience = await apiResp.json();
+      //   return createdUserExperience;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
       throw new Error("Client Side Error");
     } else if (apiResp.status > 500) {
@@ -325,11 +341,7 @@ export const getUserExperience = async (userId, experienceId) => {
   }
 };
 
-export const updateUserExperience = async (
-  userId,
-  experienceId,
-  experienceData
-) => {
+export const updateUserExperience = async (userId, exid, updateEx) => {
   // EXPERIENCE Model:
   //   {
   //       "_id": "5d925e677360c41e0046d1f5",  //server generated
@@ -345,23 +357,33 @@ export const updateUserExperience = async (
   //       "__v": 0  //server generated
   //       "image": ... //server generated on upload
   //   }
-  experienceData.startDate = new Date(experienceData.startDate).toISOString();
-  experienceData.endDate = new Date(experienceData.endDate).toISOString();
+  //   experienceData.startDate = new Date(experienceData.startDate).toISOString();
+  //   experienceData.endDate = new Date(experienceData.endDate).toISOString();
+  const formData = new FormData();
+  const { role, company, startDate, endDate, description, area, image } =
+    updateEx;
+
+  formData.append("role", role);
+  formData.append("company", company);
+  formData.append("startDate", startDate);
+  formData.append("endDate", endDate);
+  formData.append("description", description);
+  formData.append("area", area);
+  formData.append("image", image);
+
   try {
-    const apiResp = await fetch(
-      apiUrl + userId + "/experiences/" + experienceId,
-      {
-        method: "PUT",
-        body: JSON.stringify(experienceData),
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: `Bearer ${apiKey}`,
-        },
-      }
-    );
+    const apiResp = await fetch(`${apiUrl}/${userId}/experiences/${exid}`, {
+      method: "PUT",
+      body: formData,
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   // Authorization: `Bearer ${apiKey}`,
+      // },
+    });
     if (apiResp.ok) {
-      let updatedUserExperience = await apiResp.json();
-      return updatedUserExperience;
+      //   let updatedUserExperience = await apiResp.json();
+      //   return updatedUserExperience;
+      alert("experience updated");
     } else if (apiResp.status > 400 && apiResp.status < 500) {
       throw new Error("Client Side Error");
     } else if (apiResp.status > 500) {
@@ -372,10 +394,37 @@ export const updateUserExperience = async (
   }
 };
 
-export const deleteUserExperience = async (userId, experienceId) => {
+export const updateUserExperienceTwo = async (userId, exid, updateEx) => {
   try {
     const apiResp = await fetch(
-      apiUrl + userId + "/experiences/" + experienceId,
+      `${apiUrl}/${userId}/experience/experiences/${exid}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(updateEx),
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${apiKey}`,
+        },
+      }
+    );
+    if (apiResp.ok) {
+      //   let updatedUserExperience = await apiResp.json();
+      //   return updatedUserExperience;
+      alert("experience updated");
+    } else if (apiResp.status > 400 && apiResp.status < 500) {
+      throw new Error("Client Side Error");
+    } else if (apiResp.status > 500) {
+      throw new Error("Server Side Error");
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const deleteUserExperience = async (userId, exid) => {
+  try {
+    const apiResp = await fetch(
+      apiUrl + "/" + userId + "/experiences/" + exid,
       {
         method: "DELETE",
         // headers: {
@@ -384,7 +433,7 @@ export const deleteUserExperience = async (userId, experienceId) => {
       }
     );
     if (apiResp.ok) {
-      return `${userId} experience with the id of ${experienceId} has been successfuly deleted`;
+      return `${userId} experience with the id of ${exid} has been successfuly deleted`;
     } else if (apiResp.status > 400 && apiResp.status < 500) {
       throw new Error("Client Side Error");
     } else if (apiResp.status > 500) {
