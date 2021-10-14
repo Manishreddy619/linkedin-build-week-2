@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { deletePost, getPosts,like,getMyProfile, postAComment } from "../Utilities/fetches";
+import { deletePost, getPosts,like,getMyProfile,postAComment,getCommentsFromDB } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -24,16 +24,35 @@ export default function PostCard({ loadingState }) {
   // *********** THIS PROFILE SECTION ********************
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
   const [profile, setProfile] = useState();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const getProfile=async()=>{
     let myProfile=await getMyProfile(thisUser);
     console.log('THIS IS MY PROFILE: ',myProfile)
     setProfile(myProfile);
   };
-  // ***********COMMENTS SECTION****************************
+
+  // ********************** COMMENTS SECTION ****************************
   const[comment,setComment]=useState()
+  //________________________________________ADD a COMMENT
+  const handleComment=(e,propertyName)=>{
+    setComment({
+      ...comment,
+      [propertyName]: e.target.value
+    });
+  }
+  const addComment=async(postId)=>{
+    //const thisUserId={'id':thisUser}
+    const newComment=await postAComment(postId,comment)
+    //console.log('FOR ADDING A COMMENT, POST ID: ',postId, 'COMMENT TEXT: ', comment,'RESPONSE: ',newComment)
+  }
+  //________________________________GET COMMENTS by Post Id
+  const[show,setShow]=useState(false);
+  const handleClose=()=>setShow(false);
+  const handleShow=()=>setShow(true);
+  const getComments=async(postId)=>{
+    const response=await getCommentsFromDB(postId)
+    handleShow()
+  }
+  // *******************************************************
 
   let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
   const fetchPosts = async () => {
@@ -57,7 +76,7 @@ export default function PostCard({ loadingState }) {
       setMypost(singlePost);
     }
   };
-  //console.log(posts);
+
   //**********USE EFFECT****************
   useEffect(() => {
     fetchPosts();
@@ -92,18 +111,7 @@ export default function PostCard({ loadingState }) {
     await deletePost(e)
     fetchPosts()
   }
-  //**********ADD A COMMENT************* */
-  const handleComment=(e,propertyName)=>{
-    setComment({
-      ...comment,
-      [propertyName]: e.target.value
-    });
-  }
-  const addComment=async(postId)=>{
-    //const thisUserId={'id':thisUser}
-    const newComment=await postAComment(postId,comment)
-    console.log('FOR ADDING A COMMENT, POST ID: ',postId, 'COMMENT TEXT: ', comment,'RESPONSE: ',newComment)
-  }
+
   
 
 
@@ -191,7 +199,7 @@ export default function PostCard({ loadingState }) {
               <div className='d-flex align-items-center justify-content-center bottomIcons "'
 
               >
-                <CommentIcon className="postCardIcons" />
+                <CommentIcon className="postCardIcons" onClick={()=>getComments(post._id)} />
                 <div className="postCardIcon">Comment</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
@@ -203,7 +211,7 @@ export default function PostCard({ loadingState }) {
                 <div className="postCardIcon">Send</div>
               </div>
             </div>
-            {profile&&(
+            {profile&&show&&(
             <div className="postInput" >
               <Avatar
                 src={
@@ -214,19 +222,23 @@ export default function PostCard({ loadingState }) {
                 className="avatar"
               />
               {/* <CreateIcon /> */}
-              <p variant="primary" onClick={handleShow}>
+              <p variant="primary">
                 <Form>
                   <Form.Control                       
                     className="border-0"
                     as="textarea"
                     placeholder="Add a comment"
                     
-                    onChange={(e) => handleComment(e, "comment")} />
+                    onChange={(e)=>handleComment(e,"comment")} />
                 </Form>
                 <SendIcon className="postCardIcons" onClick={()=>addComment(post._id)} />
               </p>
             </div>
             )}
+            {
+              <div>
+              </div>
+            }
           </div>
         ))}
     </div>

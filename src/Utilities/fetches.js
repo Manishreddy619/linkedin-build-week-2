@@ -564,3 +564,22 @@ export const postAComment=async(postId,commentText)=>{
 		throw err;
 	}
 };
+// ************************* GET COMMENTS *****************************
+export const getCommentsFromDB=async(postId)=>{
+	try{
+		const apiResp = await fetch(postsApiUrl+postId+'/comment', {
+			method: 'GET',
+		});
+		if (apiResp.ok) {
+			let comments = await apiResp.json();
+			console.log('POST ID FROM FETCH: ',postId,'COMMENTS FROM FETCH: ', comments);
+			return comments;
+		}else if(apiResp.status>400&&apiResp.status<500){
+			throw new Error('Client Side Error');
+		}else if(apiResp.status>500) {
+			throw new Error('Server Side Error');
+		}
+	}catch (err){
+		throw err;
+	}
+};
