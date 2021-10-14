@@ -28,9 +28,18 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
   const [file, setFile] = useState(null);
   const [posts, setPosts] = useState([]);
   //const [show, setShow] = useState(false);
-  const handleClose=()=>setShowPostModal(false);
-  const handleShow=()=>setShowPostModal(true);
-
+  const handleClose=()=>{
+    setShowPostModal(false)
+    setPost({
+      ...post,
+      text: '',
+      image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder',
+    })
+    console.log('POST',post)
+  }
+  const handleShow=()=>{
+    setShowPostModal(true)
+  }
   const [profile, setProfile] = useState(null);
   const getProfile = async () => {
     let myProfile = await getMyProfile(thisUser);
@@ -196,7 +205,7 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
                   </Button> */}
                   <Form>
                     <Form.Group className="mb-3">
-                      {/* <Form.Label>Choose image </Form.Label> */}
+                      <Form.Label><Avatar src={post.image} /></Form.Label>
                       <Form.Control
                         className="border-0"
                         type="file"
