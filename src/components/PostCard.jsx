@@ -100,6 +100,7 @@ export default function PostCard({ loadingState }) {
     fetchPosts();
     //console.log('THIS USER', thisUser)
     getProfile()
+    setThisPostId()
   }, []);
 
   useEffect(() => {
@@ -129,6 +130,13 @@ export default function PostCard({ loadingState }) {
     await deletePost(e)
     fetchPosts()
   }
+  //**********UPDATE POST*****************
+  const updateThisPost=async(postId)=>{
+    console.log('POST ID: ',postId)
+    setShowPostModal(true)
+    setThisPostId(postId)
+    console.log('STATE THIS POST ID: ',thisPostId)
+  }
 
   
 
@@ -138,7 +146,9 @@ export default function PostCard({ loadingState }) {
       <CreatePostCard loadingState={(state) => setLoading(state)}
       fetchPosts={fetchPosts}
       showPostModal={showPostModal}
-      setShowPostModal={setShowPostModal} />
+      setShowPostModal={setShowPostModal}
+      thisPostId={thisPostId}
+      />
       {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&
         posts //.slice(0, 70)
@@ -185,7 +195,7 @@ export default function PostCard({ loadingState }) {
             <div className="postCardMiddle d-flex flex-column">
               <div className="postCardMiddle">{post.text}</div>
               <a className="align-self-end postCardMiddle"
-              
+              onClick={(e)=>updateThisPost(post._id)}
               >update this post</a>
               {post.image && (
                 <img
