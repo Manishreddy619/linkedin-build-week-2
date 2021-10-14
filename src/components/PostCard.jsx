@@ -50,13 +50,15 @@ export default function PostCard({ loadingState }) {
   const handleClose=()=>setShow(false);
   const handleShow=()=>setShow(true);
   const[thisPostComments,setThisPostComments]=useState()
+  const[thisPostId,setThisPostId]=useState()
   const getComments=async(postId)=>{
     if(show===true){
       handleClose()
     }else{
+      setThisPostId(postId)
       const response=await getCommentsFromDB(postId,setThisPostComments)
-      //setThisPostComments(response)
-      console.log('THIS POST COMMENTS: ',thisPostComments,'RESPONSE',response)
+      setThisPostComments(response)
+      console.log('THIS POST ID',thisPostId, 'THIS POST COMMENTS: ',thisPostComments,'RESPONSE',response)
       handleShow()
     }
   }
@@ -205,9 +207,9 @@ export default function PostCard({ loadingState }) {
                 <div className="postCardIcon">Like</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'
-
+              onClick={(e)=>getComments(post._id)}
               >
-                <CommentIcon className="postCardIcons" onClick={()=>getComments(post._id)} />
+                <CommentIcon className="postCardIcons" />
                 <div className="postCardIcon">Comment</div>
               </div>
               <div className='d-flex align-items-center justify-content-center bottomIcons "'>
@@ -219,7 +221,7 @@ export default function PostCard({ loadingState }) {
                 <div className="postCardIcon">Send</div>
               </div>
             </div>
-            {profile&&show&&thisPostComments&&(
+            {(thisPostId===post._id)?profile&&show&&thisPostComments&&(
             <>
             <div className="postInput" >
               <Avatar
@@ -244,14 +246,14 @@ export default function PostCard({ loadingState }) {
               </p>
             </div>
             <div>
-              {thisPostComments&&thisPostComments.map((comment)=>(
+              {(thisPostId===post._id)?thisPostComments&&thisPostComments.map((comment)=>(
                 <div key={thisPostComments._id} className="profileName">
                 {comment.postWithUser.user.name} {comment.postWithUser.user.surname} said: {comment.comment}
                 </div>
-              ))}
+              )):<div></div>}
             </div>
             </>
-            )}
+            ):<div></div>}
           </div>
         ))}
     </div>

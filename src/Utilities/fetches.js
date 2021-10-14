@@ -573,7 +573,7 @@ export const getCommentsFromDB=async(postId,setThisPostComments)=>{
 		if (apiResp.ok) {
 			let comments = await apiResp.json();
 			console.log('POST ID FROM FETCH: ',postId,'COMMENTS FROM FETCH: ', comments);
-			setThisPostComments(comments)
+			//setThisPostComments(comments)
 			return comments;
 		}else if(apiResp.status>400&&apiResp.status<500){
 			throw new Error('Client Side Error');
