@@ -195,7 +195,7 @@ export default function PostCard({ loadingState }) {
               <div onClick={(e) => updateMYpicture(e, post)}>
                 {post.user._id !== myId && (
                   <MoreHorizIcon className="horizontalDots"
-                  onClick={()=>deleteThisPost(post._id)}
+                  // onClick={()=>deleteThisPost(post._id)}
                   />
                 )}
               </div>
@@ -210,7 +210,12 @@ export default function PostCard({ loadingState }) {
             <div className="postCardMiddle d-flex flex-column">
               <div className="postCardMiddle">{post.text}</div>
               <a className="align-self-end postCardMiddle"
+              onClick={()=>deleteThisPost(post._id)}
+              style={{color:'red'}}
+              >delete this post</a>
+              <a className="align-self-end postCardMiddle"
               onClick={(e)=>updateThisPost(post._id)}
+              style={{color:'green'}}
               >update this post</a>
               {post.image && (
                 <img
