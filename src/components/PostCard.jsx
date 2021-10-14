@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { deletePost, getPosts,like,getMyProfile } from "../Utilities/fetches";
+import { deletePost, getPosts,like,getMyProfile, postAComment } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -99,9 +99,10 @@ export default function PostCard({ loadingState }) {
       [propertyName]: e.target.value
     });
   }
-  const addComment=(e)=>{
-    
-    console.log('FOR ADDING A COMMENT, POST ID: ',e)
+  const addComment=async(postId)=>{
+    //const thisUserId={'id':thisUser}
+    const newComment=await postAComment(postId,comment)
+    console.log('FOR ADDING A COMMENT, POST ID: ',postId, 'COMMENT TEXT: ', comment,'RESPONSE: ',newComment)
   }
   
 
@@ -220,7 +221,7 @@ export default function PostCard({ loadingState }) {
                     as="textarea"
                     placeholder="Add a comment"
                     
-                    onChange={(e) => handleComment(e, "text")} />
+                    onChange={(e) => handleComment(e, "comment")} />
                 </Form>
                 <SendIcon className="postCardIcons" onClick={()=>addComment(post._id)} />
               </p>
