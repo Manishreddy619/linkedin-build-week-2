@@ -15,12 +15,16 @@ const ProfileDetails = () => {
 	const [isLoading, setLoading] = useState(true);
 	const fetchProfileData = async () => {
 		//console.log(details._id)
-		let profileData = await getMyProfile('61642ba7c7ce9a61a178ef42');
+
+		let profileData = await getMyProfile('616574bca2d651fc0b95a4b2');
+
 		if (profileData !== details) {
 			setDetails(profileData);
 			//console.log('PROFILE DATA',profileData, details._id)
 		}
+
 		let experienceData = await getUserExperienceList('Bimal');
+
 		if (experienceData !== experience) {
 			setExperience(experienceData.reverse());
 		}
@@ -129,7 +133,7 @@ const ProfileDetails = () => {
 											<DeleteMyExperience
 												loadingState={(state) => setLoading(state)}
 												exid={ex._id}
-												userId={details._id}
+												userId={details.username}
 											/>
 										</div>
 										<div>
@@ -137,7 +141,7 @@ const ProfileDetails = () => {
 												loadingState={(state) => setLoading(state)}
 												exid={ex._id}
 												currentEx={ex}
-												userId={details._id}
+												userId={details.username}
 											/>
 										</div>
 									</div>

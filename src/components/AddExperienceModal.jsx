@@ -20,6 +20,7 @@ const ExperienceModal = ({ id, loadingState }) => {
     endDate: "",
     description: "",
     area: "",
+    image: "",
     //username:'sacca',
     //image:'placeholder'
   });
@@ -27,7 +28,7 @@ const ExperienceModal = ({ id, loadingState }) => {
     setUserEx({
       ...userEx,
 
-      [propertyName]: e.target.value
+      [propertyName]: e.target.value,
     });
   };
   const handleSubmit = async (e) => {
@@ -36,9 +37,12 @@ const ExperienceModal = ({ id, loadingState }) => {
     //const username=userEx.username
     //console.log('USERNAME',username)
     let exp = await createUserExperience(userEx);
-    fetchProfileData();
-    setExid(userEx);
-    setLastExp(exp);
+    if (exp) {
+      fetchProfileData();
+      // setExid(userEx);
+      // setLastExp(exp);
+    }
+
     console.log("this is the last exp" + lastExp);
   };
   const fetchProfileData = async () => {
@@ -70,7 +74,7 @@ const ExperienceModal = ({ id, loadingState }) => {
                 type="text"
                 placeholder="Enter role"
                 value={userEx.role}
-                onChange={(e) => handleInput(e, "role")}
+                onChange={(e) => setUserEx({ ...userEx, role: e.target.value })}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -80,7 +84,9 @@ const ExperienceModal = ({ id, loadingState }) => {
                 type="text"
                 placeholder="Enter Company name"
                 value={userEx.company}
-                onChange={(e) => handleInput(e, "company")}
+                onChange={(e) =>
+                  setUserEx({ ...userEx, company: e.target.value })
+                }
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -90,7 +96,9 @@ const ExperienceModal = ({ id, loadingState }) => {
                 type="date"
                 placeholder="yyyy-mm-dd"
                 value={userEx.startDate}
-                onChange={(e) => handleInput(e, "startDate")}
+                onChange={(e) =>
+                  setUserEx({ ...userEx, startDate: e.target.value })
+                }
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -100,7 +108,9 @@ const ExperienceModal = ({ id, loadingState }) => {
                 type="date"
                 placeholder="yyyy-mm-dd"
                 value={userEx.endDate}
-                onChange={(e) => handleInput(e, "endDate")}
+                onChange={(e) =>
+                  setUserEx({ ...userEx, endDate: e.target.value })
+                }
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -110,7 +120,9 @@ const ExperienceModal = ({ id, loadingState }) => {
                 type="text"
                 placeholder="description"
                 value={userEx.description}
-                onChange={(e) => handleInput(e, "description")}
+                onChange={(e) =>
+                  setUserEx({ ...userEx, description: e.target.value })
+                }
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -120,7 +132,18 @@ const ExperienceModal = ({ id, loadingState }) => {
                 type="text"
                 placeholder="Enter location"
                 value={userEx.area}
-                onChange={(e) => handleInput(e, "area")}
+                onChange={(e) => setUserEx({ ...userEx, area: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>image</Form.Label>
+              <Form.Control
+                onChange={(e) =>
+                  setUserEx({ ...userEx, image: e.target.files[0] })
+                }
+                required
+                type="file"
+                placeholder="select IMG"
               />
             </Form.Group>
 
@@ -128,7 +151,7 @@ const ExperienceModal = ({ id, loadingState }) => {
               Submit
             </Button>
           </Form>
-          <Form
+          {/* <Form
             onSubmit={(e) => {
               e.preventDefault();
               uploadExperiencePicture(id, lastExp._id, inputFile);
@@ -142,7 +165,7 @@ const ExperienceModal = ({ id, loadingState }) => {
               />
             </Form.Group>
             <Button type="submit">Upload</Button>
-          </Form>
+          </Form> */}
         </Modal.Body>
         <Modal.Footer>
           <Button
