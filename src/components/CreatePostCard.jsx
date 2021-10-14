@@ -35,7 +35,8 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
     setProfile(myProfile);
     setPost({
       ...post,
-      username:myProfile.username
+      username:myProfile.username,
+      text:''
     })
     //console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
     getPosts()
@@ -53,10 +54,10 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
     });
   };
 //**********************************USELESS FUNCTION*********************************** */
-
+/*
   const Sendpost = async (e) => {
-    console.log('SENDPOOOOOOOOSSSSTT!!!!!!!!!!!!!')
     e.preventDefault();
+    console.log('SENDPOOOOOOOOSSSSTT!!!!!!!!!!!!!')
     //const postToSend={text:'hardcoding',username:'Bimal',image:'aParrot'}
     //console.log('POST DATA',post);
     if(thisPostId===undefined){
@@ -80,7 +81,7 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
       fetchPosts()
     }
   };
-
+*/
   //***************************************************************** */
   const fileUpLoadHandler = async (e) => {
     e.preventDefault();
@@ -88,29 +89,33 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
     if(thisPostId===undefined){
       //console.log('THIS POST ID FROM CreatePostCard.jsx IF UNDEFINED',thisPostId)
       let data = await createPost(post); // post
-      setLatestPost(data);
+      //setLatestPost(data);
       console.log('DATA ', data)
       setPost({
         text: ""
       });
       //console.log('POSTID UNDEFINED ', 'DATA',data,'FILE',file,'THIS POST ID',thisPostId)
       await uploadPostPicture(data,file)
+      setFile(null)
       loadingState(true);
       handleClose()
       fetchPosts()
+      getProfile()
       setThisPostId()
     }else{
       //console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
       let data=await updatePost(thisPostId,post)
-      setLatestPost(data);
+      //setLatestPost(data);
       setPost({
         text: ""
       });
       console.log('POSTID UNDEFINED ','DATA',data,'FILE',file,'THIS POST ID',thisPostId)
       await uploadPostPicture(thisPostId,file)
+      setFile(null)
       loadingState(true);
       handleClose()
       fetchPosts()
+      getProfile()
       setThisPostId()
     }
   }
