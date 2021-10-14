@@ -13,7 +13,7 @@ export const getProfiles = async () => {
 		});
 		if (apiResp.ok) {
 			let profileList = await apiResp.json();
-			console.log('PROFILE LIST', profileList);
+			//console.log('PROFILE LIST', profileList);
 			return profileList;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -26,7 +26,7 @@ export const getProfiles = async () => {
 };
 
 export const getMyProfile = async (thisUser) => {
-	console.log('THIS USER', thisUser);
+	//console.log('THIS USER', thisUser);
 	try {
 		const apiResp = await fetch(apiUrl + '/' + thisUser, {
 			method: 'GET',
@@ -36,7 +36,7 @@ export const getMyProfile = async (thisUser) => {
 		});
 		if (apiResp.ok) {
 			let myProfile = await apiResp.json();
-			console.log('MY PROFILE FETCH', myProfile);
+			//console.log('MY PROFILE FETCH', myProfile);
 			return myProfile;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -372,7 +372,7 @@ export const deleteUserExperience = async (userId, experienceId) => {
 export const uploadPostPicture = async (postId, postPicture) => {
 	const formData = new FormData();
 	formData.append('post', postPicture);
-	console.log('POST ID', postId);
+	//console.log('POST ID', postId);
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'POST',
@@ -404,7 +404,7 @@ export const getPosts = async () => {
 		});
 		if (apiResp.ok) {
 			let posts = await apiResp.json();
-			console.log('LOOK HERE', posts);
+			//console.log('LOOK HERE', posts);
 			return posts.posts;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -417,7 +417,7 @@ export const getPosts = async () => {
 };
 
 export const createPost = async (postData) => {
-	console.log('POST DATA', postData);
+	//console.log('POST DATA', postData);
 	// POST Model:
 	//   {
 	//       "_id": "5d93ac84b86e220017e76ae1", //server generated
@@ -438,7 +438,7 @@ export const createPost = async (postData) => {
 		});
 		if (apiResp.ok) {
 			let createdPost = await apiResp.json();
-			console.log('CREATED POST(RESPONSE)', createdPost);
+			//console.log('CREATED POST(RESPONSE)', createdPost);
 			return createdPost;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -545,7 +545,7 @@ export const like=async(postId,thisUserId)=>{
 };
 // ***************** POST A COMMENT (commenting a Post) **********************
 export const postAComment=async(postId,commentText)=>{
-	console.log('POST ID FROM FETCH',postId,' COMMENT TEXT FROM FETCH: ',commentText)
+	//console.log('POST ID FROM FETCH',postId,' COMMENT TEXT FROM FETCH: ',commentText)
 	try {
 		const apiResp=await fetch(postsApiUrl+postId+'/comment',{
 			method:'POST',body:JSON.stringify(commentText),

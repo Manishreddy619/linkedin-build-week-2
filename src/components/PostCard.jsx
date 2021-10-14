@@ -13,6 +13,7 @@ import EditPictureModal from "./EditPictureModal";
 import CreatePostCard from "./CreatePostCard";
 
 import { Avatar } from "@material-ui/core";
+import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
 
 export default function PostCard({ loadingState }) {
   const [posts, setPosts] = useState([]);
@@ -26,7 +27,7 @@ export default function PostCard({ loadingState }) {
   const [profile, setProfile] = useState();
   const getProfile=async()=>{
     let myProfile=await getMyProfile(thisUser);
-    console.log('THIS IS MY PROFILE: ',myProfile)
+    //console.log('THIS IS MY PROFILE: ',myProfile)
     setProfile(myProfile);
   };
 
@@ -48,8 +49,11 @@ export default function PostCard({ loadingState }) {
   const[show,setShow]=useState(false);
   const handleClose=()=>setShow(false);
   const handleShow=()=>setShow(true);
+  const[thisPostComments,setThisPostComments]=useState()
   const getComments=async(postId)=>{
     const response=await getCommentsFromDB(postId)
+    setThisPostComments({response})
+    console.log('THIS POST COMMENTS: ',thisPostComments)
     handleShow()
   }
   // *******************************************************
@@ -72,7 +76,7 @@ export default function PostCard({ loadingState }) {
     // });
 
     if (singlePost.user?._id === myId) {
-      console.log(singlePost);
+      //console.log(singlePost);
       setMypost(singlePost);
     }
   };

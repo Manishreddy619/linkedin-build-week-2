@@ -40,7 +40,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
       ...post,
       username:myProfile.username
     })
-    console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
+    //console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
     getPosts()
   };
 
