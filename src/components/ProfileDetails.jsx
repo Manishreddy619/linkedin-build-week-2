@@ -23,7 +23,7 @@ const ProfileDetails = () => {
       //console.log('PROFILE DATA',profileData, details._id)
     }
 
-    let experienceData = await getUserExperienceList("vinay425");
+    let experienceData = await getUserExperienceList("Bimal");
 
     if (experienceData !== experience) {
       setExperience(experienceData.reverse());
@@ -116,7 +116,6 @@ const ProfileDetails = () => {
           </span>
           {experience &&
             experience.map((ex) => {
-
               return (
                 <>
                   <div className="experience-div" key={ex._id}>
@@ -134,9 +133,7 @@ const ProfileDetails = () => {
                       <DeleteMyExperience
                         loadingState={(state) => setLoading(state)}
                         exid={ex._id}
-
                         userId={details.username}
-
                       />
                     </div>
                     <div>
@@ -144,9 +141,7 @@ const ProfileDetails = () => {
                         loadingState={(state) => setLoading(state)}
                         exid={ex._id}
                         currentEx={ex}
-
                         userId={details.username}
-
                       />
                     </div>
                   </div>
