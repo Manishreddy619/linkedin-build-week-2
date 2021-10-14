@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { deletePost, getPosts,like } from "../Utilities/fetches";
+import { deletePost, getPosts,like,getMyProfile } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -12,6 +12,8 @@ import { Spinner, Button, Modal } from "react-bootstrap";
 import EditPictureModal from "./EditPictureModal";
 import CreatePostCard from "./CreatePostCard";
 
+import { Avatar } from "@material-ui/core";
+
 export default function PostCard({ loadingState }) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -19,9 +21,18 @@ export default function PostCard({ loadingState }) {
 
   const [myPost, setMypost] = useState(null);
 
+  // *********** THIS PROFILE SECTION ********************
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
+  const [profile, setProfile] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-
+  const getProfile=async()=>{
+    let myProfile=await getMyProfile(thisUser);
+    console.log('THIS IS MY PROFILE: ',myProfile)
+    setProfile(myProfile);
+  };
 
   let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
   const fetchPosts = async () => {
@@ -49,6 +60,8 @@ export default function PostCard({ loadingState }) {
   //**********USE EFFECT****************
   useEffect(() => {
     fetchPosts();
+    //console.log('THIS USER', thisUser)
+    getProfile()
   }, []);
 
   useEffect(() => {
@@ -132,7 +145,9 @@ export default function PostCard({ loadingState }) {
             </div>
             <div className="postCardMiddle d-flex flex-column">
               <div className="postCardMiddle">{post.text}</div>
-              <a className="align-self-end postCardMiddle">update this post</a>
+              <a className="align-self-end postCardMiddle"
+              
+              >update this post</a>
               {post.image && (
                 <img
                   src={post.image}
@@ -177,6 +192,20 @@ export default function PostCard({ loadingState }) {
                 <SendIcon className="postCardIcons" />
                 <div className="postCardIcon">Send</div>
               </div>
+            </div>
+            <div className="postInput">
+              <Avatar
+                src={
+                  profile.image
+                    ? profile.image
+                    : "https://i.pinimg.com/474x/51/d3/89/51d3899b7eedf293e1684d1e70b66c20.jpg"
+                }
+                className="avatar"
+              />
+              {/* <CreateIcon /> */}
+              <p variant="primary" onClick={handleShow}>
+                Add a comment
+              </p>
             </div>
           </div>
         ))}
