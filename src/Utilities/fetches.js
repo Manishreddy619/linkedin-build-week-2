@@ -240,7 +240,7 @@ export const uploadExperiencePicture = async (
 };
 export const getUserExperienceList = async (userId) => {
 	try {
-		const apiResp = await fetch(apiUrl + userId + '/experiences', {
+		const apiResp = await fetch(apiUrl + '/' + userId + '/experiences', {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
