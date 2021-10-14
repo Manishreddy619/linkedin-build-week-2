@@ -271,7 +271,7 @@ export default function PostCard({ loadingState }) {
               </div>
             </div>
             {(thisPostId===post._id)?profile&&showComments&&thisPostComments&&(
-            <>
+            <div>
             <div className="postInput" >
               <Avatar
                 src={
@@ -297,12 +297,14 @@ export default function PostCard({ loadingState }) {
             <div>
               {(thisPostId===post._id)?thisPostComments&&thisPostComments.map((comment)=>(
                 <div key={comment.postWithUser._id} className="border">
-                <p>{comment.postWithUser.user.name} {comment.postWithUser.user.surname} said: {comment.comment} </p>
-                <a onClick={(e)=>updateThisComment(thisPostId,thisPostComments._id,'comment')}></a>
+                  <Avatar src={comment.postWithUser.user.image} className="avatar" />
+                  {/* <p>{comment.postWithUser.user.name} {comment.postWithUser.user.surname} </p> */}
+                  <span className='text-left align-middle'>{comment.comment} </span>
+                  <a onClick={(e)=>updateThisComment(thisPostId,thisPostComments._id,'comment')}></a>
                 </div>
               )):<div></div>}
             </div>
-            </>
+            </div>
             ):<div></div>}
           </div>
         ))}
