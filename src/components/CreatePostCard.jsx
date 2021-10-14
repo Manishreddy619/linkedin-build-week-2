@@ -13,34 +13,43 @@ import { createPost } from "../Utilities/fetches";
 import { getMyProfile } from "../Utilities/fetches";
 import PhotoVideoComponent from "./PhotoVideoComponent";
 import { uploadPostPicture } from "../Utilities/fetches";
-import { getPosts } from "../Utilities/fetches";
+import { getPosts,updatePost,getPost } from "../Utilities/fetches";
 
-const CreatePostCard = ({ loadingState,fetchPosts }) => {
+const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal,thisPostId,setThisPostId,post,setPost }) => {
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026')//MARCO (just because I've filled Manish's profile with useless posts)
+  /*
   const [post, setPost] = useState({
     text: "",
     username:'',
     image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder' 
   });
-  const [latestPost, setLatestPost] = useState(null);
-  const [show, setShow] = useState(false);
+  */
+  const [latestPost, setLatestPost] = useState(null)
   const [file, setFile] = useState(null);
-
   const [posts, setPosts] = useState([]);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  //const [show, setShow] = useState(false);
+  const handleClose=()=>{
+    setShowPostModal(false)
+    setPost({
+      ...post,
+      text: '',
+      image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder',
+    })
+    console.log('POST',post)
+  }
+  const handleShow=()=>{
+    setShowPostModal(true)
+  }
   const [profile, setProfile] = useState(null);
-
-
   const getProfile = async () => {
     let myProfile = await getMyProfile(thisUser);
     setProfile(myProfile);
     setPost({
       ...post,
-      username:myProfile.username
+      username:myProfile.username,
+      text:''
     })
-    console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
+    //console.log('PROFILE IN USE + POST STATE: ',myProfile, post)
     getPosts()
   };
 
@@ -56,22 +65,73 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
     });
   };
 //**********************************USELESS FUNCTION*********************************** */
+/*
   const Sendpost = async (e) => {
     e.preventDefault();
+    console.log('SENDPOOOOOOOOSSSSTT!!!!!!!!!!!!!')
     //const postToSend={text:'hardcoding',username:'Bimal',image:'aParrot'}
     //console.log('POST DATA',post);
-    let data = await createPost(post); // post
-    setLatestPost(data);
-    setPost({
-      text: ""
-    });
-    handleClose()
-    fetchPosts()
+    if(thisPostId===undefined){
+      console.log('THIS POST ID FROM CreatePostCard.jsx IF UNDEFINED')
+      let data = await createPost(post); // post
+      setLatestPost(data);
+      setPost({
+        text: ""
+      });
+      handleClose()
+      fetchPosts()
+    }else{
+      console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
+      const data=await updatePost(thisPostId,post)
+      
+      setLatestPost(data);
+      setPost({
+        text: ""
+      });
+      handleClose()
+      fetchPosts()
+    }
   };
+*/
   //***************************************************************** */
   const fileUpLoadHandler = async (e) => {
     e.preventDefault();
-    // INSERTED
+    
+    if(thisPostId===undefined){
+      //console.log('THIS POST ID FROM CreatePostCard.jsx IF UNDEFINED',thisPostId)
+      let data = await createPost(post); // post
+      //setLatestPost(data);
+      console.log('DATA ', data)
+      setPost({
+        text: ""
+      });
+      //console.log('POSTID UNDEFINED ', 'DATA',data,'FILE',file,'THIS POST ID',thisPostId)
+      await uploadPostPicture(data,file)
+      setFile(null)
+      loadingState(true);
+      handleClose()
+      fetchPosts()
+      getProfile()
+      setThisPostId()
+    }else{
+      //console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
+      //console.log('THIS SINGLE POST',thisSinglePost)
+      let data=await updatePost(thisPostId,post)
+      //setLatestPost(data);
+      setPost({
+        text: ""
+      });
+      console.log('POSTID UNDEFINED ','DATA',data,'FILE',file,'THIS POST ID',thisPostId)
+      await uploadPostPicture(thisPostId,file)
+      setFile(null)
+      loadingState(true);
+      handleClose()
+      fetchPosts()
+      getProfile()
+      setThisPostId()
+    }
+  }
+/*
     let postId = await createPost(post); //postId=data from fetch.POST
     setLatestPost(postId);
     setPost({
@@ -85,6 +145,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
     handleClose();
     fetchPosts()
   };
+  */
   const fetchPost = async () => {
     const fetchedPosts = await getPosts();
     setPosts(fetchedPosts?.reverse());
@@ -115,14 +176,14 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
               Send post
             </p>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={showPostModal} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>
                   <Avatar src={profile && profile.image} />
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Form onSubmit={Sendpost}>
+                <Form>
                   <Form.Group className="mb-3">
                     <Form.Label>write something</Form.Label>
                     <Form.Control
@@ -144,7 +205,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
                   </Button> */}
                   <Form>
                     <Form.Group className="mb-3">
-                      {/* <Form.Label>Choose image </Form.Label> */}
+                      <Form.Label><Avatar src={post.image} /></Form.Label>
                       <Form.Control
                         className="border-0"
                         type="file"
