@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import CreateIcon from '@material-ui/icons/Create';
-import { updateMyProfile } from '../Utilities/fetches';
-import { uploadProfilePicture } from '../Utilities/fetches';
+import { updateMyProfile, getMyProfile } from '../Utilities/fetches';
+import {
+	uploadProfilePicture,
+	updateMyProfileBody,
+} from '../Utilities/fetches';
 const Example = ({ details, loadingState }) => {
 	const [show, setShow] = useState(false);
-	const [inputFile, setInputFile] = useState(null);
+	// const [inputFile, setInputFile] = useState(null);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [profileData, setProfileData] = useState({
@@ -15,8 +18,10 @@ const Example = ({ details, loadingState }) => {
 		bio: details.bio,
 		title: details.title,
 		area: details.area,
-		image: details.image,
+		username: details.username,
+		image: undefined,
 	});
+
 	const handleInput = (e, propertyName) => {
 		setProfileData({
 			...profileData,
@@ -25,13 +30,24 @@ const Example = ({ details, loadingState }) => {
 			// image: inputFile.name,
 		});
 	};
+	useEffect(() => {
+		getMyProfile();
+	}, [profileData]);
 	const handleSubmit = async (e) => {
 		// with async/await
 		e.preventDefault();
-		// console.log(inputFile.name);
-		await updateMyProfile(profileData);
-		console.log('-----------------------', profileData);
+		if (profileData.image === undefined) {
+			// console.log(profileData.image);
+			await updateMyProfileBody(profileData);
+			handleClose();
+		} else {
+			await updateMyProfile(profileData);
+			handleClose();
+		}
+
+		console.log('-----------------------', profileData.image);
 		loadingState(true);
+		handleClose();
 	};
 
 	return (
@@ -55,6 +71,15 @@ const Example = ({ details, loadingState }) => {
 								placeholder='Enter name'
 								value={profileData.name}
 								onChange={(e) => handleInput(e, 'name')}
+							/>
+						</Form.Group>
+						<Form.Group className='mb-3'>
+							<Form.Label>username</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='Enter name'
+								value={profileData.username}
+								onChange={(e) => handleInput(e, 'username')}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3'>

@@ -15,12 +15,16 @@ const ProfileDetails = () => {
   const [isLoading, setLoading] = useState(true);
   const fetchProfileData = async () => {
     //console.log(details._id)
+
     let profileData = await getMyProfile("616574bca2d651fc0b95a4b2");
+
     if (profileData !== details) {
       setDetails(profileData);
       //console.log('PROFILE DATA',profileData, details._id)
     }
+
     let experienceData = await getUserExperienceList("vinay425");
+
     if (experienceData !== experience) {
       setExperience(experienceData.reverse());
     }
@@ -112,7 +116,7 @@ const ProfileDetails = () => {
           </span>
           {experience &&
             experience.map((ex) => {
-              console.log("single exxx---------->", ex);
+
               return (
                 <>
                   <div className="experience-div" key={ex._id}>
@@ -130,7 +134,9 @@ const ProfileDetails = () => {
                       <DeleteMyExperience
                         loadingState={(state) => setLoading(state)}
                         exid={ex._id}
+
                         userId={details.username}
+
                       />
                     </div>
                     <div>
@@ -138,7 +144,9 @@ const ProfileDetails = () => {
                         loadingState={(state) => setLoading(state)}
                         exid={ex._id}
                         currentEx={ex}
+
                         userId={details.username}
+
                       />
                     </div>
                   </div>
