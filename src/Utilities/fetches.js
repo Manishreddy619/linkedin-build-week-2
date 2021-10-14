@@ -28,7 +28,7 @@ export const getProfiles = async () => {
 export const getMyProfile = async (thisUser) => {
 	console.log('THIS USER', thisUser);
 	try {
-		const apiResp = await fetch(apiUrl + '/' + '61642ba7c7ce9a61a178ef42', {
+		const apiResp = await fetch(apiUrl + '/' + thisUser, {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
@@ -466,7 +466,7 @@ export const createPost = async (postData) => {
 		});
 		if (apiResp.ok) {
 			let createdPost = await apiResp.json();
-			console.log('CREATED POST', createdPost);
+			console.log('CREATED POST(RESPONSE)', createdPost);
 			return createdPost;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');
@@ -570,6 +570,27 @@ export const like = async (postId, thisUserId) => {
 			throw new Error('SERVER GONE');
 		}
 	} catch (err) {
+		throw err;
+	}
+};
+// ***************** POST A COMMENT (commenting a Post) **********************
+export const postAComment=async(postId,commentText)=>{
+	console.log('POST ID FROM FETCH',postId,' COMMENT TEXT FROM FETCH: ',commentText)
+	try {
+		const apiResp=await fetch(postsApiUrl+postId+'/comment',{
+			method:'POST',body:JSON.stringify(commentText),
+			headers:{'Content-Type':'application/json'},
+		});
+		if(apiResp.ok){
+			let newComment=await apiResp.json();
+			console.log('LIKE RESPONSE FROM FETCH: ',newComment)
+			return newComment;
+		}else if(apiResp.status>400&&apiResp.status<500){
+			throw new Error('CLIENT SIDE ERROR');
+		}else if(apiResp.status>500){
+			throw new Error('SERVER GONE');
+		}
+	}catch (err){
 		throw err;
 	}
 };
