@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { deletePost, getPosts,like,getMyProfile,postAComment,getCommentsFromDB } from "../Utilities/fetches";
+import { deletePost, getPosts,like,getMyProfile,postAComment,getCommentsFromDB,updateComment } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -21,6 +21,8 @@ export default function PostCard({ loadingState }) {
   const [isTextExpanded, setTextExpanded] = useState(false);
 
   const [myPost, setMypost] = useState(null);
+  // *********** POSTS MODAL SECTION (STATE LIFT FOR CreatePostCard.jsx)************
+  const[showPostModal,setShowPostModal]=useState(false)
   
   // *********** THIS PROFILE SECTION ********************
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
@@ -46,13 +48,13 @@ export default function PostCard({ loadingState }) {
     //console.log('FOR ADDING A COMMENT, POST ID: ',postId, 'COMMENT TEXT: ', comment,'RESPONSE: ',newComment)
   }
   //________________________________GET COMMENTS by Post Id
-  const[show,setShow]=useState(false);
-  const handleClose=()=>setShow(false);
-  const handleShow=()=>setShow(true);
+  const[showComments,setShowComments]=useState(false);
+  const handleClose=()=>setShowComments(false);
+  const handleShow=()=>setShowComments(true);
   const[thisPostComments,setThisPostComments]=useState()
   const[thisPostId,setThisPostId]=useState()
   const getComments=async(postId)=>{
-    if(show===true){
+    if(showComments===true){
       handleClose()
     }else{
       setThisPostId(postId)
@@ -61,6 +63,12 @@ export default function PostCard({ loadingState }) {
       console.log('THIS POST ID',thisPostId, 'THIS POST COMMENTS: ',thisPostComments,'RESPONSE',response)
       handleShow()
     }
+  }
+  //__________________________________PUT COMMENT by Comment Id
+  const updateThisComment=async(postId,commentId,e)=>{
+    const response=await updateComment(postId,commentId,e)
+    getComments()
+    setShowComments(true)
   }
   // *******************************************************
 
@@ -127,7 +135,10 @@ export default function PostCard({ loadingState }) {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <CreatePostCard loadingState={(state) => setLoading(state)} fetchPosts={fetchPosts} />
+      <CreatePostCard loadingState={(state) => setLoading(state)}
+      fetchPosts={fetchPosts}
+      showPostModal={showPostModal}
+      setShowPostModal={setShowPostModal} />
       {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&
         posts //.slice(0, 70)
@@ -221,7 +232,7 @@ export default function PostCard({ loadingState }) {
                 <div className="postCardIcon">Send</div>
               </div>
             </div>
-            {(thisPostId===post._id)?profile&&show&&thisPostComments&&(
+            {(thisPostId===post._id)?profile&&showComments&&thisPostComments&&(
             <>
             <div className="postInput" >
               <Avatar
@@ -247,8 +258,9 @@ export default function PostCard({ loadingState }) {
             </div>
             <div>
               {(thisPostId===post._id)?thisPostComments&&thisPostComments.map((comment)=>(
-                <div key={thisPostComments._id} className="profileName">
-                {comment.postWithUser.user.name} {comment.postWithUser.user.surname} said: {comment.comment}
+                <div key={thisPostComments._id} className="border">
+                <p>{comment.postWithUser.user.name} {comment.postWithUser.user.surname} said: {comment.comment} </p>
+                <a onClick={(e)=>updateThisComment(thisPostId,thisPostComments._id,'comment')}></a>
                 </div>
               )):<div></div>}
             </div>

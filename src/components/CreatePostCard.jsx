@@ -15,7 +15,7 @@ import PhotoVideoComponent from "./PhotoVideoComponent";
 import { uploadPostPicture } from "../Utilities/fetches";
 import { getPosts } from "../Utilities/fetches";
 
-const CreatePostCard = ({ loadingState,fetchPosts }) => {
+const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal }) => {
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026')//MARCO (just because I've filled Manish's profile with useless posts)
   const [post, setPost] = useState({
     text: "",
@@ -23,12 +23,14 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
     image:'https://via.placeholder.com/540x285.png?text=Strive%20LinkedIn%20Placeholder' 
   });
   const [latestPost, setLatestPost] = useState(null);
-  const [show, setShow] = useState(false);
-  const [file, setFile] = useState(null);
 
+  const [file, setFile] = useState(null);
+  
   const [posts, setPosts] = useState([]);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+  //const [show, setShow] = useState(false);
+  const handleClose = () => setShowPostModal(false);
+  const handleShow = () => setShowPostModal(true);
 
   const [profile, setProfile] = useState(null);
 
@@ -115,7 +117,7 @@ const CreatePostCard = ({ loadingState,fetchPosts }) => {
               Send post
             </p>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={showPostModal} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>
                   <Avatar src={profile && profile.image} />

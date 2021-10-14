@@ -584,3 +584,23 @@ export const getCommentsFromDB=async(postId,setThisPostComments)=>{
 		throw err;
 	}
 };
+// ******************* UPDATE COMMENTS ***************************
+export const updateComment=async(postId,commentId,comment)=>{
+	try {
+		const apiResp=await fetch(postsApiUrl+postId+/comment/+commentId,{
+			method:'PUT',
+			body:comment,
+		}
+		)
+		if(apiResp.ok){
+			const commentUpdated=await apiResp.json();
+			return commentUpdated;
+		} else if (apiResp.status > 400 && apiResp.status < 500) {
+			throw new Error('Client Side Error');
+		} else if (apiResp.status > 500) {
+			throw new Error('Server Side Error');
+		}
+	} catch (error) {
+		throw error
+	}
+}
