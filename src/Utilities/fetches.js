@@ -126,15 +126,18 @@ export const updateMyProfile = async (profileData, userId) => {
 	// }
 	const formData = new FormData();
 	const { name, surname, email, bio, title, area, image } = profileData;
-	let img =
-		'https://res.cloudinary.com/dytffimtv/image/upload/v1634140859/hjqypmpvl90fffy6fjlk.jpg';
+	console.log(name, surname, image);
+	// let img =
+	// 	'https://res.cloudinary.com/dytffimtv/image/upload/v1634140859/hjqypmpvl90fffy6fjlk.jpg';
+	formData.append('image', image.name);
 	formData.append('name', name);
 	formData.append('surname', surname);
 	formData.append('email', email);
 	formData.append('bio', bio);
 	formData.append('title', title);
 	formData.append('area', area);
-	formData.append('image', img);
+
+	// formData.append('data', JSON.stringify(profileData));
 	try {
 		const apiResp = await fetch(apiUrl + '/' + '61642ba7c7ce9a61a178ef42', {
 			method: 'PUT',

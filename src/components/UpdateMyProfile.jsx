@@ -21,7 +21,7 @@ const Example = ({ details, loadingState }) => {
 		setProfileData({
 			...profileData,
 			[propertyName]:
-				propertyName === 'image' ? e.target.files[0].name : e.target.value,
+				propertyName === 'image' ? e.target.files[0] : e.target.value,
 			// image: inputFile.name,
 		});
 	};
@@ -106,7 +106,7 @@ const Example = ({ details, loadingState }) => {
 							<Form.Label>Location</Form.Label>
 							<Form.Control
 								type='file'
-								onChange={(e) => handleInput(e.target.files[0], 'image')}
+								onChange={(e) => handleInput(e, 'image')}
 							/>
 						</Form.Group>
 						<Button variant='primary' type='submit'>
