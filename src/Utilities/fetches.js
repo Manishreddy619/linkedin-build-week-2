@@ -370,9 +370,10 @@ export const deleteUserExperience = async (userId, experienceId) => {
 
 //Functions/Posts
 export const uploadPostPicture = async (postId, postPicture) => {
+	
 	const formData = new FormData();
 	formData.append('post', postPicture);
-	//console.log('POST ID', postId);
+	console.log('FROM FETCH POST ID', postId, 'IMAGE', postPicture);
 	try {
 		const apiResp = await fetch(postsApiUrl + postId, {
 			method: 'POST',
@@ -438,7 +439,7 @@ export const createPost = async (postData) => {
 		});
 		if (apiResp.ok) {
 			let createdPost = await apiResp.json();
-			//console.log('CREATED POST(RESPONSE)', createdPost);
+			console.log('CREATED POST(RESPONSE)', createdPost);
 			return createdPost;
 		} else if (apiResp.status > 400 && apiResp.status < 500) {
 			throw new Error('Client Side Error');

@@ -53,8 +53,9 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
     });
   };
 //**********************************USELESS FUNCTION*********************************** */
-/*
+
   const Sendpost = async (e) => {
+    console.log('SENDPOOOOOOOOSSSSTT!!!!!!!!!!!!!')
     e.preventDefault();
     //const postToSend={text:'hardcoding',username:'Bimal',image:'aParrot'}
     //console.log('POST DATA',post);
@@ -79,32 +80,34 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
       fetchPosts()
     }
   };
-  */
+
   //***************************************************************** */
   const fileUpLoadHandler = async (e) => {
     e.preventDefault();
     
     if(thisPostId===undefined){
-      console.log('THIS POST ID FROM CreatePostCard.jsx IF UNDEFINED',thisPostId)
+      //console.log('THIS POST ID FROM CreatePostCard.jsx IF UNDEFINED',thisPostId)
       let data = await createPost(post); // post
       setLatestPost(data);
+      console.log('DATA ', data)
       setPost({
         text: ""
       });
+      //console.log('POSTID UNDEFINED ', 'DATA',data,'FILE',file,'THIS POST ID',thisPostId)
       await uploadPostPicture(data,file)
       loadingState(true);
       handleClose()
       fetchPosts()
       setThisPostId()
     }else{
-      console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
-      const data=await updatePost(thisPostId,post)
-      
+      //console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
+      let data=await updatePost(thisPostId,post)
       setLatestPost(data);
       setPost({
         text: ""
       });
-      await uploadPostPicture(data,file)
+      console.log('POSTID UNDEFINED ','DATA',data,'FILE',file,'THIS POST ID',thisPostId)
+      await uploadPostPicture(thisPostId,file)
       loadingState(true);
       handleClose()
       fetchPosts()
