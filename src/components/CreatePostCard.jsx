@@ -15,7 +15,7 @@ import PhotoVideoComponent from "./PhotoVideoComponent";
 import { uploadPostPicture } from "../Utilities/fetches";
 import { getPosts,updatePost } from "../Utilities/fetches";
 
-const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal,thisPostId }) => {
+const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal,thisPostId,setThisPostId }) => {
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026')//MARCO (just because I've filled Manish's profile with useless posts)
   const [post, setPost] = useState({
     text: "",
@@ -95,6 +95,7 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
       loadingState(true);
       handleClose()
       fetchPosts()
+      setThisPostId()
     }else{
       console.log('THIS POST ID FROM CreatePostCard.jsx',thisPostId)
       const data=await updatePost(thisPostId,post)
@@ -107,6 +108,7 @@ const CreatePostCard = ({ loadingState,fetchPosts,showPostModal,setShowPostModal
       loadingState(true);
       handleClose()
       fetchPosts()
+      setThisPostId()
     }
   }
 /*

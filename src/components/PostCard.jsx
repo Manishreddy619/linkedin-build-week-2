@@ -148,6 +148,7 @@ export default function PostCard({ loadingState }) {
       showPostModal={showPostModal}
       setShowPostModal={setShowPostModal}
       thisPostId={thisPostId}
+      setThisPostId={setThisPostId}
       />
       {isLoading && <Spinner className="m-auto" animation="grow" />}
       {posts &&
