@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostCard.css";
-import { deletePost, getPosts,like } from "../Utilities/fetches";
+import { deletePost, getPosts,like,getMyProfile, postAComment } from "../Utilities/fetches";
 import "./Feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -8,9 +8,11 @@ import ShareIcon from "@material-ui/icons/Share";
 import CommentIcon from "@material-ui/icons/Comment";
 import SendIcon from "@material-ui/icons/Send";
 import { useEffect, useState } from "react";
-import { Spinner, Button, Modal } from "react-bootstrap";
+import { Spinner, Button, Modal,Form } from "react-bootstrap";
 import EditPictureModal from "./EditPictureModal";
 import CreatePostCard from "./CreatePostCard";
+
+import { Avatar } from "@material-ui/core";
 
 export default function PostCard({ loadingState }) {
   const [posts, setPosts] = useState([]);
@@ -18,10 +20,20 @@ export default function PostCard({ loadingState }) {
   const [isTextExpanded, setTextExpanded] = useState(false);
 
   const [myPost, setMypost] = useState(null);
-
+  
+  // *********** THIS PROFILE SECTION ********************
   const[thisUser,setThisUser]=useState('6165f83709b1c7080226a026') // HARDCODING MARCO 
-
-
+  const [profile, setProfile] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const getProfile=async()=>{
+    let myProfile=await getMyProfile(thisUser);
+    console.log('THIS IS MY PROFILE: ',myProfile)
+    setProfile(myProfile);
+  };
+  // ***********COMMENTS SECTION****************************
+  const[comment,setComment]=useState()
 
   let myId = "6135d7437be6c10015f9db99"; // MONGODB:61656206d9b9e312c927feb9
   const fetchPosts = async () => {
@@ -49,20 +61,28 @@ export default function PostCard({ loadingState }) {
   //**********USE EFFECT****************
   useEffect(() => {
     fetchPosts();
+    //console.log('THIS USER', thisUser)
+    getProfile()
   }, []);
 
   useEffect(() => {
     if (isLoading === true) fetchPosts();
   }, [isLoading]);
-  //**********LIKE POST****************
+  //**********LIKE POST WITH ALERT****************
   const likeThisPost=async(e)=>{
     const thisUserId={'id':thisUser}
     const response=await like(e,thisUserId)
-    // console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes)
+    const isThisUserInLikesArray=response.likes.indexOf(thisUser)
+    if(isThisUserInLikesArray==-1){
+      alert('You UNLIKED this Post')
+    }else{
+      alert('You LIKED this Post')
+    }
+    //console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes, 'isThisUserInLikesArray',isThisUserInLikesArray)
   }
   //*********LIKES COUNTER************* */
-  const counter=(e)=>{
-    const arrayOfLikes=e
+  const counter=(likes)=>{
+    const arrayOfLikes=likes
     const numberOfLikes=arrayOfLikes.length
     return numberOfLikes
   }
@@ -72,6 +92,20 @@ export default function PostCard({ loadingState }) {
     await deletePost(e)
     fetchPosts()
   }
+  //**********ADD A COMMENT************* */
+  const handleComment=(e,propertyName)=>{
+    setComment({
+      ...comment,
+      [propertyName]: e.target.value
+    });
+  }
+  const addComment=async(postId)=>{
+    //const thisUserId={'id':thisUser}
+    const newComment=await postAComment(postId,comment)
+    console.log('FOR ADDING A COMMENT, POST ID: ',postId, 'COMMENT TEXT: ', comment,'RESPONSE: ',newComment)
+  }
+  
+
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -121,7 +155,9 @@ export default function PostCard({ loadingState }) {
             </div>
             <div className="postCardMiddle d-flex flex-column">
               <div className="postCardMiddle">{post.text}</div>
-              <a className="align-self-end postCardMiddle">...see more</a>
+              <a className="align-self-end postCardMiddle"
+              
+              >update this post</a>
               {post.image && (
                 <img
                   src={post.image}
@@ -146,13 +182,15 @@ export default function PostCard({ loadingState }) {
             )}
             <div className="postCardBottom d-flex flex-wrap justify-content-between w-100">
               <hr className="postCardLine" />
-              <div className="d-flex align-items-center justify-content-center bottomIcons">
-                <ThumbUpIcon className="postCardIcons"
-                onClick={(e)=>likeThisPost(post._id)}
-                />
+              <div className="d-flex align-items-center justify-content-center bottomIcons"
+              onClick={(e)=>likeThisPost(post._id)}
+              >
+                <ThumbUpIcon className="postCardIcons"/>
                 <div className="postCardIcon">Like</div>
               </div>
-              <div className='d-flex align-items-center justify-content-center bottomIcons "'>
+              <div className='d-flex align-items-center justify-content-center bottomIcons "'
+
+              >
                 <CommentIcon className="postCardIcons" />
                 <div className="postCardIcon">Comment</div>
               </div>
@@ -165,6 +203,30 @@ export default function PostCard({ loadingState }) {
                 <div className="postCardIcon">Send</div>
               </div>
             </div>
+            {profile&&(
+            <div className="postInput" >
+              <Avatar
+                src={
+                  profile.image
+                    ? profile.image
+                    : "https://i.pinimg.com/474x/51/d3/89/51d3899b7eedf293e1684d1e70b66c20.jpg"
+                }
+                className="avatar"
+              />
+              {/* <CreateIcon /> */}
+              <p variant="primary" onClick={handleShow}>
+                <Form>
+                  <Form.Control                       
+                    className="border-0"
+                    as="textarea"
+                    placeholder="Add a comment"
+                    
+                    onChange={(e) => handleComment(e, "comment")} />
+                </Form>
+                <SendIcon className="postCardIcons" onClick={()=>addComment(post._id)} />
+              </p>
+            </div>
+            )}
           </div>
         ))}
     </div>
