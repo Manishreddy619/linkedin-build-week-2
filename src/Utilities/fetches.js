@@ -28,7 +28,7 @@ export const getProfiles = async () => {
 export const getMyProfile = async (thisUser) => {
 	//console.log('THIS USER', thisUser);
 	try {
-		const apiResp = await fetch(apiUrl + '/' + thisUser, {
+		const apiResp = await fetch(apiUrl + '/' + '6165f83709b1c7080226a026', {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
@@ -159,6 +159,7 @@ export const updateMyProfile = async (profileData, userId) => {
 };
 
 export const updateMyProfileBody = async (profileData) => {
+	console.log('PROFILE DATA FROM FETCH',profileData)
 	try {
 		const apiResp = await fetch(
 			`https://linkedin-backendcrud.herokuapp.com/profile/profiles/61642ba7c7ce9a61a178ef42/profile`,
