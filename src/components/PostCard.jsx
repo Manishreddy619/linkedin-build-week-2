@@ -45,6 +45,10 @@ export default function PostCard({ loadingState }) {
   const addComment=async(postId)=>{
     //const thisUserId={'id':thisUser}
     const newComment=await postAComment(postId,comment)
+    setComment({comment:''})
+    const response=await getCommentsFromDB(postId)
+    setThisPostComments(response)
+    console.log('COMMENT',comment)
     //console.log('FOR ADDING A COMMENT, POST ID: ',postId, 'COMMENT TEXT: ', comment,'RESPONSE: ',newComment)
   }
   //________________________________GET COMMENTS by Post Id
@@ -58,7 +62,7 @@ export default function PostCard({ loadingState }) {
       handleClose()
     }else{
       setThisPostId(postId)
-      const response=await getCommentsFromDB(postId,setThisPostComments)
+      const response=await getCommentsFromDB(postId)
       setThisPostComments(response)
       console.log('THIS POST ID',thisPostId, 'THIS POST COMMENTS: ',thisPostComments,'RESPONSE',response)
       handleShow()
@@ -111,11 +115,14 @@ export default function PostCard({ loadingState }) {
     const thisUserId={'id':thisUser}
     const response=await like(e,thisUserId)
     const isThisUserInLikesArray=response.likes.indexOf(thisUser)
+    fetchPosts()
+    /*
     if(isThisUserInLikesArray==-1){
       alert('You UNLIKED this Post')
     }else{
       alert('You LIKED this Post')
     }
+    */
     //console.log('LIKED POST ID: ', e,'RESPONSE FROM FETCH: ', response.likes, 'isThisUserInLikesArray',isThisUserInLikesArray)
   }
   //*********LIKES COUNTER************* */
@@ -128,7 +135,8 @@ export default function PostCard({ loadingState }) {
   const deleteThisPost=async(e)=>{
     console.log('DELETED POST ID: ',e)
     await deletePost(e)
-    fetchPosts()
+    await fetchPosts()
+    alert('no more that bad post')
   }
   //**********UPDATE POST*****************
   const [post, setPost] = useState({
@@ -263,7 +271,7 @@ export default function PostCard({ loadingState }) {
               </div>
             </div>
             {(thisPostId===post._id)?profile&&showComments&&thisPostComments&&(
-            <>
+            <div>
             <div className="postInput" >
               <Avatar
                 src={
@@ -288,13 +296,15 @@ export default function PostCard({ loadingState }) {
             </div>
             <div>
               {(thisPostId===post._id)?thisPostComments&&thisPostComments.map((comment)=>(
-                <div key={thisPostComments._id} className="border">
-                <p>{comment.postWithUser.user.name} {comment.postWithUser.user.surname} said: {comment.comment} </p>
-                <a onClick={(e)=>updateThisComment(thisPostId,thisPostComments._id,'comment')}></a>
+                <div key={comment.postWithUser._id} className="border">
+                  <Avatar src={comment.postWithUser.user.image} className="avatar" />
+                  {/* <p>{comment.postWithUser.user.name} {comment.postWithUser.user.surname} </p> */}
+                  <span className='text-left align-middle'>{comment.comment} </span>
+                  <a onClick={(e)=>updateThisComment(thisPostId,thisPostComments._id,'comment')}></a>
                 </div>
               )):<div></div>}
             </div>
-            </>
+            </div>
             ):<div></div>}
           </div>
         ))}
