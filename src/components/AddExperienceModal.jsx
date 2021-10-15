@@ -50,7 +50,7 @@ const ExperienceModal = ({ id, loadingState }) => {
     setExperience(ex);
     console.log(ex);
   };
-  console.log(getExid);
+  //console.log(getExid);
 
   return (
     <>

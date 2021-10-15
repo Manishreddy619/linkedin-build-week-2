@@ -28,7 +28,7 @@ export const getProfiles = async () => {
 export const getMyProfile = async (thisUser) => {
 	//console.log('THIS USER', thisUser);
 	try {
-		const apiResp = await fetch(apiUrl + '/' + '6165f83709b1c7080226a026', {
+		const apiResp = await fetch(apiUrl + '/' + '61642ba7c7ce9a61a178ef42', {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
@@ -157,7 +157,33 @@ export const updateMyProfile = async (profileData, userId) => {
 		throw err;
 	}
 };
+export const updateMyProfileBody = async (profileData) => {
+	try {
+		const apiResp = await fetch(
+			`https://linkedin-backendcrud.herokuapp.com/profile/profiles/61642ba7c7ce9a61a178ef42/profile`,
+			{
+				method: 'PUT',
+				body: JSON.stringify(profileData),
+				headers: {
+					'Content-Type': 'application/json',
+					// Authorization: `Bearer ${apiKey}`,
+				},
+			},
+		);
+		if (apiResp.ok) {
+			let updatedPost = await apiResp.json();
+			return updatedPost;
+		} else if (apiResp.status > 400 && apiResp.status < 500) {
+			throw new Error('Client Side Error');
+		} else if (apiResp.status > 500) {
+			throw new Error('Server Side Error');
+		}
+	} catch (err) {
+		throw err;
+	}
+};
 
+/*
 export const updateMyProfileBody = async (profileData) => {
 	console.log('PROFILE DATA FROM FETCH',profileData)
 	try {
@@ -184,7 +210,7 @@ export const updateMyProfileBody = async (profileData) => {
 		throw err;
 	}
 };
-
+*/
 export const uploadProfilePicture = async (userId, profilePicture) => {
 	const formData = new FormData();
 	formData.append('profile', profilePicture);

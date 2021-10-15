@@ -34,7 +34,7 @@ const ProfileDetails = () => {
 
 	useEffect(() => {
 		fetchProfileData();
-	}, []);
+	}, [details]);
 	/*
   useEffect(() => {
     if (isLoading) {
@@ -60,15 +60,18 @@ const ProfileDetails = () => {
 						<Example
 							loadingState={(state) => setLoading(state)}
 							details={details}
+							setDetails={setDetails}
 						/>
 					</span>
 					<div className='details'>
 						<div className='detailsRight'>
-							<h2>
+							<h2>{details.name} {details.surname}</h2>
+							<h4>
+								
 								{details.username && details.username.length >= 10
 									? details.username.slice(0, 14)
 									: details.username}
-							</h2>
+							</h4>
 
 							<h4>{details.title}</h4>
 							<p>email : {details.email}</p>

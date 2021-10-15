@@ -6,7 +6,7 @@ import {
   uploadProfilePicture,
   updateMyProfileBody,
 } from "../Utilities/fetches";
-const Example = ({ details, loadingState }) => {
+const Example = ({ details, loadingState, setDetails }) => {
   const [show, setShow] = useState(false);
   // const [inputFile, setInputFile] = useState(null);
   const handleClose = () => setShow(false);
@@ -31,7 +31,8 @@ const Example = ({ details, loadingState }) => {
     });
   };
   useEffect(() => {
-    getMyProfile();
+    getMyProfile()
+    //.then((data)=>(data));
   }, [profileData]);
   const handleSubmit = async (e) => {
     // with async/await
@@ -40,9 +41,33 @@ const Example = ({ details, loadingState }) => {
       // console.log(profileData.image);
       await updateMyProfileBody(profileData);
       handleClose();
+      const myProfile=await getMyProfile()
+      console.log('MY PROFILE',myProfile)
+       setDetails({
+         name: myProfile.name,
+         surname: myProfile.surname,
+         email: myProfile.email,
+         bio: myProfile.bio,
+         title: myProfile.title,
+         area: myProfile.area,
+         username: myProfile.username,
+         image: myProfile.image,
+       })
     } else {
       await updateMyProfile(profileData);
       handleClose();
+      const myProfile=await getMyProfile()
+      console.log('MY PROFILE',myProfile)
+      setDetails({
+        name: myProfile.name,
+        surname: myProfile.surname,
+        email: myProfile.email,
+        bio: myProfile.bio,
+        title: myProfile.title,
+        area: myProfile.area,
+        username: myProfile.username,
+        image: myProfile.image,
+      })
     }
 
     console.log("-----------------------", profileData.image);

@@ -23,7 +23,7 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
     area: currentEx.area,
     image: undefined,
   });
-  console.log(currentEx);
+  //console.log(currentEx);
   const handleInput = (e, propertyName) => {
     setUpdateEx({
       ...updateEx,
@@ -43,7 +43,7 @@ const EditMyExperience = ({ currentEx, exid, userId, loadingState }) => {
       handleClose();
     }
   };
-  console.log(updateEx);
+  //console.log(updateEx);
   return (
     <div className="containerEditEx">
       <div
