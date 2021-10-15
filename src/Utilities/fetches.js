@@ -479,7 +479,7 @@ export const uploadPostPicture = async (postId, postPicture) => {
 	formData.append('post', postPicture);
 	console.log('FROM FETCH POST ID', postId, 'IMAGE', postPicture);
 	try {
-		const apiResp = await fetch(postsApiUrl + postId, {
+		const apiResp = await fetch(postsApiUrl+'/' + postId, {
 			method: 'POST',
 			body: formData,
 			// headers: {
@@ -557,7 +557,7 @@ export const createPost = async (postData) => {
 
 export const getPost = async (postId) => {
 	try {
-		const apiResp = await fetch(postsApiUrl + postId, {
+		const apiResp = await fetch(postsApiUrl +'/'+ postId, {
 			method: 'GET',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
@@ -579,7 +579,7 @@ export const getPost = async (postId) => {
 export const updatePost = async (postId, postData) => {
 	console.log('POSTID FROM FETCH: ',postId,'POSTDATA FROM FETCH: ',postData)
 	try {
-		const apiResp = await fetch(postsApiUrl + postId, {
+		const apiResp = await fetch(postsApiUrl +'/'+ postId, {
 			method: 'PUT',
 			body: JSON.stringify(postData),
 			headers: {
@@ -602,7 +602,7 @@ export const updatePost = async (postId, postData) => {
 
 export const deletePost = async (postId) => {
 	try {
-		const apiResp = await fetch(postsApiUrl + postId, {
+		const apiResp = await fetch(postsApiUrl+'/' + postId, {
 			method: 'DELETE',
 			// headers: {
 			// 	Authorization: `Bearer ${apiKey}`,
@@ -624,7 +624,7 @@ export const deletePost = async (postId) => {
 export const like = async (postId, thisUserId) => {
 	//console.log('POST ID FROM FETCH',postId,' USER ID FROM FETCH: ',thisUserId)
 	try {
-		const apiResp = await fetch(postsApiUrl + postId + '/like', {
+		const apiResp = await fetch(postsApiUrl+'/' + postId + '/like', {
 			method: 'POST',
 			body: JSON.stringify(thisUserId),
 			headers: { 'Content-Type': 'application/json' },
@@ -646,7 +646,7 @@ export const like = async (postId, thisUserId) => {
 export const postAComment=async(postId,commentText)=>{
 	//console.log('POST ID FROM FETCH',postId,' COMMENT TEXT FROM FETCH: ',commentText)
 	try {
-		const apiResp = await fetch(postsApiUrl + postId + '/comment', {
+		const apiResp = await fetch(postsApiUrl+'/' + postId + '/comment', {
 			method: 'POST',
 			body: JSON.stringify(commentText),
 			headers: { 'Content-Type': 'application/json' },
@@ -668,7 +668,7 @@ export const postAComment=async(postId,commentText)=>{
 // ************************* GET COMMENTS *****************************
 export const getCommentsFromDB=async(postId,setThisPostComments)=>{
 	try{
-		const apiResp = await fetch(postsApiUrl+postId+'/comment', {
+		const apiResp = await fetch(postsApiUrl+'/'+postId+'/comment', {
 			method: 'GET',
 		});
 		if (apiResp.ok) {
@@ -688,7 +688,7 @@ export const getCommentsFromDB=async(postId,setThisPostComments)=>{
 // ******************* UPDATE COMMENTS ***************************
 export const updateComment=async(postId,commentId,comment)=>{
 	try {
-		const apiResp=await fetch(postsApiUrl+postId+/comment/+commentId,{
+		const apiResp=await fetch(postsApiUrl+'/'+postId+/comment/+commentId,{
 			method:'PUT',
 			body:comment,
 		}
